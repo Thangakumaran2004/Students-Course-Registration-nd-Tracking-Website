@@ -1,0 +1,18 @@
+.StudentDashboard{
+    background-color: rgb(18, 231, 99);
+}
+
+/* .navi{
+    background-color: aqua;
+} */
+
+.staffdetails{
+    background-color: purple;
+    color: white;
+    max-width: fit-content;
+}
+
+.maincourse thead{
+    background-color: #1819a8;
+    color: white;
+}
