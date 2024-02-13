@@ -1,6 +1,5 @@
 import React from 'react'
 import {Container,Row,Col,Nav,Image,Table} from 'react-bootstrap'
-import {Link,  Routes, Route} from 'react-router-dom'
 import '../Styles/studentMainPage.css'
 
 
@@ -12,11 +11,7 @@ const Studentpage = () => {
     <Dashboard/>
     <Coursenavigation />
     <Maincourse />
-      {/* <Routes>
-          <Route path='/maincourses' element={<Maincourse />} />
-          <Route path='/electivecourses' element={<Electivecourse />} />
-          <Route path='/nptel' element={<Nptel />} />
-      </Routes> */}
+      
    
     
     
@@ -67,13 +62,13 @@ export const Coursenavigation = () => {
     <div >
         <Nav className='justify-content-center navi'>
             <Nav.Item className='border-bottom border-4 border-secondary fs-4 m-2'>
-              <Link to="/maincourses">  COURSES  </Link>
+                COURSES  
             </Nav.Item >
             <Nav.Item className='border-bottom border-4 border-secondary fs-4 m-2'>
-               <Link to="/electivecourses"> ELECTIVE </Link>
+                ELECTIVE 
             </Nav.Item>
             <Nav.Item className='border-bottom border-4 border-secondary fs-4 m-2'>
-               <Link to='/nptel'> NPTEL </Link>
+                NPTEL 
                 </Nav.Item>
         </Nav>
     </div>
