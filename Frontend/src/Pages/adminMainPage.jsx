@@ -109,6 +109,7 @@ const AdminMainPage = () => {
                     </td>
                     </tr>
                     </tbody>
+                    </Table>
                 </form>
         </Container>
     </div>
