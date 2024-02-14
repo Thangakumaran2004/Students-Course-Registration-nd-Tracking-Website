@@ -2,6 +2,38 @@ import React from 'react'
 import {Container,Table,Form,Col,Row,Button, FloatingLabel, DropdownMenu} from 'react-bootstrap'
 
 const arr=['a','ab','abc','abcd','abcde']
+const subject =['Engineering maths','Technical English',"Physics","Chemistry"]
+
+function Dropdown(){
+  return arr.map((option, index) => (
+    <option key={index} value={option}>{option}</option>
+  ))
+}
+
+function disSub() {
+  return subject.map((subj, i) => (
+      <tr key={i}>
+          <td>{i + 1}</td>
+          <td>{subj}</td>
+          <td>
+              <select>
+                {Dropdown()}
+              </select>
+          </td>
+          <td>
+              <select>
+                {Dropdown()}
+              </select>
+          </td>
+          <td>
+              <select>
+                {Dropdown()}
+              </select>
+          </td>
+      </tr>
+  ));
+}
+
 
 const AdminMainPage = () => {
   return (
@@ -32,82 +64,8 @@ const AdminMainPage = () => {
                     </tr>
                 </thead>
                     <tbody>
-                    
-                    <tr>
-                        <td>1</td>
-                        <td>English</td>
-                        <td>
-                    <select>
-                    {arr.map((option, Index) => (
-                  <option key={Index} value={option}>{option}</option>
-                ))}
-                    </select>
-                    </td>
-                    <td>
-                    <select>
-                    {arr.map((option, Index) => (
-                  <option key={Index} value={option}>{option}</option>
-                ))}
-                    </select>
-                    </td>
-                        <td>
-                    <select>
-                    {arr.map((option, Index) => (
-                  <option key={Index} value={option}>{option}</option>
-                ))}
-                    </select>
-                    </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Physics</td>
-                        <td>
-                    <select>
-                    {arr.map((option, Index) => (
-                  <option key={Index} value={option}>{option}</option>
-                ))}
-                    </select>
-                    </td>
-                    <td>
-                    <select>
-                    {arr.map((option, Index) => (
-                  <option key={Index} value={option}>{option}</option>
-                ))}
-                    </select>
-                    </td>
-                        <td>
-                    <select>
-                    {arr.map((option, Index) => (
-                  <option key={Index} value={option}>{option}</option>
-                ))}
-                    </select>
-                    </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Chemistry</td>
-                        <td>
-                    <select>
-                    {arr.map((option, Index) => (
-                  <option key={Index} value={option}>{option}</option>
-                ))}
-                    </select>
-                    </td>
-                    <td>
-                    <select>
-                    {arr.map((option, Index) => (
-                  <option key={Index} value={option}>{option}</option>
-                ))}
-                    </select>
-                    </td>
-                        <td>
-                    <select>
-                    {arr.map((option, Index) => (
-                  <option key={Index} value={option}>{option}</option>
-                ))}
-                    </select>
-                    </td>
-                    </tr>
+                      {disSub()}
+                   
                     </tbody>
                     </Table>
                 </form>
