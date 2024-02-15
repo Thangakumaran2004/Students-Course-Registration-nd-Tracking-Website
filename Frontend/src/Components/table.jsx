@@ -54,11 +54,12 @@ function Dropdown(a){
 
 
 const Tablee = () => {
+    const [tableData, setTableData]=useState(' ')
     
   return (
     <Container>
                 <form>
-                <Table>
+                <Table >
                     <thead >
                     <tr>
                     <th>S.NO</th>

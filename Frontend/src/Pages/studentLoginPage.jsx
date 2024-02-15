@@ -1,32 +1,54 @@
-import React,{useState} from 'react'
-import {Container,Form,Button,FloatingLabel,Row,Col} from 'react-bootstrap'
-import '../Styles/loginPageStyle.css'
+import React, { useState } from 'react';
+import { Container, Form, Button, FloatingLabel, Row, Col } from 'react-bootstrap';
+import '../Styles/loginPageStyle.css';
+import axios from 'axios'
 
-
-//student login page component
+// Student login page component
 const StudentLoginpage = () => {
-  const [stddetails,UpdatestuDetails] =useState({
+  const [stddetails, UpdatestuDetails] = useState({
     'username': '',
-    "password": ''
-  }) 
+    'password': ''
+  });
+
+  const handlingFormdata = (e) => {
+    const { name, value } = e.target;
+    UpdatestuDetails(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
+  
+  const stuformsubmit = async (e) => {
+    e.preventDefault();
+    console.log(stddetails);
+    try {
+      const response = await axios.post('https://localhost:5000/studentLogin', stddetails);
+      console.log("Form data was submitted successfully", response.data);
+    } catch(error) {
+      console.log("An error occurred", error);
+    }
+  };
+
   return (
     <div>
-        <Container  className='logincontainer  mt-5 '>
-            <Row className='justify-content-center'>
-                <Col  xs={8} md={4}>
-           <center> <h3 >STUDENT LOGIN</h3></center>
-            <FloatingLabel controlId="floatingInput"     label="Email address"    className="mb-5 mt-5"   >
-            <Form.Control type="email" name='username' placeholder="name@example.com" />
-            </FloatingLabel>
-            <FloatingLabel controlId="floatingPassword" label="Password" className="mb-5 mt-5">
-            <Form.Control type="password" name='' placeholder="Password" />
-            </FloatingLabel>
-            <Button variant="success" type="submit" className='p-2 mb-4 fs-5'>LOG IN</Button>
+      <Container className='logincontainer mt-5'>
+        <Form onSubmit={stuformsubmit}>
+          <Row className='justify-content-center'>
+            <Col xs={8} md={4}>
+              <center><h3>STUDENT LOGIN</h3></center>
+              <FloatingLabel controlId="floatingInput" label="Email address" className="mb-5 mt-5">
+                <Form.Control type="email" name='username' placeholder="name@example.com" value={stddetails.username} onChange={handlingFormdata} />
+              </FloatingLabel>
+              <FloatingLabel controlId="floatingPassword" label="Password" className="mb-5 mt-5">
+                <Form.Control type="password" name='password' onChange={handlingFormdata} value={stddetails.password} placeholder="Password" />
+              </FloatingLabel>
+              <Button variant="success" type="submit" className='p-2 mb-4 fs-5'>LOG IN</Button>
             </Col>
-            </Row>
-        </Container>
+          </Row>
+        </Form>
+      </Container>
     </div>
-  )
-}
+  );
+};
 
-export default StudentLoginpage
+export default StudentLoginpage;
