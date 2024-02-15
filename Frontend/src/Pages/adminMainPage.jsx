@@ -1,75 +1,60 @@
-import React from 'react'
-import {Container,Table,Form,Col,Row,Button, FloatingLabel, DropdownMenu} from 'react-bootstrap'
-
-const arr=['a','ab','abc','abcd','abcde']
-const subject =['Engineering maths','Technical English',"Physics","Chemistry"]
-
-function Dropdown(){
-  return arr.map((option, index) => (
-    <option key={index} value={option}>{option}</option>
-  ))
-}
-
-function disSub() {
-  return subject.map((subj, i) => (
-      <tr key={i}>
-          <td>{i + 1}</td>
-          <td>{subj}</td>
-          <td>
-              <select>
-                {Dropdown()}
-              </select>
-          </td>
-          <td>
-              <select>
-                {Dropdown()}
-              </select>
-          </td>
-          <td>
-              <select>
-                {Dropdown()}
-              </select>
-          </td>
-      </tr>
-  ));
-}
-
+import React, {useState} from 'react'
+import {Container,Form,Col,Row,Button, FloatingLabel} from 'react-bootstrap'
+import  Tablee from '../Components/table'
+import axios from 'axios'
 
 const AdminMainPage = () => {
+
+  const [formData, setFormData]= useState({
+    "year": ' ',
+    "semester": ' '
+  })
+  const handleChange=(e)=>{
+    
+      const {name,value}=e.target;
+      setFormData(prevState => ({
+        ...prevState,
+        [name]: value
+    }));
+  };
+
+
+
+  const handlesubmit= async (e) =>{
+    e.preventDefault();
+    console.log(formData);
+    try{
+     const response= await axios.post('https://localhost:5000/adminMain',formData)
+      console.log("Form data was submitted sucessfully",response.data)
+    }catch{
+      console.log("error Ocurred")
+    }
+    
+    
+  }
   return (
     <div>
         <Container>
+          <Form onSubmit={handlesubmit}>
             <Row>
             <Col>
             <FloatingLabel label='Select year'>
-                <Form.Control type='text'   />
+                <Form.Control type='text' name='year'  value={formData.year} onChange={handleChange}  />
             </FloatingLabel >
             <FloatingLabel label='Semester' >
-                <Form.Control  type='text'/>
+                <Form.Control  type='text' name='semester' value={formData.semester} onChange={handleChange}  />
             </FloatingLabel>
             </Col>
             </Row>
             <Button type="submit" variant='success'>Submit</Button>
+          </Form>
         </Container>
-        <Container>
-                <form>
-                <Table>
-                    <thead >
-                    <tr>
-                    <th>S.NO</th>
-                    <th>Subject Name</th>
-                    <th>Batch - 1</th>
-                    <th>Batch - 2</th>
-                    <th>Batch - 3</th>
-                    </tr>
-                </thead>
-                    <tbody>
-                      {disSub()}
-                   
-                    </tbody>
-                    </Table>
-                </form>
-        </Container>
+        <br />
+        <br />
+        <br />
+        <br />
+        <Tablee />
+        
     </div>
   )
 }
