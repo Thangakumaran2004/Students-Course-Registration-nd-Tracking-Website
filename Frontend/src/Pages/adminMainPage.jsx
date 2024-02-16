@@ -23,15 +23,18 @@ const AdminMainPage = () => {
   const handlesubmit= async (e) =>{
     e.preventDefault();
     console.log(formData);
-    try{
-     const response= await axios.post('https://localhost:5000/adminMain',formData)
-      console.log("Form data was submitted sucessfully",response.data)
-    }catch{
-      console.log("error Ocurred")
+    
+     axios.post('https://localhost:5000/adminMain',formData)
+    .then(res =>{
+      console.log(res.data)
+    }).catch(err =>{
+      console.error("Error",err);
+    });
+      
     }
     
     
-  }
+  
   return (
     <div>
         <Container>

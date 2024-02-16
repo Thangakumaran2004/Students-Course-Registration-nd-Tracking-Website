@@ -33,12 +33,12 @@ const StudentLoginpage = () => {
   const stuformsubmit = async (e) => {
     e.preventDefault();
     console.log(stddetails);
-    try {
-      const response = await axios.post('https://localhost:5000/studentLogin', stddetails);
-      console.log("Form data was submitted successfully", response.data);
-    } catch(error) {
-      console.log("An error occurred", error);
-    }
+    
+      axios.post('https://localhost:5000/studentLogin', stddetails) .then(res =>{
+        console.log(res.data)
+      }).catch(err =>{
+        console.error("Error",err);
+      });
   };
 
   return (
