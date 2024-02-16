@@ -22,11 +22,17 @@ const handlingChange =(e) =>{
 const formsubmit = async (e) =>{
   e.preventDefault();
   
-    axios.post('https://localhost:5000/adminLogin', logincred).then((res=>{
+    axios.post('https://fakestoreapi.com/products', logincred).then((res=>{
       console.log(res.data);
    })).catch(err =>{
     console.error('Error: ',err);
    });
+
+   axios.get('https://localhost:5000/adminLogin').then((req) =>{
+    console.log(req.data);
+   }).catch((errr) =>{
+    console.error("Error: ",errr);
+   })
 }
 
   return (

@@ -39,7 +39,17 @@ const StudentLoginpage = () => {
       }).catch(err =>{
         console.error("Error",err);
       });
-  };
+
+      
+      axios.get('https://localhost:5000/studentLogin').then((req) =>{
+        console.log(req.data);
+       }).catch((errr) =>{
+        console.error("Error: ",errr);
+       })
+  
+  
+  
+    };
 
   return (
     <div>
