@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import {Container,Form,Button,FloatingLabel,Row,Col} from 'react-bootstrap'
 import '../Styles/loginPageStyle.css'
-
+import { Header } from './studentLoginPage'
 
 // admin login page component
 const AdminLoginpage = () => {
@@ -31,6 +31,7 @@ const formsubmit = async (e) =>{
 
   return (
     <div>
+      <Header />
         <Container  className='logincontainer  mt-5 '>
           <Form onSubmit={formsubmit}>
             <Row className='justify-content-center'>

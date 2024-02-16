@@ -2,6 +2,18 @@ import React, { useState } from 'react';
 import { Container, Form, Button, FloatingLabel, Row, Col } from 'react-bootstrap';
 import '../Styles/loginPageStyle.css';
 import axios from 'axios'
+import {Nav} from 'react-bootstrap'
+
+
+export function Header(){
+  return (
+    <Nav className='justify-content-end bg-success p-3'>
+      <Nav.Link className='text-light'>STUDENT LOGIN</Nav.Link>
+      <Nav.Link className='text-light'>ADMIN LOGIN</Nav.Link>
+      <Nav.Link className='text-light'>COE LOGIN</Nav.Link>
+    </Nav>
+  )
+}
 
 // Student login page component
 const StudentLoginpage = () => {
@@ -31,7 +43,10 @@ const StudentLoginpage = () => {
 
   return (
     <div>
-      <Container className='logincontainer mt-5'>
+      <Header />
+      <br />
+      <br/>
+      <Container className='logincontainer mt-5' >
         <Form onSubmit={stuformsubmit}>
           <Row className='justify-content-center'>
             <Col xs={8} md={4}>

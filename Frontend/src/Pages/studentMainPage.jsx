@@ -93,8 +93,8 @@ export const Maincourse=() =>{
         < div className='maincourse'>
         <Row  className='justify-content-center'>
             <Col md={8}>
-                    <Table>
-                    <thead >
+                    <Table striped bordered hover>
+                    <thead  className='tablehead'>
                     <tr>
                     <th>S.NO</th>
                     <th>Course code</th>
