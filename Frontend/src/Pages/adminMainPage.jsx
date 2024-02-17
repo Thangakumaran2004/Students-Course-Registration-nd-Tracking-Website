@@ -26,8 +26,8 @@ const AdminMainPage = () => {
     try{
      const response= await axios.post('https://localhost:5000/adminMain',formData)
       console.log("Form data was submitted sucessfully",response.data)
-    }catch{
-      console.log("error Ocurred")
+    }catch(e){
+      console.log("error Ocurred",e);
     }
     
     
