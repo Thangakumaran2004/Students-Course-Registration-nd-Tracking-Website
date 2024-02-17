@@ -1,6 +1,7 @@
 import React ,{useState} from 'react'
 import {Container,Table,Button} from 'react-bootstrap'
 import axios from 'axios'
+import '../Styles/loginPageStyle.css'
 
 const arr=['a','ab','abc','abcd','abcde','None']
 const subject =['Engineering maths','Technical English',"Physics","Chemistry"]
@@ -84,11 +85,11 @@ const Tablee = () => {
   return (
     <Container>
                 <form  onSubmit={formtablesubmit}>
-                <Table  >
+                <Table   striped bordered hover size="sm" responsive="sm"  className="table" >
                     <thead >
                     <tr>
-                    <th>S.NO</th>
-                    <th>Subject Name</th>
+                    <th style={{ backgroundColor: '#00ff00', color: '#ffffff' }}>S.NO</th>
+                    <th style={{ backgroundColor: '#00ff00', color: '#ffffff' }}>Subject Name</th>
                     <th>Batch - 1</th>
                     <th>Count</th>
                     <th>Batch - 2</th>
