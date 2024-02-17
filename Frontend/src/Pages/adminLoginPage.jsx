@@ -21,18 +21,18 @@ const handlingChange =(e) =>{
 
 const formsubmit = async (e) =>{
   e.preventDefault();
-  
-    axios.post('https://fakestoreapi.com/products', logincred).then((res=>{
-      console.log(res.data);
-   })).catch(err =>{
-    console.error('Error: ',err);
-   });
 
-   axios.get('https://localhost:5000/adminLogin').then((req) =>{
+  console.log(logincred);
+  
+    let response = await axios.post('http://localhost:5000/adminLogin', logincred);
+    console.log(response);
+   
+
+   /*axios.get('https://localhost:5000/adminLogin').then((req) =>{
     console.log(req.data);
    }).catch((errr) =>{
     console.error("Error: ",errr);
-   })
+   })*/
 }
 
   return (
@@ -44,7 +44,7 @@ const formsubmit = async (e) =>{
                 <Col  xs={12} md={4}>
             <center><h3 >Admin Login</h3></center>
             <FloatingLabel controlId="floatingInput"     label="Email address"    className="mb-5 mt-5"   >
-            <Form.Control type="email" name='username'  value={logincred.username} placeholder="name@example.com" onChange={handlingChange}  />
+            <Form.Control type="text" name='username'  value={logincred.username} placeholder="name@example.com" onChange={handlingChange}  />
             </FloatingLabel>
             <FloatingLabel controlId="floatingPassword"  label="Password" className="mb-5 mt-5">
             <Form.Control type="password" value={logincred.password}  onChange={handlingChange} name='password' placeholder="Password" />

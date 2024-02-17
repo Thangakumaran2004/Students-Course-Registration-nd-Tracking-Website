@@ -6,7 +6,10 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const db = require('./databaseConnection.js');
 const adminMainPageRoute = require('./Routes/adminMainPageRoute.js');
+const studentLoginPageRoute = require('./Routes/studentLoginPageRoute.js');
+const adminLoginPageRoute = require('./Routes/adminLoginPageRoute.js');
 
 
 // This section contains the constructor calls and constant values;
@@ -29,6 +32,8 @@ app.use((req, res, next) => {
     }
 });
 app.use('/adminMain',adminMainPageRoute);
+app.use('/studentLogin',studentLoginPageRoute);
+app.use('/adminlogin',adminLoginPageRoute);
 app.use(cors({origin:"*"}));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));

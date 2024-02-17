@@ -34,18 +34,19 @@ const StudentLoginpage = () => {
     e.preventDefault();
     console.log(stddetails);
     
-      axios.post('https://localhost:5000/studentLogin', stddetails) .then(res =>{
-        console.log(res.data)
-      }).catch(err =>{
-        console.error("Error",err);
-      });
+    try{
+      let response = await axios.post('http://localhost:5000/studentLogin', stddetails) ;
+      console.log(response);
+    }catch(e){
+      console.log("Error hapened while fetching response from studentLogin API",e);
+    }
 
       
-      axios.get('https://localhost:5000/studentLogin').then((req) =>{
+     /* axios.get('http://localhost:5000/studentLogin').then((req) =>{
         console.log(req.data);
        }).catch((errr) =>{
         console.error("Error: ",errr);
-       })
+       })*/
   
   
   
@@ -62,7 +63,7 @@ const StudentLoginpage = () => {
             <Col xs={8} md={4}>
               <center><h3>STUDENT LOGIN</h3></center>
               <FloatingLabel controlId="floatingInput" label="Email address" className="mb-5 mt-5">
-                <Form.Control type="email" name='username' placeholder="name@example.com" value={stddetails.username} onChange={handlingFormdata} />
+                <Form.Control type="text" name='username' placeholder="name@example.com" value={stddetails.username} onChange={handlingFormdata} />
               </FloatingLabel>
               <FloatingLabel controlId="floatingPassword" label="Password" className="mb-5 mt-5">
                 <Form.Control type="password" name='password' onChange={handlingFormdata} value={stddetails.password} placeholder="Password" />

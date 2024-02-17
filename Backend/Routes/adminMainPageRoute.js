@@ -17,8 +17,11 @@ router.get('/',async (req,res)=>{
     }).then(ress=>res.json(ress)).catch(err=>res.json(err));
 });
 
-router.post('/',(req,res)=>{
+router.post('/',async (req,res)=>{
     console.log("Formdata is",req.body);
+
+
+
     res.send("okay");
 });
 
