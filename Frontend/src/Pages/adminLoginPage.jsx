@@ -2,6 +2,7 @@ import React,{useState} from 'react'
 import {Container,Form,Button,FloatingLabel,Row,Col} from 'react-bootstrap'
 import '../Styles/loginPageStyle.css'
 import { Header } from './studentLoginPage'
+import axios from 'axios'
 
 // admin login page component
 const AdminLoginpage = () => {
@@ -20,13 +21,18 @@ const handlingChange =(e) =>{
 
 const formsubmit = async (e) =>{
   e.preventDefault();
-  console.log(logincred)
-  try{
-    const response= await axios.post('https://localhost:5000/adminLogin', logincred)
-     console.log("Form data was submitted sucessfully",response.data)
-   }catch{
-     console.log("error Ocurred")
-   }
+  
+    axios.post('https://fakestoreapi.com/products', logincred).then((res=>{
+      console.log(res.data);
+   })).catch(err =>{
+    console.error('Error: ',err);
+   });
+
+   axios.get('https://localhost:5000/adminLogin').then((req) =>{
+    console.log(req.data);
+   }).catch((errr) =>{
+    console.error("Error: ",errr);
+   })
 }
 
   return (
