@@ -22,14 +22,19 @@ const AdminMainPage = () => {
 
   const handlesubmit= async (e) =>{
     e.preventDefault();
+
+    
+
     console.log(formData);
     
-     axios.post('https://localhost:5000/adminMain',formData)
-    .then(res =>{
-      console.log(res.data)
-    }).catch(err =>{
-      console.error("Error",err);
-    });
+    
+    try {
+      let data = await axios.post('http://localhost:5000/adminMain',formData);
+      console.log(data);y
+    }catch(e){
+      console.log("Error in axios",e);
+    }
+    
       
     }
     
@@ -62,4 +67,4 @@ const AdminMainPage = () => {
   )
 }
 
-export default AdminMainPage
+export default AdminMainPage;

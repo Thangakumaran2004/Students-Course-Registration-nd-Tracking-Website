@@ -1,5 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const cors =require('cors');
+
+router.use(express.json());
+
+
 
 router.get('/',async (req,res)=>{
     let getPromise = new Promise((resolve,reject)=>{
@@ -10,14 +15,11 @@ router.get('/',async (req,res)=>{
             reject("bad");
         }
     }).then(ress=>res.json(ress)).catch(err=>res.json(err));
-})
+});
 
 router.post('/',(req,res)=>{
-    
-   let bodyContent = req.body;
-   res.json(bodyContent);
-    
-})
-
+    console.log("Formdata is",req.body);
+    res.send("okay");
+});
 
 module.exports = router;
