@@ -11,12 +11,7 @@ const AdminLoginpage = () => {
   const [logincred ,updateForm]=useState({
     'username':  '',
     'password':  '' 
-  }) 
-
-  const [resData, storeData] =useState({
-    'status': 200,
-    'data': 'valid user with correct password'
-  })
+  }) ;
   const [error, setError]=useState(false);
 const [unacess, setUaccess]=useState(false);
 
@@ -34,12 +29,10 @@ const formsubmit = async (e) =>{
   console.log(logincred);
   try{
     let response = await axios.post('http://localhost:5000/adminLogin', logincred);
-    // storeData(response.data)
-    console.log(resData.status);
-    if(resData.status===200){
-      if(resData.data=='valid user with correct password'){
-       navigate("/studentpage") ;
-      }else if(resData.data=='valid user wrong password'){
+    if(response.data.status===200){
+      if(resonse.data.data=='valid user with correct password'){
+       navigate("/adminpage") ;
+      }else if(response.data.data=='valid user wrong password'){
             setError(true);
       }
     }else{

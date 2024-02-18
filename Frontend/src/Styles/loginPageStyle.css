@@ -11,3 +11,9 @@ Button{
 .header{
     background-color: blue;
 }
+
+.headerlink{
+    color: aliceblue;
+    text-decoration: none;
+    padding: 0 10px;
+}

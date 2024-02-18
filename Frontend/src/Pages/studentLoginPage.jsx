@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {useNavigate} from 'react-router-dom'
+import {useNavigate,Link} from 'react-router-dom'
 import { Container, Form, Button, FloatingLabel, Row, Col } from 'react-bootstrap';
 import '../Styles/loginPageStyle.css';
 import axios from 'axios'
@@ -9,9 +9,9 @@ import {Nav} from 'react-bootstrap'
 export function Header(){
   return (
     <Nav className='justify-content-end bg-success p-3'>
-      <Nav.Link className='text-light'>STUDENT LOGIN</Nav.Link>
-      <Nav.Link className='text-light'>ADMIN LOGIN</Nav.Link>
-      <Nav.Link className='text-light'>COE LOGIN</Nav.Link>
+     <Link to={'/studentlogin'} className='headerlink'>STUDENT LOGIN</Link>
+     <Link to={'/adminlogin'} className='headerlink'>ADMIN LOGIN</Link>
+     <Link to={'/'} className='headerlink'>COE LOGIN</Link>
     </Nav>
   )
 }
@@ -22,7 +22,6 @@ const StudentLoginpage = () => {
     'username': '',
     'password': ''
   });
-  const [strData, storeData] = useState(null);
 const [error, setError]=useState(false);
 const [unacess, setUaccess]=useState(false);
 const navigate=useNavigate();
@@ -40,32 +39,30 @@ const navigate=useNavigate();
   
   const stuformsubmit = async (e) => {
     e.preventDefault();
+    
+    if(!stddetails.username || !stddetails.password){
+      setError(true);
+      e.stopPropagation();
+      return;
+    }
     console.log(stddetails);
     
     try{
       let response = await axios.post('http://localhost:5000/studentLogin', stddetails) ;
-        storeData(response.data);
+        
+        if(response.data.status==200){
+          if(response.data.data==='valid user with correct password'){
+           navigate('/studentpage');
+          }else if(response.data.data==='valid user wrong password'){
+                setError(true);
+          }
+     }else{
+      setUaccess(true);
+     }
+
     }catch(e){
       console.log("Error hapened while fetching response from studentLogin API",e);
     }
-
-      
-     /* axios.get('http://localhost:5000/studentLogin').then((req) =>{
-        console.log(req.data);
-       }).catch((errr) =>{
-        console.error("Error: ",errr);
-       })*/
-  
-       if(strData.status==200){
-            if(strData.data='valid user with correct password'){
-             navigate('/studentpage');
-            }else if(str.Data.data='valid user wrong password'){
-                  setError(true);
-            }
-       }else{
-        setUaccess(true);
-       }
-  
     };
 
   return (
