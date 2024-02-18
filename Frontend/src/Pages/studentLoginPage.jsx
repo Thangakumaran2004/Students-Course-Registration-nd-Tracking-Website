@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {Navigate, useNavigate} from 'react-router-dom'
 import { Container, Form, Button, FloatingLabel, Row, Col } from 'react-bootstrap';
 import '../Styles/loginPageStyle.css';
 import axios from 'axios'
@@ -21,6 +22,12 @@ const StudentLoginpage = () => {
     'username': '',
     'password': ''
   });
+  const [strData, storeData] = useState(null);
+
+const navigate=useNavigate();
+
+
+
 
   const handlingFormdata = (e) => {
     const { name, value } = e.target;
@@ -36,7 +43,7 @@ const StudentLoginpage = () => {
     
     try{
       let response = await axios.post('http://localhost:5000/studentLogin', stddetails) ;
-      console.log(response);
+      storeData(response.data);
     }catch(e){
       console.log("Error hapened while fetching response from studentLogin API",e);
     }
@@ -48,7 +55,17 @@ const StudentLoginpage = () => {
         console.error("Error: ",errr);
        })*/
   
-  
+       if(strData.status==200){
+            if(strData.data='valid user with correct password'){
+              return navigate('/adminpage');
+            }else if(str.Data.data='valid user wrong password'){
+
+            }else{
+
+            }
+       }else{
+          
+       }
   
     };
 

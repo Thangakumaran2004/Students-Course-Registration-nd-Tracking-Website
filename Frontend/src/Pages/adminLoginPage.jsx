@@ -11,6 +11,8 @@ const AdminLoginpage = () => {
     'password':  '' 
   }) 
 
+  const [resData, storeData] =useState(null)
+
 const handlingChange =(e) =>{
   const {name,value}=e.target;
   updateForm(prevState =>({
