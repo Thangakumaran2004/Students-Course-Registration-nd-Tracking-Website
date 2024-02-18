@@ -15,14 +15,28 @@ router.post('/',async (req,res)=>{
     let response = await checkAdmin(username);
 
     if(response == "Server busy"){
-        res.status(200).json("Server busy");
+        let result = {
+            status: "Server busy"
+        }
+        res.status(200).json(result);
     }else if(response == "username not found"){
-        res.status(200).json("invalid user");
+        let result = {
+            status: "username not found invalid user"
+        }
+        res.status(200).json(result);
     }else{
         if(response.password == password){
-            res.status(200).json("valid user correct password");
+            let result = {
+                dept: response.dept,
+                status: "valid user correct password"
+            }
+            res.status(200).json(result);
         }else{
-            res.status(200).json("valid user incorrect password");
+            let result = {
+                dept : response.dept,
+                status: "valid user incorrect password"
+            }
+            res.status(200).json(result);
         }
     }
 })

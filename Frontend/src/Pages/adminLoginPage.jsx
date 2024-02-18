@@ -27,7 +27,7 @@ const formsubmit = async (e) =>{
   console.log(logincred);
   
     let response = await axios.post('http://localhost:5000/adminLogin', logincred);
-    console.log(response);
+    console.log(response.data);
    
 
    /*axios.get('https://localhost:5000/adminLogin').then((req) =>{

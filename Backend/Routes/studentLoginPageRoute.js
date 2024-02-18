@@ -16,16 +16,33 @@ router.post('/',async (req,res)=>{
     console.log(username,password);
     let response = await checkStudent(username,password);
     console.log("The response for checkStudent function is : ", response);
+    let result;
 
     if(response == "Server Busy"){
-        res.status(408).json("Server Busy");
+        result = {
+            status: "Server Busy"
+        }
+        res.status(408).json(result);
     }else if(response == "student not found"){
-        res.status(200).json("invalid user");
+        result = {
+            status: "Student not found invalid user"
+        }
+        res.status(200).json(result);
     }else{
         if(password == response.password){
-            res.status(200).json("valid user with correct password");
+            result = {
+                status: "valid user correct password",
+                regno: response.regno,
+                dept: response.dept
+            }
+            res.status(200).json(result);
         }else{
-            res.status(200).json("valid user wrong password");
+            result = {
+                status: "valid user incorrect password",
+                regno: response.regno,
+                dept: response.dept
+            }
+            res.status(200).json(result);
         }
     }
     

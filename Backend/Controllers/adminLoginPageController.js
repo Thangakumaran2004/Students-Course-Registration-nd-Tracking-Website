@@ -2,7 +2,7 @@ const db = require('../databaseConnection');
 
 const checkAdmin = async (username)=>{
 
-    let checkAdminQuery = `SELECT cast(name as char) as adminName, cast(dob as char) as adminPassword from admins where name = ?`;
+    let checkAdminQuery = `SELECT cast(name as char) as adminName, cast(password as char) as adminPassword, cast(dept as char) as dept from admins where name = ?`;
     return new Promise((resolve,reject)=>{
         db.query(checkAdminQuery,username,(err,res)=>{
             if(err){
@@ -13,7 +13,8 @@ const checkAdmin = async (username)=>{
                 if(res.length == 1){
                     let response = {
                         status:"username found",
-                        password: res[0].adminPassword
+                        password: res[0].adminPassword,
+                        dept: res[0].dept
                     };
                     resolve(response);
                 }else{

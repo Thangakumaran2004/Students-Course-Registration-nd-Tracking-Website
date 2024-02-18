@@ -43,7 +43,7 @@ const navigate=useNavigate();
     
     try{
       let response = await axios.post('http://localhost:5000/studentLogin', stddetails) ;
-      storeData(response.data);
+      console.log(response);
     }catch(e){
       console.log("Error hapened while fetching response from studentLogin API",e);
     }
