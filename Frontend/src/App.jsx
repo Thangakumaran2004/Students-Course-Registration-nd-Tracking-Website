@@ -5,6 +5,9 @@ import {  Routes, Route, BrowserRouter } from 'react-router-dom'
 import StudentLoginpage from './Pages/studentLoginPage'
 import Adminmainpage from './Pages/adminMainPage'
 import AdminStudents from './Pages/adminStudents'
+import Landingpage from './Pages/LandingPage'
+
+
 function App() {
  
 
@@ -13,7 +16,8 @@ function App() {
       <BrowserRouter>
         <Routes>
             <Route path='/adminlogin' element={<AdminLoginpage />} />
-            <Route exact path='/' element={<Studentpage />} />
+            <Route exact path='/' element={<Landingpage />} />
+            <Route path='/studentpage' element={<Studentpage />} />
             <Route path='/studentlogin' element={<StudentLoginpage />} />
             <Route path='/adminpage' element={<Adminmainpage />} />
             <Route path='/adminstu'  element={<AdminStudents />}/>

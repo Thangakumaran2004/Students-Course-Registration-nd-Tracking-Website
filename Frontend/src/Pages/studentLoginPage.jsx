@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Navigate, useNavigate} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import { Container, Form, Button, FloatingLabel, Row, Col } from 'react-bootstrap';
 import '../Styles/loginPageStyle.css';
 import axios from 'axios'
@@ -23,7 +23,8 @@ const StudentLoginpage = () => {
     'password': ''
   });
   const [strData, storeData] = useState(null);
-
+const [error, setError]=useState(false);
+const [unacess, setUaccess]=useState(false);
 const navigate=useNavigate();
 
 
@@ -43,7 +44,7 @@ const navigate=useNavigate();
     
     try{
       let response = await axios.post('http://localhost:5000/studentLogin', stddetails) ;
-      console.log(response);
+        storeData(response.data);
     }catch(e){
       console.log("Error hapened while fetching response from studentLogin API",e);
     }
@@ -57,14 +58,12 @@ const navigate=useNavigate();
   
        if(strData.status==200){
             if(strData.data='valid user with correct password'){
-              return navigate('/adminpage');
+             navigate('/studentpage');
             }else if(str.Data.data='valid user wrong password'){
-
-            }else{
-
+                  setError(true);
             }
        }else{
-          
+        setUaccess(true);
        }
   
     };
@@ -85,6 +84,8 @@ const navigate=useNavigate();
               <FloatingLabel controlId="floatingPassword" label="Password" className="mb-5 mt-5">
                 <Form.Control type="password" name='password' onChange={handlingFormdata} value={stddetails.password} placeholder="Password" />
               </FloatingLabel>
+              {error && <p style={{color: 'red'}}>Invalid username or password</p>}
+              {unacess && <p style={{color: 'red'}}>Unable to  login</p>}
               <Button variant="success" type="submit" className='p-2 mb-4 fs-5'>LOG IN</Button>
             </Col>
           </Row>
