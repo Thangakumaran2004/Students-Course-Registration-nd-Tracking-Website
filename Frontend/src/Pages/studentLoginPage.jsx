@@ -36,7 +36,7 @@ const StudentLoginpage = () => {
     
     try{
       let response = await axios.post('http://localhost:5000/studentLogin', stddetails) ;
-      console.log(response);
+      console.log(response.data);
     }catch(e){
       console.log("Error hapened while fetching response from studentLogin API",e);
     }
