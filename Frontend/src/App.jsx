@@ -18,7 +18,7 @@ function App() {
             <Route path='/adminlogin' element={<AdminLoginpage />} />
             <Route exact path='/' element={<Landingpage />} />
             <Route path='/studentpage' element={<Studentpage />} />
-            <Route path='/studentlogin' element={<StudentLoginpage />} />{}</Routes>
+            <Route path='/studentlogin' element={<StudentLoginpage />} />
             <Route path='/adminpage' element={<Adminmainpage />} />
             <Route path='/adminstu'  element={<AdminStudents />}/>
         </Routes>

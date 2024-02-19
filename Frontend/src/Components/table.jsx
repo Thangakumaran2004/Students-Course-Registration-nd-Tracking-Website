@@ -86,10 +86,10 @@ const Tablee = () => {
     <Container>
                 <form  onSubmit={formtablesubmit}>
                 <Table   striped bordered hover size="sm" responsive="sm"  className="table" >
-                    <thead >
-                    <tr>
-                    <th style={{ backgroundColor: '#00ff00', color: '#ffffff' }}>S.NO</th>
-                    <th style={{ backgroundColor: '#00ff00', color: '#ffffff' }}>Subject Name</th>
+                    <thead>
+                    <tr >
+                    <th>S.NO</th>
+                    <th >Subject Name</th>
                     <th>Batch - 1</th>
                     <th>Count</th>
                     <th>Batch - 2</th>
