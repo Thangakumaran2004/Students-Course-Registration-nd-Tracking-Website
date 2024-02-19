@@ -24,15 +24,11 @@ const AdminMainPage = () => {
 
   const handlesubmit= async (e) =>{
     e.preventDefault();
-
-    
-
-    console.log(formData);
-    
+    console.log("The frontend form data is ",formData);
     
     try {
-      let data = await axios.post('http://localhost:5000/adminMain',formData);
-      console.log(data);
+      let response = await axios.post('http://localhost:5000/adminMain',formData);
+      console.log("The data received from backend is",response.data);
     }catch(e){
       console.log("Error in axios",e);
     }
