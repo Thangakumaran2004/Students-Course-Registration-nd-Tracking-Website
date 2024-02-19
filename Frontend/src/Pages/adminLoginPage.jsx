@@ -26,18 +26,20 @@ const handlingChange =(e) =>{
 const formsubmit = async (e) =>{
   e.preventDefault();
 
-  console.log(logincred);
+  console.log("Frontend data ",logincred);
   try{
     let response = await axios.post('http://localhost:5000/adminLogin', logincred);
-    if(response.data.status===200){
-      if(resonse.data.data=='valid user with correct password'){
+    console.log("The data from backend is ", response.data);
+    console.log("the admin status in data is", response.data.adminStatus);
+    
+      if(response.data.adminStatus=='valid user correct password'){
+        console.log("Navigated successfully");
        navigate("/adminpage") ;
-      }else if(response.data.data=='valid user wrong password'){
+                adminStatus: "valid user incorrect password"
+      }else if(response.data.adminStatus=='valid user incorrect password'){
+            console.log("Password not matched for admin");
             setError(true);
       }
-    }else{
-    setUaccess(true);
-    }
     
   }catch{
     console.log("Error hapened while fetching response from studentLogin API",e);

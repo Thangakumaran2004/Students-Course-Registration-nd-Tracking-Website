@@ -20,25 +20,25 @@ router.post('/',async (req,res)=>{
 
     if(response == "Server Busy"){
         result = {
-            status: "Server Busy"
+            studentStatus: "Server Busy"
         }
         res.status(408).json(result);
     }else if(response == "student not found"){
         result = {
-            status: "Student not found invalid user"
+            studentStatus: "Student not found invalid user"
         }
         res.status(200).json(result);
     }else{
         if(password == response.password){
             result = {
-                status: "valid user correct password",
+                studentStatus: "valid user correct password",
                 regno: response.regno,
                 dept: response.dept
             }
             res.status(200).json(result);
         }else{
             result = {
-                status: "valid user incorrect password",
+                studentStatus: "valid user incorrect password",
                 regno: response.regno,
                 dept: response.dept
             }
