@@ -16,30 +16,29 @@ router.post('/',async (req,res)=>{
 
     if(response == "Server busy"){
         let result = {
-            status: "Server busy"
+            adminStatus: "Server busy"
         }
         res.status(200).json(result);
     }else if(response == "username not found"){
         let result = {
-            status: "username not found invalid user"
+            adminStatus: "username not found invalid user"
         }
         res.status(200).json(result);
     }else{
         if(response.password == password){
             let result = {
-                dept: response.dept,
-                status: "valid user correct password"
+                adminDept: response.dept,
+                adminStatus: "valid user correct password"
             }
             res.status(200).json(result);
         }else{
             let result = {
-                dept : response.dept,
-                status: "valid user incorrect password"
+                adminDept : response.dept,
+                adminStatus: "valid user incorrect password"
             }
             res.status(200).json(result);
         }
     }
 })
-
 
 module.exports = router;

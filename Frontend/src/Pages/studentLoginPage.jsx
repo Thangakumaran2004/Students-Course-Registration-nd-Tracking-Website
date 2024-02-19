@@ -47,21 +47,21 @@ const navigate=useNavigate();
       e.stopPropagation();
       return;
     }
-    console.log(stddetails);
+    //console.log("The frontend form data is",stddetails);
     
     try{
       let response = await axios.post('http://localhost:5000/studentLogin', stddetails) ;
         
-        if(response.data.status==200){
-          if(response.data.data==='valid user with correct password'){
-            setLoggeIn(true);
+          //console.log("the backend data is",response.data);
+          //console.log("the student status is ",response.data.studentStatus);
+          if(response.data.studentStatus == 'valid user correct password'){
+            console.log("Navigated properly");
            navigate('/studentpage');
-          }else if(response.data.data==='valid user wrong password'){
+          }else if(response.data.studentStatus=='valid user incorrect password'){
+            console.log('Error occured');
                 setError(true);
           }
-     }else{
-      setUaccess(true);
-     }
+     
 
     }catch(e){
       console.log("Error hapened while fetching response from studentLogin API",e);
