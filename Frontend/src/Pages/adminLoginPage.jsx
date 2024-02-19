@@ -30,7 +30,7 @@ const formsubmit = async (e) =>{
   try{
     let response = await axios.post('http://localhost:5000/adminLogin', logincred);
     if(response.data.status===200){
-      if(resonse.data.data=='valid user with correct password'){
+      if(response.data.data=='valid user with correct password'){
        navigate("/adminpage") ;
       }else if(response.data.data=='valid user wrong password'){
             setError(true);

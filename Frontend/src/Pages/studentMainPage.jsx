@@ -1,5 +1,6 @@
 import React from 'react'
 import {Container,Row,Col,Nav,Image,Table} from 'react-bootstrap'
+import { CircularProgressbar } from 'react-circular-progressbar';
 import '../Styles/studentMainPage.css'
 
 
@@ -9,6 +10,7 @@ const Studentpage = () => {
   return (
     <>
     <Dashboard/>
+    <Circlebar />
     <Coursenavigation />
     <Maincourse />
       
@@ -27,6 +29,12 @@ const Studentpage = () => {
 
 
 export const  Dashboard= () => {
+
+
+
+
+
+
   return (
     <div className='dashboard  shadow p-3 mb-5  rounded m-3  border-2 '>
         <Container  className='m-2 '>
@@ -44,10 +52,21 @@ export const  Dashboard= () => {
                         </Col>
                     </Row>
         </Container>
+     
     
     </div>
   )
 }
+
+export const Circlebar= () =>{
+
+return
+<div style={{ width: 200, height: 200 }}>
+  <CircularProgressbar value={66}  maxValue={100} />
+</div>
+            
+} ;
+
 
 // this  function is used to navigate to the Main courses/Elective courses/NPTEL
 

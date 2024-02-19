@@ -8,7 +8,7 @@ import {Nav} from 'react-bootstrap'
 
 export function Header(){
   return (
-    <Nav className='justify-content-end bg-success p-3'>
+    <Nav className='justify-content-end  p-3 header'>
      <Link to={'/studentlogin'} className='headerlink'>STUDENT LOGIN</Link>
      <Link to={'/adminlogin'} className='headerlink'>ADMIN LOGIN</Link>
      <Link to={'/'} className='headerlink'>COE LOGIN</Link>
@@ -22,6 +22,8 @@ const StudentLoginpage = () => {
     'username': '',
     'password': ''
   });
+
+const [logIn,setLoggeIn]=useState(false); 
 const [error, setError]=useState(false);
 const [unacess, setUaccess]=useState(false);
 const navigate=useNavigate();
@@ -52,6 +54,7 @@ const navigate=useNavigate();
         
         if(response.data.status==200){
           if(response.data.data==='valid user with correct password'){
+            setLoggeIn(true);
            navigate('/studentpage');
           }else if(response.data.data==='valid user wrong password'){
                 setError(true);
