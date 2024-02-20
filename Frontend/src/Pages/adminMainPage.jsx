@@ -11,6 +11,8 @@ const AdminMainPage = () => {
     "semester": '',
     "batch": ''
   })
+
+  let facultiesData= [];
   const handleChange=(e)=>{
     
       const {name,value}=e.target;
@@ -26,15 +28,23 @@ const AdminMainPage = () => {
     e.preventDefault();
     console.log("The frontend form data is ",formData);
     
+  
+    
+    
+    
     try {
       let response = await axios.post('http://localhost:5000/adminMain',formData);
-      console.log("The data received from backend is",response.data);
+      console.log("The response is ",response.data.faculties);
+      for(let i=0; i<response.data.faculties.length; i++){
+        facultiesData.push(response.data.faculties[i].name);
+      }
     }catch(e){
       console.log("Error in axios",e);
     }
     
-      
+    console.log(facultiesData);
     }
+    
     
     
   
@@ -69,7 +79,7 @@ const AdminMainPage = () => {
         <br />
         <br />
         <br />
-        <Tablee />
+        <Tablee  {...facultiesData} />
         
     </div>
   )
