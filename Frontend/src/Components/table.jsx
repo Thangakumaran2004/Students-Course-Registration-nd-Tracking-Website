@@ -10,9 +10,9 @@ const numcount=[10,20,30,40]
 
 
 
-const Tablee = () => {
+const Tablee = (props) => {
     const [tableData, setTableData]=useState({ })
-
+  const {facultyarr}=props;
 
 
 
@@ -30,7 +30,7 @@ const Tablee = () => {
                 <td>{subj}</td>
                 <td>
                     <select name={`Batch${i+1}-${subj}`} onChange={handlingSubjData}>
-                      {Dropdown(arr)}
+                      {Dropdown(facultyarr)}
                     </select>
                 </td>
                 <td>
@@ -40,7 +40,7 @@ const Tablee = () => {
                 </td>
                 <td>
                     <select name={`Batch${i+1}-${subj}`} onChange={handlingSubjData}>
-                      {Dropdown(arr)}
+                      {Dropdown(facultyarr)}
                     </select>
                 </td>
                 <td>
@@ -51,7 +51,7 @@ const Tablee = () => {
                 </td>
                 <td>
                     <select name={`Batch${i+1}-${subj}`} onChange={handlingSubjData}>
-                      {Dropdown(arr)}
+                      {Dropdown(facultyarr)}
                     </select>
                 </td>
                 <td>
