@@ -35,17 +35,16 @@ const AdminMainPage = () => {
     try {
       let response = await axios.post('http://localhost:5000/adminMain',formData);
        console.log("The response is ",response.data);
-  let facultiesData= [];
+  // let facultiesData= ['a','b','c','d','e'];
       for(let i=0; i<response.data.faculties.length; i++){
         facultiesData.push(response.data.faculties[i].name);
-        
       }
       console.log("The Facutlties are,", facultiesData);
       setTableData(facultiesData)
     }catch(e){
       console.log("Error in axios",e);
     }
-    
+    console.log("hello ",tableData)
     //console.log(facultiesData);
     }
     
@@ -83,7 +82,7 @@ const AdminMainPage = () => {
         <br />
         <br />
         <br />
-        <Tablee data={tableData} />
+        <Tablee tableedata={tableData} />
         
     </div>
   )

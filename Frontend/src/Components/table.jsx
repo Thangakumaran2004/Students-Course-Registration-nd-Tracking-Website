@@ -1,9 +1,9 @@
-import React ,{useState} from 'react'
+import React ,{useState,useEffect} from 'react'
 import {Container,Table,Button} from 'react-bootstrap'
 import axios from 'axios'
 import '../Styles/loginPageStyle.css'
 
-const arr=['a','ab','abc','abcd','abcde','None']
+// const arr=['a','ab','abc','abcd','abcde','None']
 const subject =['Engineering maths','Technical English',"Physics","Chemistry"]
 const numcount=[10,20,30,40]
 
@@ -12,10 +12,17 @@ const numcount=[10,20,30,40]
 
 const Tablee = (props) => {
     const [tableData, setTableData]=useState({ })
- // const {facultyarr}=props.facultyDataarr || [];
- // console.log(facultyarr);
- console.log("props on Tablee", props)
+    const  [disTableData, storeTableData]=useState([] )
 
+    useEffect(() => {
+    
+      storeTableData(props.tableedata || []);
+  }, [props.tableedata]);
+
+ // const {facultyarr}=props.facultyDataarr || [];
+ // console.log(facultyarr);  
+    console.log("props on Tablee", props)
+    
 
     function Dropdown(a){
         return a.map((option, index) => (
@@ -30,7 +37,7 @@ const Tablee = (props) => {
                 <td>{subj}</td>
                 <td>
                     <select name={`Batch${i+1}-${subj}`} onChange={handlingSubjData}>
-                      {Dropdown(arr)}
+                      {Dropdown(disTableData)}
                     </select>
                 </td>
                 <td>
@@ -40,7 +47,7 @@ const Tablee = (props) => {
                 </td>
                 <td>
                     <select name={`Batch${i+1}-${subj}`} onChange={handlingSubjData}>
-                      {Dropdown(arr)}
+                      {Dropdown(disTableData)}
                     </select>
                 </td>
                 <td>
@@ -51,7 +58,7 @@ const Tablee = (props) => {
                 </td>
                 <td>
                     <select name={`Batch${i+1}-${subj}`} onChange={handlingSubjData}>
-                      {Dropdown(arr)}
+                      {Dropdown(disTableData)}
                     </select>
                 </td>
                 <td>
