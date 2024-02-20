@@ -60,7 +60,7 @@ const AdminMainPage = () => {
             </Col>
             <Col>
             <FloatingLabel label='Batch' >
-                <Form.Control  type='number' name='batch' value={formData.Batch} onChange={handleChange}  />
+                <Form.Control  type='text' name='batch' value={formData.Batch} onChange={handleChange}  />
             </FloatingLabel>
             </Col>
             <Col>
