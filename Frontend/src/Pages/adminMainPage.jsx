@@ -9,7 +9,7 @@ const AdminMainPage = () => {
   const [formData, setFormData]= useState({
     "year": '',
     "semester": '',
-    "Batch": ''
+    "batch": ''
   })
   const handleChange=(e)=>{
     
@@ -56,7 +56,7 @@ const AdminMainPage = () => {
             </Col>
             <Col>
             <FloatingLabel label='Batch' >
-                <Form.Control  type='text' name='batch' value={formData.Batch} onChange={handleChange}  />
+                <Form.Control  type='text' name='batch' value={formData.batch} onChange={handleChange}  />
             </FloatingLabel>
             </Col>
             <Col>
