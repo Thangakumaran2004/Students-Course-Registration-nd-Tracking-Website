@@ -12,7 +12,7 @@ const AdminMainPage = () => {
     "batch": ''
   })
 
-  let facultiesData= [];
+  let facultiesData= ['abc','adad','aka','adaa','wuu'];
   const handleChange=(e)=>{
     
       const {name,value}=e.target;
@@ -34,10 +34,12 @@ const AdminMainPage = () => {
     
     try {
       let response = await axios.post('http://localhost:5000/adminMain',formData);
-      console.log("The response is ",response.data.faculties);
-      for(let i=0; i<response.data.faculties.length; i++){
-        facultiesData.push(response.data.faculties[i].name);
-      }
+      // console.log("The response is ",response.data.faculties);
+      // for(let i=0; i<response.data.faculties.length; i++){
+      //   facultiesData.push(response.data.faculties[i].name);
+        
+      // }
+      // console.log("The Facutlties are,", facultiesData);
     }catch(e){
       console.log("Error in axios",e);
     }
@@ -79,7 +81,7 @@ const AdminMainPage = () => {
         <br />
         <br />
         <br />
-        <Tablee  {...facultiesData} />
+        <Tablee  facultyDataarr={facultiesData} />
         
     </div>
   )

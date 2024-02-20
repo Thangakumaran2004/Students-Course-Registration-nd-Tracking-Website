@@ -12,8 +12,8 @@ const numcount=[10,20,30,40]
 
 const Tablee = (props) => {
     const [tableData, setTableData]=useState({ })
-  const {facultyarr}=props;
-
+  const {facultyarr}=props.facultyDataarr || [];
+  console.log(facultyarr);
 
 
 
