@@ -11,8 +11,8 @@ const AdminMainPage = () => {
     "semester": '',
     "batch": ''
   })
+  const [tableData, setTableData] = useState(null);
 
-  let facultiesData= ['abc','adad','aka','adaa','wuu'];
   const handleChange=(e)=>{
     
       const {name,value}=e.target;
@@ -34,17 +34,19 @@ const AdminMainPage = () => {
     
     try {
       let response = await axios.post('http://localhost:5000/adminMain',formData);
-      // console.log("The response is ",response.data.faculties);
-      // for(let i=0; i<response.data.faculties.length; i++){
-      //   facultiesData.push(response.data.faculties[i].name);
+       console.log("The response is ",response.data);
+  let facultiesData= [];
+      for(let i=0; i<response.data.faculties.length; i++){
+        facultiesData.push(response.data.faculties[i].name);
         
-      // }
-      // console.log("The Facutlties are,", facultiesData);
+      }
+      console.log("The Facutlties are,", facultiesData);
+      setTableData(facultiesData)
     }catch(e){
       console.log("Error in axios",e);
     }
     
-    console.log(facultiesData);
+    //console.log(facultiesData);
     }
     
     
@@ -81,7 +83,7 @@ const AdminMainPage = () => {
         <br />
         <br />
         <br />
-        <Tablee  facultyDataarr={facultiesData} />
+        <Tablee data={tableData} />
         
     </div>
   )
