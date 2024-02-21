@@ -4,6 +4,8 @@ import { Adminheader } from '../Components/header'
 import  Tablee from '../Components/table'
 import axios from 'axios'
 
+let facultiesData=[];
+
 const AdminMainPage = () => {
 
   const [formData, setFormData]= useState({
@@ -27,10 +29,6 @@ const AdminMainPage = () => {
   const handlesubmit= async (e) =>{
     e.preventDefault();
     console.log("The frontend form data is ",formData);
-    
-  
-    
-    
     
     try {
       let response = await axios.post('http://localhost:5000/adminMain',formData);

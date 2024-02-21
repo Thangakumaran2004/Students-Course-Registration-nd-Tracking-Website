@@ -10,6 +10,7 @@ const db = require('./databaseConnection.js');
 const adminMainPageRoute = require('./Routes/adminMainPageRoute.js');
 const studentLoginPageRoute = require('./Routes/studentLoginPageRoute.js');
 const adminLoginPageRoute = require('./Routes/adminLoginPageRoute.js');
+const adminFacultyRoute = require('./Routes/adminFacultyRoute.js');
 
 
 // This section contains the constructor calls and constant values;
@@ -21,7 +22,7 @@ const port = 5000;
 // This section contains all the middlewares used in the app
 
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:5174');
+    res.header('Access-Control-Allow-Origin', 'http://localhost:5173');
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     res.header('Access-Control-Allow-Credentials', 'true');
@@ -42,6 +43,7 @@ app.use((req, res, next) => {
         next();
     }
 });*/
+app.use('/adminFaculty',adminFacultyRoute);
 app.use('/adminMain',adminMainPageRoute);
 app.use('/studentLogin',studentLoginPageRoute);
 app.use('/adminlogin',adminLoginPageRoute);
