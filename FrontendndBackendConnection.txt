@@ -1,0 +1,122 @@
+This file is written to make a good understanding b/n frontend and Backend
+i.e., talking about the data that are required to make api endpoints work perfectly 
+and the responses that the api endpoints will provide.
+
+1) /studentLogin
+
+The data required from frontend are :
+
+    {
+        username,
+        password
+    }
+
+The api responses will be :
+
+    a) result = {
+            studentStatus: "Server Busy"
+        } 
+
+        if there is an unexpected error.
+    
+    b) result = {
+            studentStatus: "Student not found invalid user"
+        }
+
+        if the student is not present in the database.
+
+    c) result = {
+                studentStatus: "valid user incorrect password",
+                regno: response.regno,
+                dept: response.dept
+            }
+
+        if the student is found in the database and but the password is incorrect.
+
+    d) result = {
+                studentStatus: "valid user correct password",
+                regno: response.regno,
+                dept: response.dept
+            }
+
+        if the student is found in the database and the password is correct.
+
+2) /adminLogin
+
+The data required from the frontend are :
+
+    {
+        username,
+        password
+    }
+
+The api responses will be :
+
+    a) result = {
+            adminStatus: "Server busy"
+        }
+
+        if there are unexpected errors.
+
+    b)  result = {
+            adminStatus: "username not found invalid user"
+        }
+
+        if the username is not found in the database.
+
+    c) result = {
+                adminDept : response.dept,
+                adminStatus: "valid user incorrect password"
+            }
+
+        if the username is found in the database but password is incorrect.
+
+    d) result = {
+                adminDept: response.dept,
+                adminStatus: "valid user correct password"
+            }
+
+        if the username is found in the database and the password is correct.
+
+3) admin/addNewFaculty 
+
+The data required from the frontend are :
+
+    {
+        facultyDescription,
+        facultyId,
+        facultyDept,
+        facultyName,
+        facultyDesignation
+    }
+
+The api responses will be : 
+
+    a) result = {
+            facultyAddStatus : "Server Busy"
+        }
+
+        if there occurs an unexpected error.
+
+    b) result = {
+            facultyAddStatus : "Successfully added faculty to db"
+        }
+
+        if the new faculty details is successfully added to the database.
+
+4) admin/deleteFaculty 
+
+The data required from the frontend are : 
+
+    {
+        facultyId,
+        facultyDept
+    }
+
+The api responses will be: 
+
+
+
+
+
+

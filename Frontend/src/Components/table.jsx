@@ -84,7 +84,7 @@ const Tablee = (props) => {
         e.preventDefault();
         try{
             const response =axios.post("http://localhost:5000/adminFaculty",tableData);
-            console.log("formed submitted sucessfully",response.data);
+            console.log("formed submitted sucessfully",response);
         }catch(e){
             console.log("error occured",e);
         }
