@@ -25,7 +25,7 @@ router.post('/',async (req,res)=>{
         }
         res.status(200).json(response);
     }
-
+    
     let coursesResponse = await getCourses('ECE',3);
     
     if(coursesResponse == "Server Busy"){

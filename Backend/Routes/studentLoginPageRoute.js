@@ -33,7 +33,15 @@ router.post('/',async (req,res)=>{
             result = {
                 studentStatus: "valid user correct password",
                 regno: response.regno,
-                dept: response.dept
+                dept: response.dept,
+                name: response.name,
+                year: response.year,
+                sem: response.sem,
+                batch: response.batch,
+                totalCredits: response.totalCredits,
+                mainCourseCredits: response.mainCourseCredits,
+                programElectiveCredits: response.programElectiveCredits,
+                openElectiveCredits: response.openElectiveCredits
             }
             res.status(200).json(result);
         }else{

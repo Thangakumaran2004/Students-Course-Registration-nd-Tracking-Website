@@ -52,7 +52,7 @@ const navigate=useNavigate();
     try{
       let response = await axios.post('http://localhost:5000/studentLogin', stddetails) ;
         
-          //console.log("the backend data is",response.data);
+          console.log("the backend data is",response.data);
           //console.log("the student status is ",response.data.studentStatus);
           if(response.data.studentStatus == 'valid user correct password'){
             console.log("Navigated properly");

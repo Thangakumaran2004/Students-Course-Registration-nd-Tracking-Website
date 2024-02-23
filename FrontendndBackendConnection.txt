@@ -36,7 +36,15 @@ The api responses will be :
     d) result = {
                 studentStatus: "valid user correct password",
                 regno: response.regno,
-                dept: response.dept
+                dept: response.dept,
+                name: response.name,
+                year: response.year,
+                sem: response.sem,
+                batch: response.batch,
+                totalCredits: response.totalCredits,
+                mainCourseCredits: response.mainCourseCredits,
+                programElectiveCredits: response.programElectiveCredits,
+                openElectiveCredits: response.openElectiveCredits
             }
 
         if the student is found in the database and the password is correct.
@@ -114,6 +122,18 @@ The data required from the frontend are :
     }
 
 The api responses will be: 
+
+    a) result = {
+            deleteFacultyStatus : "Server Busy"
+        }
+
+        if unexpected error occured.
+    
+    b) result = {
+            deleteFacultyStatus : "Successfully deleted faculty from database"
+        }
+
+        if faculty successfully deleted from database.
 
 
 
