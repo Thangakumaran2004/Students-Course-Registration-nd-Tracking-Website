@@ -31,6 +31,24 @@ const navigate=useNavigate();
 
 
 
+var dummyResult = {
+  studentStatus: "dummy student status",
+  regno: "dummy regno",
+  dept: "dummy dept",
+  name: "dummy name",
+  year: "dummy year",
+  sem: "dummy sem",
+  batch: "dummy batch",
+  totalCredits: "dummy total credits",
+  mainCourseCredits: "dummy main course credits",
+  programElectiveCredits: "dummy program elective credits",
+  openElectiveCredits: "dummy open elective credits"
+};
+
+
+
+
+
   const handlingFormdata = (e) => {
     const { name, value } = e.target;
     UpdatestuDetails(prevState => ({
@@ -48,7 +66,9 @@ const navigate=useNavigate();
       return;
     }
     //console.log("The frontend form data is",stddetails);
-    
+    sessionStorage.setItem('studentData',JSON.stringify(dummyResult))
+    navigate('/studentpage');
+
     try{
       let response = await axios.post('http://localhost:5000/studentLogin', stddetails) ;
         
@@ -56,6 +76,7 @@ const navigate=useNavigate();
           //console.log("the student status is ",response.data.studentStatus);
           if(response.data.studentStatus == 'valid user correct password'){
             console.log("Navigated properly");
+            // sessionStorage.setItem('studentData',JSON.stringify(dummyResult))
            navigate('/studentpage');
           }else if(response.data.studentStatus=='valid user incorrect password'){
             console.log('Error occured');
