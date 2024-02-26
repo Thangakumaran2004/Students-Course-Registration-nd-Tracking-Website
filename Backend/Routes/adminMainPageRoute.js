@@ -7,8 +7,8 @@ router.use(express.json());
 
 router.post('/',async (req,res)=>{
     let faculties;
-    const frontendData = req.body;
-    console.log("The frontend data is", frontendData);
+    const {semester,year,batch} = req.body;
+    console.log("The frontend data is", req.body);
 
     let facultiesResponse = await getFaculties('ECE');
     console.log("The result of getFaculties is ", facultiesResponse );
@@ -26,7 +26,7 @@ router.post('/',async (req,res)=>{
         res.status(200).json(response);
     }
     
-    let coursesResponse = await getCourses('ECE',3);
+    let coursesResponse = await getCourses('ECE',semester);
     
     if(coursesResponse == "Server Busy"){
         console.log("Either error or no courses found in db");

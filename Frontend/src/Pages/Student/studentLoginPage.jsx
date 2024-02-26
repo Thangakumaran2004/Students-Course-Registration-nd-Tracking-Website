@@ -66,8 +66,7 @@ var dummyResult = {
       return;
     }
     //console.log("The frontend form data is",stddetails);
-    sessionStorage.setItem('studentData',JSON.stringify(dummyResult))
-    navigate('/studentpage');
+   
 
     try{
       let response = await axios.post('http://localhost:5000/studentLogin', stddetails) ;
@@ -76,9 +75,9 @@ var dummyResult = {
           //console.log("the student status is ",response.data.studentStatus);
           if(response.data.studentStatus == 'valid user correct password'){
             console.log("Navigated properly");
-            // sessionStorage.setItem('studentData',JSON.stringify(dummyResult))
+            sessionStorage.setItem('studentData',JSON.stringify(response.data))
            navigate('/studentpage');
-          }else if(response.data.studentStatus=='valid user incorrect password'){
+          }else if(response.data.studentStatus=='valid user incorrect password' || 'Student not found invalid user'){
             console.log('Error occured');
                 setError(true);
           }

@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import { Adminheader } from '../../Components/header'
-import { Container, Row,Col,Form, Button} from 'react-bootstrap'
+import { Container, Row,Col,Form, Button} from 'react-bootstrap';
+import axios from 'axios';
 import Adminsubnav from '../../Components/adminSubNav'
 const Adminaddfaculty= () => {
 
@@ -64,10 +65,10 @@ export function Addfaculty(){
 
 
     const [addFaculty,setaddFaculty]=useState({
-        'facultyname':'',
-        'facultyid':'',
-        'facultydept':'',
-        'facultydesignation':'',
+        'facultyName':'',
+        'facultyId':'',
+        'facultyDept':'',
+        'facultyDesignation':'',
         'facultyDescription':''
 })
 const[success,setsuccess]=useState(false);
@@ -84,13 +85,18 @@ const newfacultydata =(e)=>{
 
 const  submitfacultydata = async(e) =>{
   e.preventDefault();
+  try{
   console.log("Form Data:", addFaculty);
-  const response=await axios.post('http://localhost/admin/addNewFaculty',addFaculty);
+  const response = await axios.post('http://localhost:5000/admin/addNewFaculty',addFaculty);
+  console.log()
   if(response.data. facultyAddStatus =="Successfully added faculty to db"){
       setsuccess(true);
   }else{
       setexists(true);
   }
+}catch(err){
+  console.log("Error occured in adding faculties,",err);
+}
 }
 
 
@@ -103,25 +109,25 @@ const  submitfacultydata = async(e) =>{
               <Row>
                 <Form.Group>
                     <Form.Label>Enter the Faculty Name</Form.Label>
-                    <Form.Control type='text'  name='facultyname' value={addFaculty.facultyname} onChange={newfacultydata} />
+                    <Form.Control type='text'  name='facultyName' value={addFaculty.facultyname} onChange={newfacultydata} />
                 </Form.Group>  
               </Row>
               <Row>
                 <Form.Group>
                     <Form.Label>Enter the Faculty Id</Form.Label>
-                    <Form.Control type='text'  name='facultyid' value={addFaculty.facultyid} onChange={newfacultydata} />
+                    <Form.Control type='text'  name='facultyId' value={addFaculty.facultyid} onChange={newfacultydata} />
                 </Form.Group>  
               </Row>
               <Row>
                 <Form.Group>
                     <Form.Label>Enter the Faculty Dep</Form.Label>
-                    <Form.Control type='text'  name='facultydept' value={addFaculty.facultydept} onChange={newfacultydata} />
+                    <Form.Control type='text'  name='facultyDept' value={addFaculty.facultydept} onChange={newfacultydata} />
                 </Form.Group>  
               </Row>
               <Row>
                 <Form.Group>
                     <Form.Label>Enter the Faculty Designation</Form.Label>
-                    <Form.Control type='text'  name='facultydesignation' value={addFaculty.facultydesignation} onChange={newfacultydata} />
+                    <Form.Control type='text'  name='facultyDesignation' value={addFaculty.facultydesignation} onChange={newfacultydata} />
                 </Form.Group>  
               </Row>
               <Row>

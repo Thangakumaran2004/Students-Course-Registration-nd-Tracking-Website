@@ -7,20 +7,20 @@ import Adminsubnav from '../../Components/adminSubNav'
 
 let facultiesData=[];
 
-const postData={
+const postData=[{
     faculties: {
         1: {id:'1',name:'a',designation:'1',description:'vlsi'},
         2: {id:'2',name:'ab',designation:'11',description:'hh'},
         3: {id:'3',name:'abc',designation:'111',description:'cs'},
         4: {id:'4',name:'abcd',designation:'1111',description:'em'}
-    },
+    }},{
     courses:{
         1: {id:'1',code:'19EC1C',name:'english'},
         2: {id:'1',code:'19EC2C',name:'tamil'},
         3: {id:'1',code:'19EC3C',name:'maths'},
         4: {id:'1',code:'19EC4C',name:'science'}
-    }
-}
+    }}
+  ]
 
 const Adminaddcourse = () => {
 
@@ -29,7 +29,8 @@ const Adminaddcourse = () => {
     "semester": '',
     "batch": ''
   })
-  const [tableData, setTableData] = useState();
+  const [tableCourse, setTableCourses] = useState([]);
+  const [tableFaculty,setTableFaculty] = useState([]);
   const [allocateerror, setAllocateError]=useState(false);
   const [alreadyexists, setAlexError]=useState(false);
  
@@ -47,33 +48,37 @@ const Adminaddcourse = () => {
   const handlesubmit= async (e) =>{
     e.preventDefault();
     console.log("The frontend form data is ",formData);
-    setTableData(postData);
-    // console.log(postData);
-    console.log(tableData)
+    //setTableData(postData);
+    //console.log("THe post data is,",postData);
+    //console.log("The tableData is",tableData);
     if(formData.year==='none' || formData.semester==='none' || formData.batch===''){
                   setAllocateError(true);
     }else{
   
-    try {
-    //   let response = await axios.post('http://localhost:5000/adminMain',formData);
-    //     if(response.data==''){
-    //         console.log("The response is ",response.data);
-    //             setAlexError(true)
-    //             return;
-        // }else{
-    //    console.log("The response is ",response.data);
-       console.log("hello ",tableData)
-  // let facultiesData= ['a','b','c','d','e'];
-    //   for(let i=0; i<response.data.faculties.length; i++){
-    //     facultiesData.push(response.data.faculties[i].name);
-    //   }
-    //   console.log("The Facutlties are,", facultiesData);
-    //   setTableData(response.data)
-    // }
-    }catch(e){
-      console.log("Error in axios",e);
-    }
-    
+      try {
+        let response = await axios.post('http://localhost:5000/adminMain',formData);
+          if( !response.data.getCourseAndFacultyStatus =='successfully fetched courses and faculty'){
+              console.log("The backend response is ",response.data);
+                  setAlexError(true)
+                  return;
+          }else{
+          console.log("The backend response is ",response.data);
+          setTableCourses(response.data.courses);
+          setTableFaculty(response.data.faculties);
+
+          
+        
+    // let facultiesData= ['a','b','c','d','e'];
+      //   for(let i=0; i<response.data.faculties.length; i++){
+      //     facultiesData.push(response.data.faculties[i].name);
+      //   }
+      //   console.log("The Facutlties are,", facultiesData);
+      //   setTableData(response.data)
+      }
+      }catch(e){
+        console.log("Error in axios",e);
+      }
+      
   }
  
     //console.log(facultiesData);
@@ -138,7 +143,7 @@ const Adminaddcourse = () => {
         <br />
         <br />
         <br />
-        <Tablee tableedata={tableData} />
+        <Tablee courses={tableCourse} faculties={tableFaculty} />
         
     </div>
   )

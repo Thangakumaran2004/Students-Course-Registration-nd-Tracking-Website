@@ -7,43 +7,52 @@ const subject = ['Engineering maths', 'Technical English', 'Physics', 'Chemistry
 const numcount = [10, 20, 30, 40];
 
 const Tablee = (props) => {
+  let styles = {
+    width:""
+  }
+  let faculties = props.faculties;
+  let courses = props.courses;
+  //console.log("The faculty list inside table is", props.faculties);
+  //console.log("The courses list inside table is", props.courses);
   const [tableData, setTableData] = useState({});
-  const [disTableData, storeTableData] = useState([]);
+  /*const [disTableData, storeTableData] = useState([]);
 
   useEffect(() => {
     storeTableData(props.tableedata || []);
-  }, [props.tableedata]);
+  }, [props.tableedata]);*/
   
-  const Dropdown = (a) => {
-    return a.map((option, index) => (
-      <option key={index} value={option}>
-        {option}
+  const Dropdown = (faculties) => {
+    return faculties.map((faculty) => (
+      <option key={faculty.id} value={faculty.id}>
+        {faculty.name}
       </option>
     ));
   };
 
-  function disSub() {
-    return subject.map((subj, i) => (
-      <tr key={i}>
-        <td>{i + 1}</td>
-        <td>{subj}</td>
+  function disSub(courses) {
+    //console.log("The courses inside disSub is,",courses);
+    return courses.map((course) => (
+      <tr key={course.id}>
+        <td>{course.name
+        }</td>{
+          //console.log(course.name)
+        }
         {[1, 2, 3].map((batch) => (
           <>
             <td>
-              <select name={`Batch${batch}-${subj}`} onChange={handlingSubjData}>
-                {Dropdown(disTableData)}
+              <select name={`Batch${batch}-${course.id}`} onChange={handlingSubjData}>
+                {Dropdown(faculties)}
               </select>
             </td>
             <td>
-              <select name={`Batch${batch}-${subj}-count`} onChange={handlingSubjData}>
-                {Dropdown(numcount)}
-              </select>
+              <input name={`Batch${batch}-${course.id}-count`} onChange={handlingSubjData}/>
             </td>
           </>
         ))}
       </tr>
     ));
   }
+  
 
   const handlingSubjData = (e) => {
     const { name, value } = e.target;
@@ -56,10 +65,11 @@ const Tablee = (props) => {
   const formtablesubmit = async (e) => {
     e.preventDefault();
     try {
+      console.log("The form data that is going to be submitted is,",tableData);
       const response = await axios.post("http://localhost:5000/adminFaculty", tableData);
       console.log("formed submitted successfully", response);
     } catch (e) {
-      console.log("error occurred", e);
+      console.log("error occurred while submitting form data is,", e);
     }
   };
 
@@ -69,7 +79,7 @@ const Tablee = (props) => {
         <Table striped bordered hover size="sm" responsive="sm" className="table">
           <thead>
             <tr>
-              <th>S.NO</th>
+             
               <th>Subject Name</th>
               <th>Batch - 1</th>
               <th>Count</th>
@@ -79,7 +89,8 @@ const Tablee = (props) => {
               <th>Count</th>
             </tr>
           </thead>
-          <tbody>{disSub()}</tbody>
+          <tbody>{disSub(courses)}</tbody>
+          
         </Table>
         <Button type="submit">SUBMIT</Button>
       </form>
