@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {useNavigate,Link} from 'react-router-dom'
 import { Container, Form, Button, FloatingLabel, Row, Col } from 'react-bootstrap';
-import '../Styles/loginPageStyle.css';
+import '../../Styles/loginPageStyle.css';
 import axios from 'axios'
 import {Nav} from 'react-bootstrap'
 
@@ -32,7 +32,7 @@ const navigate=useNavigate();
 
 
 var dummyResult = {
-  studentStatus: "dummy student status",
+  studentStatus: "dummy student",
   regno: "dummy regno",
   dept: "dummy dept",
   name: "dummy name",

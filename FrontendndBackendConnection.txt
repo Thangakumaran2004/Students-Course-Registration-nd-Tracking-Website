@@ -86,7 +86,7 @@ The api responses will be :
 
         if the username is found in the database and the password is correct.
 
-3) admin/addNewFaculty 
+3)/admin/addNewFaculty 
 
 The data required from the frontend are :
 

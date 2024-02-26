@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import {Container,Form,Button,FloatingLabel,Row,Col} from 'react-bootstrap'
-import '../Styles/loginPageStyle.css'
-import { Header } from './studentLoginPage'
+import '../../Styles/loginPageStyle.css'
+import { Header } from '../Student/studentLoginPage'
 import axios from 'axios'
 import {useNavigate } from 'react-router-dom'
 
