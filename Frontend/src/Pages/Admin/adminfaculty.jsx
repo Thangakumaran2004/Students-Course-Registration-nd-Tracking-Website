@@ -85,8 +85,8 @@ const newfacultydata =(e)=>{
 const  submitfacultydata = async(e) =>{
   e.preventDefault();
   console.log("Form Data:", addFaculty);
-  const response=await axios.post('http://localhost',addFaculty);
-  if(response.data.data==''){
+  const response=await axios.post('http://localhost/admin/addNewFaculty',addFaculty);
+  if(response.data. facultyAddStatus =="Successfully added faculty to db"){
       setsuccess(true);
   }else{
       setexists(true);
