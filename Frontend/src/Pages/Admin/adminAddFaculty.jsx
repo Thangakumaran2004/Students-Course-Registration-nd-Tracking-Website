@@ -4,6 +4,7 @@ import { Container, Row,Col,Form, Button} from 'react-bootstrap';
 import axios from 'axios';
 import Adminsubnav from '../../Components/adminSubNav'
 import FacultyOffCanvas from '../../Components/facultyOffCanvas';
+import '../../Styles/adminStudentstyle.css'
 
 const Adminaddfaculty = () => {
   return (
@@ -61,7 +62,9 @@ const  submitfacultydata = async(e) =>{
 
   return(
     <div>
-      <Container>
+      
+      <Container className='addfacultyform'>
+        <center><h3>Faculty Details</h3></center>
           <Form onSubmit={submitfacultydata}>
             <Col>
               <Row>

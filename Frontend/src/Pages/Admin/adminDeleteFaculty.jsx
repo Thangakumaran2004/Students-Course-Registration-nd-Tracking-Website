@@ -3,6 +3,7 @@ import {Button, Container,Form} from 'react-bootstrap'
 import FacultyOffCanvas from '../../Components/facultyOffCanvas'
 import { Adminheader } from '../../Components/header'
 import Adminsubnav from '../../Components/adminSubNav'
+import '../../Styles/adminStudentstyle.css'
 
 
 

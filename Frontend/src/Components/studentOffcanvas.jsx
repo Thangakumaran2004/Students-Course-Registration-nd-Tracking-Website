@@ -1,10 +1,8 @@
 import React,{useState} from 'react'
 import {Button,Offcanvas,Container} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
-import '../Styles/adminPagestyle.css'
 
-const FacultyOffCanvas = () => {
-  
+const StudentOffcanvas = () => {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -22,14 +20,13 @@ const FacultyOffCanvas = () => {
         <Offcanvas.Title>FACULTY</Offcanvas.Title>
       </Offcanvas.Header>
       <Offcanvas.Body>
-       <Button className='mt4' variant='light'><Link to='/adminpage/add' className='offcanvalink '>Add Faculty</Link></Button>
-       <Button className='mt4' variant='light'><Link to='/adminpage/deletefaculty' className='offcanvalink '>Delete Faculty</Link></Button>
+       <Button className='mt4' variant='light'><Link to='/adminpage/addstudent' className='offcanvalink '>Add Student</Link></Button>
+       <Button className='mt4' variant='light'><Link to='/adminpage/deletestudent' className='offcanvalink '>Delete Student</Link></Button>
       </Offcanvas.Body>
     </Offcanvas>
   </>
 );
-
-
+  
 }
 
-export default FacultyOffCanvas
+export default StudentOffcanvas

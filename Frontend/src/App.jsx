@@ -8,9 +8,11 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom';
  import Adminstudent from './Pages/Admin/adminStudents';
  import Adminaddcourse from './Pages/Admin/adminCourse';
 import Adminfaculty from './Pages/Admin/adminfaculty';
- import Adminaddfaculty from './Pages/Admin/adminfaculty';
-
  import AdminDeleteFaculty from './Pages/Admin/adminDeleteFaculty';
+import AdminAddStudent from './Pages/Admin/adminAddStudent';
+import Adminaddfaculty from './Pages/Admin/adminAddFaculty';
+
+
 
 function App() {
   return (
@@ -25,9 +27,11 @@ function App() {
           <Route path='/adminpage' element={<Adminmainpage />}/>
             <Route path='/adminpage/student' element={<Adminstudent />} />
             <Route path='adminpage/faculty' element={<Adminfaculty/>}/>
-            <Route path='/adminpage/addfaculty' element={<Adminaddfaculty />} />
+            <Route path='/adminpage/student' element={<Adminstudent />} />
+            <Route path='/adminpage/addstudent' element={<AdminAddStudent />} />
             <Route path='/adminpage/allotcourse' element={<Adminaddcourse />} />
-          
+            <Route path='/adminpage/addfaculty'  element={<Adminaddfaculty />} />
+            <Route path='/adminpage/deletefaculty' element={<AdminDeleteFaculty />} />
         </Routes>
       </BrowserRouter>
     </>

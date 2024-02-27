@@ -5,22 +5,22 @@ import  Tablee from '../../Components/table'
 import axios from 'axios'
 import Adminsubnav from '../../Components/adminSubNav'
 import '../../Styles/studentMainPage.css'
-let facultiesData=[];
+// let facultiesData=[];
 
-const postData=[{
-    faculties: {
-        1: {id:'1',name:'a',designation:'1',description:'vlsi'},
-        2: {id:'2',name:'ab',designation:'11',description:'hh'},
-        3: {id:'3',name:'abc',designation:'111',description:'cs'},
-        4: {id:'4',name:'abcd',designation:'1111',description:'em'}
-    }},{
-    courses:{
-        1: {id:'1',code:'19EC1C',name:'english'},
-        2: {id:'1',code:'19EC2C',name:'tamil'},
-        3: {id:'1',code:'19EC3C',name:'maths'},
-        4: {id:'1',code:'19EC4C',name:'science'}
-    }}
-  ]
+// const postData=[{
+//     faculties: {
+//         1: {id:'1',name:'a',designation:'1',description:'vlsi'},
+//         2: {id:'2',name:'ab',designation:'11',description:'hh'},
+//         3: {id:'3',name:'abc',designation:'111',description:'cs'},
+//         4: {id:'4',name:'abcd',designation:'1111',description:'em'}
+//     }},{
+//     courses:{
+//         1: {id:'1',code:'19EC1C',name:'english'},
+//         2: {id:'1',code:'19EC2C',name:'tamil'},
+//         3: {id:'1',code:'19EC3C',name:'maths'},
+//         4: {id:'1',code:'19EC4C',name:'science'}
+//     }}
+//   ]
 
 const Adminaddcourse = () => {
  
@@ -39,6 +39,7 @@ const Adminaddcourse = () => {
   const [tableFaculty,setTableFaculty] = useState([]);
   const [allocateerror, setAllocateError]=useState(false);
   const [alreadyexists, setAlexError]=useState(false);
+  const[visibleTable,setvisibleTable]=useState(false);
  
   const handleChange=(e)=>{
     
@@ -71,6 +72,7 @@ const Adminaddcourse = () => {
           console.log("The backend response is ",response.data);
           setTableCourses(response.data.courses);
           setTableFaculty(response.data.faculties);
+          setvisibleTable(true)
 
           
         
@@ -149,7 +151,7 @@ const Adminaddcourse = () => {
         <br />
         <br />
         <br />
-        <Tablee courses={tableCourse} faculties={tableFaculty} />
+          {visibleTable ? <Tablee courses={tableCourse} faculties={tableFaculty} /> : null }
         
     </div>
   )
