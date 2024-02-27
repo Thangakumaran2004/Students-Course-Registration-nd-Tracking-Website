@@ -4,7 +4,7 @@ import { Adminheader } from '../../Components/header'
 import  Tablee from '../../Components/table'
 import axios from 'axios'
 import Adminsubnav from '../../Components/adminSubNav'
-
+import '../../Styles/studentMainPage.css'
 let facultiesData=[];
 
 const postData=[{
@@ -23,8 +23,14 @@ const postData=[{
   ]
 
 const Adminaddcourse = () => {
+ 
+ 
+  let deptname =sessionStorage.getItem('adminData')
+ 
+  let deptName=JSON.parse(deptname);
 
   const [formData, setFormData]= useState({
+    'dept':deptName.adminDept,
     "year": '',
     "semester": '',
     "batch": ''
@@ -99,7 +105,7 @@ const Adminaddcourse = () => {
             
               <Form.Group>
                 <Form.Label>Select year</Form.Label>
-              <select  className='yeardropdown' placeholder='select year' name='year' value={formData.year} onChange={handleChange}>
+              <select className='yeardropdown' placeholder='select year' name='year' value={formData.year} onChange={handleChange}>
                 <option value='none'>None</option>
               <option value='1'>1 year</option>
               <option value='2'>2 year</option>
@@ -111,7 +117,7 @@ const Adminaddcourse = () => {
             </Col>
             <Col>
             <Form.Group>
-                <Form.Label>Select year</Form.Label>
+                <Form.Label>Select sem</Form.Label>
               <select  className='yeardropdown' placeholder='select year' name='semester' value={formData.semester} onChange={handleChange}>
                 <option value='none'>None</option>
               <option value='1'>sem-1</option>

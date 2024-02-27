@@ -7,8 +7,8 @@ const Adminsubnav = () => {
     <div  style={{backgroundColor: 'blue'}}>
         <Container >
                 <Nav className='justify-content-center' >
-                    <Nav.Link href="/adminpage/addfaculty" style={{color: 'white'}}>Faculty</Nav.Link>
-                    <Nav.Link href="/adminpage/addstudent" style={{color: 'white'}}>Student</Nav.Link>
+                    <Nav.Link href="/adminpage/faculty" style={{color: 'white'}}>Faculty</Nav.Link>
+                    <Nav.Link href="/adminpage/student" style={{color: 'white'}}>Student</Nav.Link>
                     <Nav.Link href="/adminpage/allotcourse" style={{color: 'white'}}>Course</Nav.Link>
                     
                 </Nav>

@@ -10,7 +10,7 @@ const AdminMainPage = () => {
     <div>
       <Adminheader />
       <Adminsubnav />
-        
+        <h2>Hello world</h2>
     </div>
   )
 }

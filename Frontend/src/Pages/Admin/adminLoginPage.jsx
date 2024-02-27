@@ -25,12 +25,19 @@ const handlingChange =(e) =>{
 
 const formsubmit = async (e) =>{
   e.preventDefault();
-
+  let responsedata={
+    adminDept: 'Electronics and Communication Engineering',
+    adminStatus: "valid user correct password"
+}
   console.log("Frontend data ",logincred);
+  sessionStorage.setItem('adminData',JSON.stringify(responsedata))
+  navigate("/adminpage") ;
   try{
-    let response = await axios.post('http://localhost:5000/adminLogin', logincred);
-    console.log("The data from backend is ", response.data);
-    console.log("the admin status in data is", response.data.adminStatus);
+    
+//let response = await axios.post('http://localhost:5000/adminLogin', logincred);
+// sessionStorage.setItem('adminData',JSON.stringify(responsedata))
+    console.log("The data from backend is ", responsedata);
+    console.log("the admin status in data is", responsedata.adminStatus);
     
       if(response.data.adminStatus=='valid user correct password'){
         console.log("Navigated successfully");
