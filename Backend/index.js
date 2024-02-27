@@ -12,6 +12,7 @@ const adminLoginPageRoute = require('./Routes/adminLoginPageRoute.js');
 const addNewFacultyRoute = require('./Routes/addNewFacultyRoute');
 const deleteFacultyRoute = require('./Routes/deleteFacultyRoute.js');
 const adminFacultyRoute = require('./Routes/adminFacultyRoute.js');
+const adminAllotFacultyRoute = require('./Routes/adminAllotFacultyRoute.js');
 
 // This section contains the constructor calls and constant values;
 
@@ -41,6 +42,7 @@ app.use('/adminlogin',adminLoginPageRoute);
 app.use('/admin/addNewFaculty',addNewFacultyRoute);
 app.use('/admin/deleteFaculty',deleteFacultyRoute);
 app.use('/adminFaculty',adminFacultyRoute);
+app.use('/admin/allotFaculty',adminAllotFacultyRoute);
 
 // starting the server to listen on the port 
 
