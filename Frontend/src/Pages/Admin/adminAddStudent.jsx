@@ -9,7 +9,6 @@ const AdminAddStudent = () => {
   return (
     <div>
         <Adminheader />
-        <Adminsubnav />
         <StudentOffcanvas />
         <Addstudent />
     </div>

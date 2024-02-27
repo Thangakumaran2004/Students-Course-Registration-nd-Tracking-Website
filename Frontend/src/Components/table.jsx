@@ -92,7 +92,7 @@ const Tablee = (props) => {
           <tbody>{disSub(courses)}</tbody>
           
         </Table>
-        <Button type="submit">SUBMIT</Button>
+        <Button type="submit" style={{backgroundColor: '#57cc99 ', width: '20%',border:'5px ,#57cc99'}} className='justify-content-end'>SUBMIT</Button>
       </form>
     </Container>
   );

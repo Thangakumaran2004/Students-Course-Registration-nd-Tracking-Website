@@ -4,12 +4,13 @@ import '../Styles/loginPageStyle.css'
 
 const Adminsubnav = () => {
   return (
-    <div  style={{backgroundColor: 'blue'}}>
+    <div  style={{ fontFamily: 'sans-serif',fontSize:'1rem'}}>
         <Container >
-                <Nav className='justify-content-center' >
-                    <Nav.Link href="/adminpage/faculty" style={{color: 'white'}}>Faculty</Nav.Link>
-                    <Nav.Link href="/adminpage/student" style={{color: 'white'}}>Student</Nav.Link>
-                    <Nav.Link href="/adminpage/allotcourse" style={{color: 'white'}}>Course</Nav.Link>
+                <Nav className='justify-content-start' >
+                  <Nav.Link href='/adminpage' className='adminsubnav'>Home</Nav.Link>
+                    <Nav.Link href="/adminpage/faculty" className='adminsubnav' >Faculty</Nav.Link>
+                    <Nav.Link href="/adminpage/student" className='adminsubnav' >Student</Nav.Link>
+                    <Nav.Link href="/adminpage/allotcourse" className='adminsubnav' >Course</Nav.Link>
                     
                 </Nav>
         </Container>

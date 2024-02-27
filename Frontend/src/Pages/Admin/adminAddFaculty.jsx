@@ -10,7 +10,6 @@ const Adminaddfaculty = () => {
   return (
     <div>
     <Adminheader />
-    <Adminsubnav />
     <FacultyOffCanvas />
     <Addfaculty />      
   </div>
