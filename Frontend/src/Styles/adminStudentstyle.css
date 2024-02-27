@@ -14,6 +14,13 @@
     border-radius: 20px;
 }
 
+.deletefaculty{
+    width: 40%;
+    margin: 3rem 30%;
+    padding: 3rem;
+    box-shadow: 10px 10px 40px  10px black;
+    border-radius: 20px;
+}
 
 Form Button{
     margin: 2rem 0;

@@ -54,7 +54,8 @@ const  submitfacultydata = async(e) =>{
          <Adminheader />
             <Adminsubnav />
             <FacultyOffCanvas />
-        <Container>
+        <Container  className='deletefaculty'>
+          <center><h3>Faculty Details</h3></center>
             <Form onSubmit={submitfacultydata}>
                 <Form.Group>
                     <Form.Label>Faculty ID:</Form.Label>
