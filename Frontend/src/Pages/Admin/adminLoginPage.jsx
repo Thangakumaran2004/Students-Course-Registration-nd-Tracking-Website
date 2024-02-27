@@ -24,32 +24,25 @@ const handlingChange =(e) =>{
 };
 
 const formsubmit = async (e) =>{
-  e.preventDefault();
-  let responsedata={
-    adminDept: 'Electronics and Communication Engineering',
-    adminStatus: "valid user correct password"
-}
+  e.preventDefault(); 
   console.log("Frontend data ",logincred);
-  sessionStorage.setItem('adminData',JSON.stringify(responsedata))
-  navigate("/adminpage") ;
   try{
-    
-//let response = await axios.post('http://localhost:5000/adminLogin', logincred);
-// sessionStorage.setItem('adminData',JSON.stringify(responsedata))
-    console.log("The data from backend is ", responsedata);
-    console.log("the admin status in data is", responsedata.adminStatus);
-    
-      if(response.data.adminStatus=='valid user correct password'){
-        console.log("Navigated successfully");
+    let response = await axios.post('http://localhost:5000/adminLogin', logincred);
+    console.log("The data from backend is ", response.data);
+    if(response.data.adminStatus=='valid user correct password'){
+      //console.log("Navigated successfully");
+      sessionStorage.setItem('adminDept',JSON.stringify(response.data.adminDept));
        navigate("/adminpage") ;
-                adminStatus: "valid user incorrect password"
-      }else if(response.data.adminStatus=='valid user incorrect password'){
-            console.log("Password not matched for admin");
+              
+      }else if(response.data.adminStatus=='username not found invalid user' || response.data.adminStatus=='valid user incorrect password'){
+            console.log("username not found invalid user");
             setError(true);
+      }else{
+        console.log("Server busy error");
       }
     
-  }catch{
-    console.log("Error hapened while fetching response from studentLogin API",e);
+  }catch(e){
+    console.log("Error hapened while fetching response from AdminLogin API",e);
   }
 }
   return (

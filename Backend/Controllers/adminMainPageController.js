@@ -6,7 +6,10 @@ const getFaculties = async (dept)=>{
         db.query(facultiesQuery,dept,(err,res)=>{
             if(err){
                 console.log("Error occured while querying for faculties for adminmain page in db", err);
-                reject("Server Busy");
+                let response = {
+                    stat:"Server Busy"
+                }
+                reject(response);
             }else{
                 console.log("The faculties are ", res);
                 if(res.length){
@@ -17,7 +20,7 @@ const getFaculties = async (dept)=>{
                     resolve(response);
                 }else{
                     let response = {
-                        stat: "faculty not found"
+                        stat: "faculty not found for the provided dept"
                     }
                     resolve(response);
                 }
@@ -34,15 +37,25 @@ const getCourses = async (dept, sem)=>{
         db.query(coursesQuery,[dept,sem],(err,res)=>{
             if(err){
                 console.log("Error occured while fetching courses for db",err);
-                reject("Server Busy");
+                let response = {
+                    stat: "Server Busy"
+                }
+                reject(response);
             }else{
                 console.log("The courses are",res);
                 if(res.length){
+                    let response ={
+                        stat:"Courses found successfully",
+                        courses : res
+                    }
                     console.log("The courses are , ", res);
-                    resolve(res);
+                    resolve(response);
                 }else{
                     console.log("No courses found for the provided details");
-                    resolve("Server Busy");
+                    let response = {
+                        stat : "No courses found for the provided details"
+                    }
+                    resolve("No courses found for the provided details");
                 }
             }
         })

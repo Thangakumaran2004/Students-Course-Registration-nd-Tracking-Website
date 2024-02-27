@@ -5,32 +5,11 @@ import  Tablee from '../../Components/table'
 import axios from 'axios'
 import Adminsubnav from '../../Components/adminSubNav'
 import '../../Styles/studentMainPage.css'
-// let facultiesData=[];
-
-// const postData=[{
-//     faculties: {
-//         1: {id:'1',name:'a',designation:'1',description:'vlsi'},
-//         2: {id:'2',name:'ab',designation:'11',description:'hh'},
-//         3: {id:'3',name:'abc',designation:'111',description:'cs'},
-//         4: {id:'4',name:'abcd',designation:'1111',description:'em'}
-//     }},{
-//     courses:{
-//         1: {id:'1',code:'19EC1C',name:'english'},
-//         2: {id:'1',code:'19EC2C',name:'tamil'},
-//         3: {id:'1',code:'19EC3C',name:'maths'},
-//         4: {id:'1',code:'19EC4C',name:'science'}
-//     }}
-//   ]
 
 const Adminaddcourse = () => {
- 
- 
-  let deptname =sessionStorage.getItem('adminData')
- 
-  let deptName=JSON.parse(deptname);
-
+  let deptName =JSON.parse(sessionStorage.getItem('adminDept'));
   const [formData, setFormData]= useState({
-    'dept':deptName.adminDept,
+    'dept':deptName,
     "year": '',
     "semester": '',
     "batch": ''
@@ -50,21 +29,17 @@ const Adminaddcourse = () => {
     }));
   };
 
-
-
   const handlesubmit= async (e) =>{
     e.preventDefault();
     console.log("The frontend form data is ",formData);
-    //setTableData(postData);
-    //console.log("THe post data is,",postData);
-    //console.log("The tableData is",tableData);
+   
     if(formData.year==='none' || formData.semester==='none' || formData.batch===''){
                   setAllocateError(true);
     }else{
   
-      try {
+      try {        
         let response = await axios.post('http://localhost:5000/adminMain',formData);
-          if( !response.data.getCourseAndFacultyStatus =='successfully fetched courses and faculty'){
+          if( response.data.getCourseAndFacultyStatus !='successfully fetched courses and faculty'){
               console.log("The backend response is ",response.data);
                   setAlexError(true)
                   return;
@@ -74,14 +49,6 @@ const Adminaddcourse = () => {
           setTableFaculty(response.data.faculties);
           setvisibleTable(true)
 
-          
-        
-    // let facultiesData= ['a','b','c','d','e'];
-      //   for(let i=0; i<response.data.faculties.length; i++){
-      //     facultiesData.push(response.data.faculties[i].name);
-      //   }
-      //   console.log("The Facutlties are,", facultiesData);
-      //   setTableData(response.data)
       }
       }catch(e){
         console.log("Error in axios",e);

@@ -13,6 +13,7 @@ router.post('/',async (req,res)=>{
     const {username,password} = req.body;
 
     let response = await checkAdmin(username);
+    console.log("The response for admin login is :",response );
 
     if(response == "Server busy"){
         let result = {
@@ -30,6 +31,7 @@ router.post('/',async (req,res)=>{
                 adminDept: response.dept,
                 adminStatus: "valid user correct password"
             }
+            console.log("The admin details are ",result);
             res.status(200).json(result);
         }else{
             let result = {

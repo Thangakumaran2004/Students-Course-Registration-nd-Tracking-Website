@@ -21,14 +21,14 @@ const Adminfaculty= () => {
    <Card style={{width: '20%'}}>
     <CardBody>
        Add Faculty
-        <Button variant='success'><Link to='' style={{color: 'white',textDecoration: 'none'}}>Click Here..</Link></Button>
+        <Button variant='success'><Link to='/adminpage/addfaculty' style={{color: 'white',textDecoration: 'none'}}>Click Here..</Link></Button>
       </CardBody>
 
    </Card>
    <Card style={{width: '20%'}}>
     <CardBody>
       Delete Faculty
-        <Button variant='success'><Link to='' style={{color: 'white',textDecoration: 'none'}}>Click Here..</Link></Button>
+        <Button variant='success'><Link to='/adminpage/deletefaculty' style={{color: 'white',textDecoration: 'none'}}>Click Here..</Link></Button>
       </CardBody>
 
    </Card>
