@@ -18,7 +18,7 @@ const Adminaddcourse = () => {
   const [tableFaculty,setTableFaculty] = useState([]);
   const [allocateerror, setAllocateError]=useState(false);
   const [alreadyexists, setAlexError]=useState(false);
-  const[visibleTable,setvisibleTable]=useState(false);
+  const[visibleTable,setvisibleTable]=useState(true);
  
   const handleChange=(e)=>{
     
@@ -66,7 +66,7 @@ const Adminaddcourse = () => {
   return (
     <div>
       <Adminheader />
-      <Adminsubnav />
+      
         <Container className='mt-5'>
           <Form onSubmit={handlesubmit}>
             <Row>
@@ -107,7 +107,7 @@ const Adminaddcourse = () => {
             </FloatingLabel>
             </Col>
             <Col>
-            <Button type="submit" variant='success' className='align-item-end'>Submit</Button>
+            <Button type="submit" style={{backgroundColor: '#57cc99',border:'none'}} className='align-item-end'>Submit</Button>
             </Col>
             </Row>
           </Form>

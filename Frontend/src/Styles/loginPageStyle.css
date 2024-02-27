@@ -39,3 +39,20 @@ Button{
     padding: 0 10px;
 }
 
+.adminsubnav{
+    color: white; 
+    padding: 0px 10px;
+    margin: 5px 10px;
+    border-bottom: 2px solid transparent; 
+    transition: border-color 0.3s;
+}
+
+.adminsubnav:hover{
+    
+    color: white;
+    border-color: white;
+}
+
+Button{
+    width: fit-content;
+}

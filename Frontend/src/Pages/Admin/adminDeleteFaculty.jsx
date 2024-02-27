@@ -52,7 +52,7 @@ const  submitfacultydata = async(e) =>{
   return (
     <div>
          <Adminheader />
-            <Adminsubnav />
+            
             <FacultyOffCanvas />
         <Container  className='deletefaculty'>
           <center><h3>Faculty Details</h3></center>
