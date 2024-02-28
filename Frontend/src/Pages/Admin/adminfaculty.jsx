@@ -21,6 +21,8 @@ const Adminfaculty= () => {
   return (
     <div className='justify-content-center'>
       <Adminheader />
+      <br />
+      <br />
       <Container>
         <Row>
               <Col>
@@ -38,8 +40,12 @@ const Adminfaculty= () => {
                </Col>
               <Col>
                   <Card >
-                        <CardBody>
-                                  Delete Faculty <br />
+                  <Card.Title>  Delete Faculty </Card.Title>
+                          <CardBody>
+                          
+                            <Card.Text>
+                                Click on the below button to Delete Faculty Details..
+                            </Card.Text>
                             <Button variant='success'><Link to='/adminpage/deletefaculty' style={{color: 'white',textDecoration: 'none'}}>Click Here..</Link></Button>
                        </CardBody>
                   </Card>

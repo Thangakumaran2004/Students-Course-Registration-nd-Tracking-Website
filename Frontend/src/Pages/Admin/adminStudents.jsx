@@ -2,13 +2,32 @@ import React, { useState } from 'react'
 import { Adminheader } from '../../Components/header'
 import { Container, Row,Col,Form, Button} from 'react-bootstrap'
 import Adminsubnav from '../../Components/adminSubNav'
+import {Link} from 'react-router-dom'
 const Adminstudent = () => {
   return (
     <div>
       <Adminheader />
       <Adminsubnav />
-          
-
+      <Container>
+      <Col>
+        <Row>
+      click on the below button to add student
+        <Button variant='success' style={{width: '20%'}}><Link to="/adminpage/addstudent">Click Here . . </Link></Button>
+      </Row>
+      <Row>
+      click on the below button to delete student
+        <Button variant='success' style={{width: '20%'}}><Link to="/adminpage/addstudent">Click Here . . </Link></Button>
+      </Row>
+      <Row>
+      click on the below button to view the  student Data
+        <Button variant='success' style={{width: '20%'}}><Link to="/adminpage/addstudent">Click Here . . </Link></Button>
+      </Row>
+      <Row>
+      click on the below button to alter student data
+        <Button variant='success' style={{width: '20%'}}><Link to="/adminpage/addstudent">Click Here . . </Link></Button>
+      </Row>
+      </Col>
+      </Container>
     </div>
   )
 }
@@ -79,7 +98,7 @@ export function Addstudent(){
                 </Form.Group>
               </Row>
             </Col>
-            <Button variant='success' type='submit'>Add Student</Button>
+            <Button variant='success' style={{width: '20%'}} type='submit'>Add Student</Button>
           </Form>
           {success && <p style={{color: 'green',fontStyle:'italic'}}>student Data aded sucessfully.  .  .  .  .  .</p>}
           {alreadyexists && <p style={{color: 'red',fontStyle:'italic'}}>student Data already exists.  .  .  .  .  .</p>}

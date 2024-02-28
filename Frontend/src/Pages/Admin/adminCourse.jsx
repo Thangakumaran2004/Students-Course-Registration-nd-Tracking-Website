@@ -72,6 +72,7 @@ const Adminaddcourse = () => {
       <Adminheader />
       
         <Container className='mt-5'>
+          <center><h4>Enter the semester Batch and year to allocate Faculty</h4></center><br/><br/>
           <Form onSubmit={handlesubmit}>
             <Row>
             <Col>
@@ -90,7 +91,7 @@ const Adminaddcourse = () => {
             </Col>
             <Col>
             <Form.Group>
-                <Form.Label>Select sem</Form.Label>
+                <Form.Label>Select semester</Form.Label>
               <select  className='yeardropdown' placeholder='select year' name='semester' value={formData.semester} onChange={handleChange}>
                 <option value='none'>None</option>
               <option value='1'>sem-1</option>
