@@ -3,11 +3,12 @@ import { Adminheader } from '../../Components/header'
 import { Container, Row,Col,Form, Button} from 'react-bootstrap'
 import Adminsubnav from '../../Components/adminSubNav'
 import {Link} from 'react-router-dom'
+import Sidebar from '../../Components/sideBar'
 const Adminstudent = () => {
   return (
     <div>
       <Adminheader />
-      <Adminsubnav />
+      <Sidebar />
       <Container>
       <Col>
         <Row>
