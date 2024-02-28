@@ -108,8 +108,10 @@ const addDataToDB = async (dataObject,dept,sem,batch) =>{
     const correctBatch3 = await formCorrectFormat(batch3);
 
     let batch1InsertionResponse = await pushToDBBatch1(dept,sem,batch,correctBatch1);
+    
     console.log("batch1 insertion response is",batch1InsertionResponse);
-    let remainingBatchesInsertionResponse = await pushToDBBatches(dept,sem,batch,correctBatch2);
+    //let remainingBatchesInsertionResponse = await pushToDBBatches(dept,sem,batch,correctBatch2);
+    //let 
 
     return batch1InsertionResponse;
 
