@@ -7,14 +7,14 @@ const subject = ['Engineering maths', 'Technical English', 'Physics', 'Chemistry
 const numcount = [10, 20, 30, 40];
 
 const Tablee = (props) => {
-  let styles = {
-    width:""
-  }
+  let facultyAllocationFacultyData=JSON.parse(sessionStorage.getItem('allotFacultyStudentDept'));
   let faculties = props.faculties;
   let courses = props.courses;
   //console.log("The faculty list inside table is", props.faculties);
   //console.log("The courses list inside table is", props.courses);
-  const [tableData, setTableData] = useState({});
+  const [tableData, setTableData] = useState({
+    facultyAllocationFacultyData
+  });
   /*const [disTableData, storeTableData] = useState([]);
 
   useEffect(() => {
@@ -66,7 +66,7 @@ const Tablee = (props) => {
     e.preventDefault();
     try {
       console.log("The form data that is going to be submitted is,",tableData);
-      const response = await axios.post("http://localhost:5000/adminFaculty", tableData);
+      const response = await axios.post("http://localhost:5000/admin/allotFaculty", tableData);
       console.log("formed submitted successfully", response);
     } catch (e) {
       console.log("error occurred while submitting form data is,", e);
