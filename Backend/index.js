@@ -41,7 +41,7 @@ app.use('/studentLogin',studentLoginPageRoute);
 app.use('/adminlogin',adminLoginPageRoute);
 app.use('/admin/addNewFaculty',addNewFacultyRoute);
 app.use('/admin/deleteFaculty',deleteFacultyRoute);
-app.use('/adminFaculty',adminFacultyRoute);
+//app.use('/adminFaculty',adminFacultyRoute);
 app.use('/admin/allotFaculty',adminAllotFacultyRoute);
 
 // starting the server to listen on the port 

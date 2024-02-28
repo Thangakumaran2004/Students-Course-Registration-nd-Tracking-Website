@@ -1,16 +1,18 @@
 import React from 'react'
 import { Nav,Navbar ,Container,Button} from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Adminsubnav from './adminSubNav'
+import Adminsubnav from './adminSubNav';
+
+
 export const Adminheader = () => {
   let deptName =JSON.parse(sessionStorage.getItem('adminDept'))
-  console.log("data stored in the session storage is ",deptName);
+  //console.log("data stored in the session storage is ",deptName);
 
   return (
     <div>
           
         <Navbar  style={{backgroundColor: '#0a1128',color: 'white'}}>
-          <Navbar.Brand style={{color: 'white',fontWeight:'400' ,fontWeight: 'bolder'}}>Site name</Navbar.Brand>
+          <Navbar.Brand style={{color: 'white',fontWeight: 'bolder'}}>Site name</Navbar.Brand>
           <Adminsubnav />
             <Container className='justify-content-end'>
         <Nav >
