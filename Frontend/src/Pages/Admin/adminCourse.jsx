@@ -18,7 +18,8 @@ const Adminaddcourse = () => {
   const [tableFaculty,setTableFaculty] = useState([]);
   const [allocateerror, setAllocateError]=useState(false);
   const [alreadyexists, setAlexError]=useState(false);
-  const[visibleTable,setvisibleTable]=useState(true);
+  const[visibleTable,setvisibleTable]=useState(false);
+  const [dataNotFound,setDataNotFound]=useState(false);
  
   const handleChange=(e)=>{
     
@@ -43,11 +44,14 @@ const Adminaddcourse = () => {
               console.log("The backend response is ",response.data);
                   setAlexError(true)
                   return;
+          }else if(response.data.getCourseAndFacultyStatus =='No courses found for the provided details'){
+                  setDataNotFound(true);
           }else{
           console.log("The backend response is ",response.data);
           setTableCourses(response.data.courses);
           setTableFaculty(response.data.faculties);
           setvisibleTable(true)
+          sessionStorage.setItem('allotFacultyStudentDept',JSON.stringify(response.data));
 
       }
       }catch(e){
@@ -113,6 +117,7 @@ const Adminaddcourse = () => {
           </Form>
           {allocateerror && <p style={{color: 'red', fontStyle: 'italic'}}>Unable to submit due to invalid input </p>}
           {alreadyexists && <p style={{color: 'red' ,fontStyle: 'italic'}}>the data is already exists </p>}
+          {dataNotFound && <p style={{color: 'red' ,fontStyle: 'italic'}}>the data not Found </p>}
         </Container>
         <br />
         <br />

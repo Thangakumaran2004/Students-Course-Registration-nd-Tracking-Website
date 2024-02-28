@@ -8,7 +8,11 @@ import { Card, CardBody } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { Adminheader } from '../../Components/header'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+<<<<<<< HEAD
 //import {iololosAddCircle} from 'react/icons/io'
+=======
+// import {iololosAddCircle} from 'react/icons/io'
+>>>>>>> 968262d45507fb89d211d7583725236243b8ced2
 
 
 
