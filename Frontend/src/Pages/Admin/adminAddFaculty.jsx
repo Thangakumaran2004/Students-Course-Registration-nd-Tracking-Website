@@ -5,12 +5,13 @@ import axios from 'axios';
 import Adminsubnav from '../../Components/adminSubNav'
 import FacultyOffCanvas from '../../Components/facultyOffCanvas';
 import '../../Styles/adminStudentstyle.css'
+import FacultySideBar from '../../Components/facultySideBar';
 
 const Adminaddfaculty = () => {
   return (
     <div>
     <Adminheader />
-    <FacultyOffCanvas />
+    <FacultySideBar />
     <Addfaculty />      
   </div>
   )

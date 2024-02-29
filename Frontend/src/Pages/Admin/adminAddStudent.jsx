@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { Adminheader } from '../../Components/header';
 import { Container, Row,Col,Form, Button} from 'react-bootstrap'
 import '../../Styles/adminStudentstyle.css'
-import Studentsidebar from '../../Components/sideBar';
+import Studentsidebar from '../../Components/studentSideBar'
 
 const AdminAddStudent = () => {
   return (

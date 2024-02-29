@@ -34,9 +34,12 @@ Form Button{
     padding: 10px 5px;
     text-decoration: none;
     color: white;
+     border-radius: 10px;
+    border: 2px #0a1128 solid;
 }
 .studentsidebar i{
     margin: 5px;
+    
 }
 
 .studentsidebar:hover{

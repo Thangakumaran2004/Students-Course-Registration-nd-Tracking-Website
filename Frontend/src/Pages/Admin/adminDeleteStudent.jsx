@@ -1,7 +1,7 @@
 import React ,{useState} from 'react'
 import { Container ,Form,Button} from 'react-bootstrap'
 import { Adminheader } from '../../Components/header';
-import Studentsidebar from '../../Components/sideBar';
+import Studentsidebar from '../../Components/studentSideBar'
 
 const AdminDeleteStudent = () => {
 
@@ -42,6 +42,7 @@ const  submitstudentdata = async(e) =>{
         <Adminheader />
         <Studentsidebar />
             <Container className='deletefaculty'>
+              <center><h3>Student Details</h3></center>
                     <Form onSubmit={submitstudentdata}>
                         <Form.Group>
                             <Form.Label>Enter the Student Reg No</Form.Label>
@@ -52,6 +53,8 @@ const  submitstudentdata = async(e) =>{
                             <Form.Control  type='text' name='' value={deleteStudent.batch} onChange={Deletestudentdata}/>
                         </Form.Group>
                         <Button type='submit'>Delete</Button>
+                        {success && <p style={{color: 'green',fontStyle:'italic'}}>student Data aded sucessfully.  .  .  .  .  .</p>}
+                        {alreadyexists && <p style={{color: 'red',fontStyle:'italic'}}>student Data already exists.  .  .  .  .  .</p>}
                     </Form>
             </Container>
     </div>

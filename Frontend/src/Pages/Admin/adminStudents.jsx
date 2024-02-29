@@ -1,33 +1,15 @@
 import React, { useState } from 'react'
 import { Adminheader } from '../../Components/header'
 import { Container, Row,Col,Form, Button} from 'react-bootstrap'
-import Adminsubnav from '../../Components/adminSubNav'
 import {Link} from 'react-router-dom'
-import Studentsidebar from '../../Components/sideBar'
+import Studentsidebar from '../../Components/studentSideBar'
 const Adminstudent = () => {
   return (
     <div>
       <Adminheader />
       <Studentsidebar />
       <Container>
-      <Col>
-        <Row>
-      click on the below button to add student
-        <Button variant='success' style={{width: '20%'}}><Link to="/adminpage/addstudent">Click Here . . </Link></Button>
-      </Row>
-      <Row>
-      click on the below button to delete student
-        <Button variant='success' style={{width: '20%'}}><Link to="/adminpage/addstudent">Click Here . . </Link></Button>
-      </Row>
-      <Row>
-      click on the below button to view the  student Data
-        <Button variant='success' style={{width: '20%'}}><Link to="/adminpage/addstudent">Click Here . . </Link></Button>
-      </Row>
-      <Row>
-      click on the below button to alter student data
-        <Button variant='success' style={{width: '20%'}}><Link to="/adminpage/addstudent">Click Here . . </Link></Button>
-      </Row>
-      </Col>
+      
       </Container>
     </div>
   )
