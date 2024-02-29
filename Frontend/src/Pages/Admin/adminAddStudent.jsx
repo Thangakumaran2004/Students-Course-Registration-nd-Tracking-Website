@@ -1,15 +1,14 @@
 import React, {useState} from 'react'
 import { Adminheader } from '../../Components/header';
-import Adminsubnav from '../../Components/adminSubNav';
 import { Container, Row,Col,Form, Button} from 'react-bootstrap'
 import '../../Styles/adminStudentstyle.css'
-import StudentOffcanvas from '../../Components/studentOffcanvas';
+import Studentsidebar from '../../Components/sideBar';
 
 const AdminAddStudent = () => {
   return (
     <div>
         <Adminheader />
-        <StudentOffcanvas />
+        <Studentsidebar />
         <Addstudent />
     </div>
   )

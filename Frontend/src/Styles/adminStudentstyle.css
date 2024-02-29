@@ -25,3 +25,47 @@
 Form Button{
     margin: 2rem 0;
 }
+
+
+.studentsidebar{
+    margin: 1rem 0;
+    font-size: 1rem;
+    width: 100%;
+    padding: 10px 5px;
+    text-decoration: none;
+    color: white;
+}
+.studentsidebar i{
+    margin: 5px;
+}
+
+.studentsidebar:hover{
+    background-color: #57cc99;
+    color: #0a1128;
+    border-radius: 10px;
+    
+}
+
+.deletestudent{
+    width: 40%;
+    margin: 3rem 30%;
+    padding: 3rem;
+    box-shadow: 10px 10px 40px  10px black;
+    border-radius: 20px;   
+}
+
+.alterstudent{
+    width: 40%;
+    margin: 3rem 30%;
+    padding: 3rem;
+    box-shadow: 10px 10px 40px  10px black;
+    border-radius: 20px;   
+}
+
+.viewstudent{
+    width: 40%;
+    margin: 3rem 30%;
+    padding: 3rem;
+    box-shadow: 10px 10px 40px  10px black;
+    border-radius: 20px;   
+}

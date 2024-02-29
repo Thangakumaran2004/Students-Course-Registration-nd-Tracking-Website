@@ -41,8 +41,8 @@ Button{
 
 .adminsubnav{
     color: white; 
-    padding: 0px 10px;
-    margin: 5px 10px;
+    padding: 5px 5px;
+    margin: 5px 20px;
     border-bottom: 2px solid transparent; 
     transition: border-color 0.3s;
 }
