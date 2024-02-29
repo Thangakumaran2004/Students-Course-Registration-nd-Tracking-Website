@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
 import { Adminheader } from '../../Components/header'
 import { Container, Row,Col,Form, Button} from 'react-bootstrap'
-import Adminsubnav from '../../Components/adminSubNav'
+import {Link} from 'react-router-dom'
+import Studentsidebar from '../../Components/studentSideBar'
 const Adminstudent = () => {
   return (
     <div>
       <Adminheader />
-      <Adminsubnav />
-          
-
+      <Studentsidebar />
+      <Container>
+      
+      </Container>
     </div>
   )
 }
@@ -79,7 +81,7 @@ export function Addstudent(){
                 </Form.Group>
               </Row>
             </Col>
-            <Button variant='success' type='submit'>Add Student</Button>
+            <Button variant='success' style={{width: '20%'}} type='submit'>Add Student</Button>
           </Form>
           {success && <p style={{color: 'green',fontStyle:'italic'}}>student Data aded sucessfully.  .  .  .  .  .</p>}
           {alreadyexists && <p style={{color: 'red',fontStyle:'italic'}}>student Data already exists.  .  .  .  .  .</p>}

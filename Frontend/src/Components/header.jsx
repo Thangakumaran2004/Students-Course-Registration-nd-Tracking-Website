@@ -20,7 +20,7 @@ export const Adminheader = () => {
         </Nav>
         </Container>
         <Nav className='justify-content-end'><FontAwesomeIcon icon="fa-solid fa-right-to-bracket" /></Nav>
-        <Button style={{backgroundColor: '#57cc99' ,border: 'none'}}>Logout</Button>
+        <Button style={{backgroundColor: '#57cc99',color: '#0a1128' ,border: 'none'}}>Logout</Button>
         </Navbar>
         
     </div>
