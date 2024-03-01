@@ -1,14 +1,31 @@
 const express = require('express');
 const router = express.Router();
-const {getFaculties,getCourses} = require('../Controllers/adminMainPageController');
+const {getFaculties,getCourses,checkIfAlreadyPresentInAllotedFaculties} = require('../Controllers/adminMainPageController');
 
 router.use(express.json());
 
 
 router.post('/',async (req,res)=>{
     let faculties;
-    const {semester,year,batch} = req.body;
+    const {semester,year,batch,dept} = req.body;
     console.log("The frontend data is", req.body);
+
+    const ifPresentAlreadyResponse = await checkIfAlreadyPresentInAllotedFaculties(semester,batch,dept);
+    if(ifPresentAlreadyResponse == "Server Busy"){
+        let response = {
+            getCourseAndFacultyStatus: "Server Busy"
+        }
+        res.status(200).json(response);
+        return;
+    }else if(ifPresentAlreadyResponse=="You have already alloted faculties for the provided details"){
+
+       // res.json("You have already alloted faculties for the provided details");
+        let response ={
+        getCourseAndFacultyStatus: "You have already alloted faculties for the provided details"
+        }
+        res.status(200).json(response);
+        return;
+    }
 
     let facultiesResponse = await getFaculties('ECE');
     console.log("The result of getFaculties is ", facultiesResponse );
@@ -17,6 +34,7 @@ router.post('/',async (req,res)=>{
             getCourseAndFacultyStatus: "Server Busy"
         }
         res.status(200).json(response);
+        return;
     }else if(facultiesResponse.stat == 'faculty found successfully'){
         faculties = facultiesResponse.faculties;
     }else{
@@ -24,6 +42,7 @@ router.post('/',async (req,res)=>{
             getCourseAndFacultyStatus: "Faculty not found for the given department"
         }
         res.status(200).json(response);
+        return;
     }
     
     let coursesResponse = await getCourses('ECE',semester);
@@ -34,6 +53,7 @@ router.post('/',async (req,res)=>{
             getCourseAndFacultyStatus : "Server Busy"
         }
         res.status(200).json(response);
+        return;
     }else if(coursesResponse.stat == 'Courses found successfully'){
         console.log("The courses are,", coursesResponse);
         let response = {
@@ -42,11 +62,13 @@ router.post('/',async (req,res)=>{
             courses : coursesResponse.courses
         }
         res.status(200).json(response);
+        return;
     }else{
         let response = {
             getCourseAndFacultyStatus : "No courses found for the provided details"
         }
         res.status(200).json(response);
+        return;
     }
 
 });

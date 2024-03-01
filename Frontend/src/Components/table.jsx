@@ -65,9 +65,10 @@ const Tablee = (props) => {
   const formtablesubmit = async (e) => {
     e.preventDefault();
     try {
+      tableData.deptSemBatch = sessionStorage.getItem('allotFacultyStudentDept');
       console.log("The form data that is going to be submitted is,",tableData);
       const response = await axios.post("http://localhost:5000/admin/allotFaculty", tableData);
-      console.log("formed submitted successfully", response);
+      console.log("formed submitted successfully and the backend response is ", response);
     } catch (e) {
       console.log("error occurred while submitting form data is,", e);
     }

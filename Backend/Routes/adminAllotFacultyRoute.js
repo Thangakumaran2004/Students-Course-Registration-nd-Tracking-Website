@@ -10,12 +10,17 @@ router.post('/',async (req,res)=>{
     const frontendData = req.body;
     console.log("The frontend data is",frontendData);
     const response = await addDataToDB(frontendData,'ece',3,2025);
-    let result = {
-        status: "Just checking",
-        resu : response
-    }
+    if(response=="Server Busy"){
+        let result = {
+            addAllotedFacultiesToDBStatus : "Server Busy"
+        }
 
-    res.send(result);
+    }else{
+        let result = {
+            addAllotedFacultiesToDBStatus : "Successfully added allotted faculties to database"
+        }
+        res.json(result);
+    }
 
 });
 

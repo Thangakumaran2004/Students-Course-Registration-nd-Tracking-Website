@@ -1,4 +1,24 @@
+const { resolve } = require('path');
 const db = require('../databaseConnection');
+
+const checkIfAlreadyPresentInAllotedFaculties = async (sem,batch,dept)=>{
+    let alreadyPresentCheckQuery = `select * from allotedfaculties where sem = ? and batch = ? and dept = ?`;
+    return new Promise((resolve,reject)=>{
+        db.query(alreadyPresentCheckQuery,[sem,batch,dept],(err,res)=>{
+            if(err){
+                console.log("Error occured while checking if data already present in database");
+                reject("Server Busy");
+            }else{
+                console.log("The result for check already alloted query is,", res);
+                if(res.length){
+                    resolve("You have already alloted faculties for the provided details");
+                }else{
+                    resolve("You have not yet alloted");
+                }
+            }
+        })
+    }).then(res=>res).catch(err=>err);
+};
 
 const getFaculties = async (dept)=>{
     let facultiesQuery = 'select id, name, designation, description from faculties where dept = ?';
@@ -62,4 +82,4 @@ const getCourses = async (dept, sem)=>{
     }).then(res=>res).catch(err=>err);
 }
 
-module.exports = {getFaculties,getCourses};
+module.exports = {getFaculties,getCourses,checkIfAlreadyPresentInAllotedFaculties};

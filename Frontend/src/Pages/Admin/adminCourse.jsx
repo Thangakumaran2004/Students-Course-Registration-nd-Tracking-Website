@@ -18,8 +18,9 @@ const Adminaddcourse = () => {
   const [tableFaculty,setTableFaculty] = useState([]);
   const [allocateerror, setAllocateError]=useState(false);
   const [alreadyexists, setAlexError]=useState(false);
-  const[visibleTable,setvisibleTable]=useState(false);
+  const [visibleTable,setvisibleTable]=useState(false);
   const [dataNotFound,setDataNotFound]=useState(false);
+  
  
   const handleChange=(e)=>{
     
@@ -39,23 +40,29 @@ const Adminaddcourse = () => {
     }else{
   
       try {        
-        let response = await axios.post('http://localhost:5000/adminMain',formData);
-          if( response.data.getCourseAndFacultyStatus !='successfully fetched courses and faculty'){
-              console.log("The backend response is ",response.data);
-                  setAlexError(true)
-                  return;
-          }else if(response.data.getCourseAndFacultyStatus =='No courses found for the provided details'){
-                  setDataNotFound(true);
-          }else{
-          console.log("The backend response is ",response.data);
-          setTableCourses(response.data.courses);
-          setTableFaculty(response.data.faculties);
-          setvisibleTable(true)
-          sessionStorage.setItem('allotFacultyStudentDept',JSON.stringify(response.data));
+        sessionStorage.setItem('allotFacultyStudentDept',JSON.stringify(formData));
 
-      }
+        let response = await axios.post('http://localhost:5000/adminMain',formData);
+          if( response.data.getCourseAndFacultyStatus =='successfully fetched courses and faculty'){
+              console.log("The backend response is ",response.data);
+                  //setAlexError(true)
+                  //return;
+                  setTableCourses(response.data.courses);
+                  setTableFaculty(response.data.faculties);
+                  setvisibleTable(true)
+
+          }else if(response.data.getCourseAndFacultyStatus =='No courses found for the provided details'){
+
+                  console.log("The backend response is ",response.data);
+                  setDataNotFound(true);
+          }else if(response.data.getCourseAndFacultyStatus == 'You have already alloted faculties for the provided details'){
+                  console.log("The backend response is ",response.data);
+                  setAlexError(true);
+          }else{
+                  console.log("The backend response is",response.data);
+          }
       }catch(e){
-        console.log("Error in axios",e);
+        console.log( "Error in axios while allocating facuties via admin",e);
       }
       
   }
