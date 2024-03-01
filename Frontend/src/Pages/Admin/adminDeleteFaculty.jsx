@@ -2,8 +2,8 @@ import React ,{useState} from 'react'
 import {Button, Container,Form} from 'react-bootstrap'
 import FacultyOffCanvas from '../../Components/facultyOffCanvas'
 import { Adminheader } from '../../Components/header'
-import Adminsubnav from '../../Components/adminSubNav'
 import '../../Styles/adminStudentstyle.css'
+import FacultySideBar from '../../Components/facultySideBar'
 
 
 
@@ -53,7 +53,7 @@ const  submitfacultydata = async(e) =>{
     <div>
          <Adminheader />
             
-            <FacultyOffCanvas />
+            <FacultySideBar />
         <Container  className='deletefaculty'>
           <center><h3>Faculty Details</h3></center>
             <Form onSubmit={submitfacultydata}>

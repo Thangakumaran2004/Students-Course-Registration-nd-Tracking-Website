@@ -39,7 +39,7 @@ export const  Dashboard= () => {
 
   let StudentDetails=sessionStorage.getItem('studentData');
   // console.log(StudentDetails);
- let  studentDetailsString=JSON.parse(StudentDetails);
+ let  studentDetailsString=JSON.parse(StudentDetails) || 0;
 
  if (studentDetailsString !== null) {
   // Parse the JSON string to convert it into a JavaScript object
