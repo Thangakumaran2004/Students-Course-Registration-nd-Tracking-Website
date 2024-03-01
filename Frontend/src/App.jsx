@@ -12,6 +12,8 @@ import Adminfaculty from './Pages/Admin/adminfaculty';
 import AdminAddStudent from './Pages/Admin/adminAddStudent';
 import Adminaddfaculty from './Pages/Admin/adminAddFaculty';
 import AdminDeleteStudent from './Pages/Admin/adminDeleteStudent';
+import AdminViewStudent from './Pages/Admin/adminViewStudent';
+import AdminAlterStudent from './Pages/Admin/adminAlterStudent';
 
 
 
@@ -22,7 +24,6 @@ function App() {
         <Routes>
           <Route path='/' element={<Landingpage />} />
            <Route path='/adminlogin' element={<AdminLoginpage />} />
-          
           <Route path='/studentpage' element={<Studentpage />} />
           <Route path='/studentlogin' element={<StudentLoginpage />} />
           <Route path='/adminpage' element={<Adminmainpage />}/>
@@ -31,6 +32,8 @@ function App() {
             <Route path='/adminpage/student' element={<Adminstudent />} />
             <Route path='/adminpage/addstudent' element={<AdminAddStudent />} />
             <Route path='/adminpage/deletestudent' element={<AdminDeleteStudent/>} />
+            <Route path='/adminpage/viewstudent' element={<AdminViewStudent />} />
+            <Route path='/adminpage/alterstudent' element={<AdminAlterStudent />} />
             <Route path='/adminpage/allotcourse' element={<Adminaddcourse />} />
             <Route path='/adminpage/addfaculty'  element={<Adminaddfaculty />} />
             <Route path='/adminpage/deletefaculty' element={<AdminDeleteFaculty />} />

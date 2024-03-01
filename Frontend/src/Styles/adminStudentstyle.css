@@ -42,6 +42,11 @@ Form Button{
     
 }
 
+h3{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #0a1128 ;
+}
+
 .studentsidebar:hover{
     background-color: #57cc99;
     color: #0a1128;
