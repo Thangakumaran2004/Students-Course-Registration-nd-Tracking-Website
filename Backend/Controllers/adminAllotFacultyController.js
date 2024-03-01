@@ -121,12 +121,16 @@ const addDataToDB = async (dataObject,dept,sem,batch) =>{
     let batch1 = await divideIntoBatches(data,'Batch1');
     console.log("The batch 1 is",batch1);
     let batch2 = await divideIntoBatches(data,'Batch2');
+    console.log("The batch 2 is",batch2);
     let batch3 = await divideIntoBatches(data,'Batch3');
+    console.log("The batch 3 is",batch3);
 
     const correctBatch1 = await formCorrectFormat(batch1);
     console.log("The correct batch1 is ", correctBatch1);
     const correctBatch2 = await formCorrectFormat(batch2);
+    console.log("The correct batch2 is",correctBatch2);
     const correctBatch3 = await formCorrectFormat(batch3);
+    console.log("The correct batch3 is",3);
 
     let batch1InsertionResponse = await pushToDBBatch1(dept,sem,batch,correctBatch1);
     console.log("batch1 insertion response is",batch1InsertionResponse);
