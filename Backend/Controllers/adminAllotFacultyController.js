@@ -61,31 +61,52 @@ const formCorrectFormat = async (batchArray)=>{
 
 const pushToDBBatch1 = async (dept,sem,batch,batchDetails)=>{
 
-    let allotFacultyQuery = `insert into allotedfaculties(dept,sem,batch,course_id,batch1facultyid,batch1countlimit) values(?,?,?,?,?,?)`
+    try{
 
-    return new Promise((resolve,reject)=>{
-        let successCount = 0;
-        for(let i =0;i<batchDetails.length;i++){
-            console.log("The value of i is,",i);
-            db.query(allotFacultyQuery,[dept,sem,batch,batchDetails[i][0],batchDetails[i][1],batchDetails[i][2]],(err,res)=>{
-                if(err){
-                    reject("Error occured while inserting batch1 details inside database");
-                }else{
-                    successCount++;
-                    console.log("The successCount is,",successCount);
-                    console.log("The db result is",res);
-                }
-            });
-        }
-        console.log("successcount and batch length is", successCount,batchDetails.length);
-        if(successCount==batchDetails.length){
+        let allotFacultyQuery = `insert into allotedfaculties(dept,sem,batch,course_id,batch1facultyid,batch1countlimit) values(?,?,?,?,?,?)`
+
+        return new Promise((resolve,reject)=>{
+        
+
+            for(let i =0;i<batchDetails.length;i++){
+                console.log("The value of i is,",i);
+             db.query(allotFacultyQuery,[dept,sem,batch,batchDetails[i][0],batchDetails[i][1],batchDetails[i][2]],(err,res)=>{
+                    if(err){
+                        console.log("Error occured while inserting batch1 details inside database",err);
+                        reject("Server Busy");
+                    }else{
+                        
+                        
+                        console.log("The db result is",res);
+                    }
+                });
+            }
+          
             resolve('successfully inserted batch1 details into database');
-        }else{
-            resolve('Not successfull');
-        }
-    }).then(res=>res).catch(err=>err);
+            
+        }).then(res=>res).catch(err=>err);
+
+    }catch(e){
+        console.log("Error occured  in pushToDBBatch1 : ",e);
+        return "Server busy";
+    }   
 
 };
+
+/*const pushToDBBatches2 = async (dept,sem,batch,batchDetails)=>{
+    try{
+        let allotFacultyQuery = `update allotedfaculties set batch2facultyid = ?, batch2countlimit = ? where course_id = ? and dept = ? and batch = ? and sem = ?`;
+
+        return new Promise((resolve,reject)=>{
+            for(let i=0;i<batchDetails.length;i++){
+                db.query(allotFacultyQuery,[batchDetails[i][]])
+            }
+        })
+    }catch(e){
+        console.log("Error occured while updating batch 2 details ",e);
+        return "Server Busy";
+    }
+}*/
 
 const addDataToDB = async (dataObject,dept,sem,batch) =>{
 
@@ -98,25 +119,39 @@ const addDataToDB = async (dataObject,dept,sem,batch) =>{
   console.log("The tarting array is",data);
 
     let batch1 = await divideIntoBatches(data,'Batch1');
-    console.log("THe batch 1 is",batch1);
+    console.log("The batch 1 is",batch1);
     let batch2 = await divideIntoBatches(data,'Batch2');
+    console.log("The batch 2 is",batch2);
     let batch3 = await divideIntoBatches(data,'Batch3');
+    console.log("The batch 3 is",batch3);
 
     const correctBatch1 = await formCorrectFormat(batch1);
     console.log("The correct batch1 is ", correctBatch1);
     const correctBatch2 = await formCorrectFormat(batch2);
+    console.log("The correct batch2 is",correctBatch2);
     const correctBatch3 = await formCorrectFormat(batch3);
+    console.log("The correct batch3 is",3);
 
     let batch1InsertionResponse = await pushToDBBatch1(dept,sem,batch,correctBatch1);
-    
     console.log("batch1 insertion response is",batch1InsertionResponse);
-    //let remainingBatchesInsertionResponse = await pushToDBBatches(dept,sem,batch,correctBatch2);
-    //let 
+    if(batch1InsertionResponse == "ServerBusy"){
+        return "Server Busy";
+    }
 
-    return batch1InsertionResponse;
+    let batch2InsertionResponse = await pushToDBBatches2(dept,sem,batch,correctBatch2);
+    console.log("Batch2 insertion response is",batch2InsertionResponse);
+    if(batch2InsertionResponse == 'Server Busy'){
+        return "Server Busy";
+    }
 
+    let batch3InsertionResponse = await pushToDBBatches3(dept,sem,batch,correctBatch3);
+    console.log("Batch3 insertion response is",batch3InsertionResponse);
+    if(batch3InsertionResponse == 'Server Busy'){
+        return "Server Busy";
+    }
 
-
+    return "Successfully added data to db";
+    
 
 };
 
