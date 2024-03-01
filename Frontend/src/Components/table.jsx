@@ -3,8 +3,8 @@ import { Container, Table, Button } from 'react-bootstrap';
 import axios from 'axios';
 import '../Styles/loginPageStyle.css';
 
-const subject = ['Engineering maths', 'Technical English', 'Physics', 'Chemistry'];
-const numcount = [10, 20, 30, 40];
+// const subject = ['Engineering maths', 'Technical English', 'Physics', 'Chemistry'];
+// const numcount = [10, 20, 30, 40];
 
 const Tablee = (props) => {
   let facultyAllocationFacultyData=JSON.parse(sessionStorage.getItem('allotFacultyStudentDept'));
@@ -40,12 +40,12 @@ const Tablee = (props) => {
         {[1, 2, 3].map((batch) => (
           <>
             <td>
-              <select name={`Batch${batch}-${course.id}`} onChange={handlingSubjData}>
+              <select name={`Batch${batch}-${course.id}`} onChange={handlingSubjData} required>
                 {Dropdown(faculties)}
               </select>
             </td>
             <td>
-              <input name={`Batch${batch}-${course.id}-count`} onChange={handlingSubjData}/>
+              <input name={`Batch${batch}-${course.id}-count`} onChange={handlingSubjData}  required/>
             </td>
           </>
         ))}
