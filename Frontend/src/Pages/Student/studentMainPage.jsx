@@ -8,6 +8,9 @@ import axios from 'axios'
 
 
 
+let StudentDetails=sessionStorage.getItem('studentData');
+  // console.log(StudentDetails);
+ let  studentDetailsString=JSON.parse(StudentDetails) ;
 // the below function will the have the function components of dashboard course navigation and main courses
 const Studentpage = () => {
 
@@ -61,9 +64,7 @@ const CourseTableData =async ()=>{
 
 export const  Dashboard= () => {
 
-  let StudentDetails=sessionStorage.getItem('studentData');
-  // console.log(StudentDetails);
- let  studentDetailsString=/*JSON.parse(StudentDetails) ||*/ 0;
+  
 
  if (studentDetailsString !== null) {
   // Parse the JSON string to convert it into a JavaScript object
