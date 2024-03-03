@@ -1,6 +1,5 @@
 import React from 'react'
 import { Nav,Navbar ,Container,Button} from 'react-bootstrap'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Adminsubnav from './adminSubNav';
 
 
@@ -19,7 +18,7 @@ export const Adminheader = () => {
             <Nav.Item >Dept: {deptName}</Nav.Item>
         </Nav>
         </Container>
-        <Nav className='justify-content-end'><FontAwesomeIcon icon="fa-solid fa-right-to-bracket" /></Nav>
+       
         <Button style={{backgroundColor: '#57cc99',color: '#0a1128' ,border: 'none'}}>Logout</Button>
         </Navbar>
         

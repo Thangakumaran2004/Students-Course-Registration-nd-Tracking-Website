@@ -8,9 +8,13 @@
 } */
 
 .staffdetails{
-    background-color: purple;
+    max-width: 200px;
+    height: 300px;
+    overflow-x: hidden;
+    overflow-y: scroll;
     color: white;
-    max-width: fit-content;
+    width: 100%;    
+
 }
 
 .tablehead{
