@@ -6,10 +6,6 @@ const {addFacultyToDB} = require('../../Controllers/Admin/addNewFacultyControlle
 router.use(express.json());
 
 
-router.get('/',(req,res)=>{
-    res.send("Super le");
-})
-
 router.post('/',async (req,res)=>{
     const {facultyDescription,facultyId,facultyDept,facultyName,facultyDesignation} = req.body;
     const addStatus = await addFacultyToDB(facultyDescription,facultyId,facultyDept,facultyName,facultyDesignation);
