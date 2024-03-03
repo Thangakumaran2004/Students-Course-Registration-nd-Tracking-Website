@@ -1,4 +1,4 @@
-const db = require('../databaseConnection');
+const db = require('../../databaseConnection');
 
 
 const checkStudent = async (username, password)=>{

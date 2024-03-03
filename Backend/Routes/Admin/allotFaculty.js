@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {addDataToDB} = require('../Controllers/adminAllotFacultyController');
+const {addDataToDB} = require('../../Controllers/Admin/allotFacultyController');
 
 router.use(express.json());
 

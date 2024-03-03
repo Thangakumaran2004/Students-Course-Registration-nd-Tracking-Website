@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const {addFacultyToDB} = require('../Controllers/addNewFacultyController');
+const {addFacultyToDB} = require('../../Controllers/Admin/addNewFacultyController');
 
 router.use(express.json());
 

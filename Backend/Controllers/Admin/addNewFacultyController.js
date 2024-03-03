@@ -1,4 +1,4 @@
-const db = require('../databaseConnection');
+const db = require('../../databaseConnection');
 
 const addFacultyToDB = async  (facultyDescription = null,facultyId,facultyDept,facultyName,facultyDesignation)=>{
     let addFacultyToDBQuery = `insert into faculties(id,name,dept,designation,description)values(?,?,?,?,?)`;

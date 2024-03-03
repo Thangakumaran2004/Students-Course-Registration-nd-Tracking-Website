@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {deleteFacultyFromDB} = require('../Controllers/deleteFacultyController');
+const {deleteFacultyFromDB} = require('../../Controllers/Admin/deleteFacultyController');
 
 router.use(express.json());
 

@@ -1,4 +1,4 @@
-const db = require('../databaseConnection');
+const db = require('../../databaseConnection');
 
 const divideIntoBatches = async (data,batchName)=>{
     const result = await data.filter(obj=>{

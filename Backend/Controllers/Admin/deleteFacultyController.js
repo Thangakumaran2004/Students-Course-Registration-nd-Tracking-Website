@@ -1,4 +1,4 @@
-const db = require('../databaseConnection');
+const db = require('../../databaseConnection');
 
 const deleteFacultyFromDB = async (facultyId,facultyDept)=>{
     return new Promise((resolve,reject)=>{

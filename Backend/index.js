@@ -6,13 +6,13 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const db = require('./databaseConnection.js');
-const adminMainPageRoute = require('./Routes/adminMainPageRoute.js');
-const studentLoginPageRoute = require('./Routes/studentLoginPageRoute.js');
-const adminLoginPageRoute = require('./Routes/adminLoginPageRoute.js');
-const addNewFacultyRoute = require('./Routes/addNewFacultyRoute');
-const deleteFacultyRoute = require('./Routes/deleteFacultyRoute.js');
-const adminFacultyRoute = require('./Routes/adminFacultyRoute.js');
-const adminAllotFacultyRoute = require('./Routes/adminAllotFacultyRoute.js');
+const adminMainPageRoute = require('./Routes/Admin/mainPage.js');
+const studentLoginPageRoute = require('./Routes/Student/loginPage.js');
+const adminLoginPageRoute = require('./Routes/Admin/loginPage.js');
+const addNewFacultyRoute = require('./Routes/Admin/addNewFaculty.js');
+const deleteFacultyRoute = require('./Routes/Admin/deleteFaculty.js');
+const adminAllotFacultyRoute = require('./Routes/Admin/allotFaculty.js');
+const studentgetCourseAndFacultyDetailsRoute = require('./Routes/Student/getCourseAndFacultiesDetails.js');
 
 // This section contains the constructor calls and constant values;
 
@@ -37,12 +37,13 @@ app.use(express.json());
 
 
 app.use('/adminMain',adminMainPageRoute);
-app.use('/studentLogin',studentLoginPageRoute);
 app.use('/adminlogin',adminLoginPageRoute);
 app.use('/admin/addNewFaculty',addNewFacultyRoute);
 app.use('/admin/deleteFaculty',deleteFacultyRoute);
-//app.use('/adminFaculty',adminFacultyRoute);
 app.use('/admin/allotFaculty',adminAllotFacultyRoute);
+
+app.use('/studentLogin',studentLoginPageRoute);
+app.use('/student/getCourseAndFacultyDetails',studentgetCourseAndFacultyDetailsRoute);
 
 // starting the server to listen on the port 
 

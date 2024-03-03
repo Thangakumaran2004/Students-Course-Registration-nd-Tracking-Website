@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const {checkAdmin} = require('../Controllers/adminLoginPageController');
+const {checkAdmin} = require('../../Controllers/Admin/loginPageController');
 
 router.use(express.json());
 

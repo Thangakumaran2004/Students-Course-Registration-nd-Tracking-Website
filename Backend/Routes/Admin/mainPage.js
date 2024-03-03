@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {getFaculties,getCourses,checkIfAlreadyPresentInAllotedFaculties} = require('../Controllers/adminMainPageController');
+const {getFaculties,getCourses,checkIfAlreadyPresentInAllotedFaculties} = require('../../Controllers/Admin/mainPageController');
 
 router.use(express.json());
 

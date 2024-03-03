@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const {checkStudent} = require('../Controllers/studentLoginPageController');
+const {checkStudent} = require('../../Controllers/Student/loginPageController');
 
 
 router.use(express.json());

@@ -1,5 +1,5 @@
 const { resolve } = require('path');
-const db = require('../databaseConnection');
+const db = require('../../databaseConnection');
 
 const checkIfAlreadyPresentInAllotedFaculties = async (sem,batch,dept)=>{
     let alreadyPresentCheckQuery = `select * from allotedfaculties where sem = ? and batch = ? and dept = ?`;
