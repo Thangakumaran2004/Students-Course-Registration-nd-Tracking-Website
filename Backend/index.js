@@ -6,13 +6,17 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const db = require('./databaseConnection.js');
+
 const adminMainPageRoute = require('./Routes/Admin/mainPage.js');
-const studentLoginPageRoute = require('./Routes/Student/loginPage.js');
 const adminLoginPageRoute = require('./Routes/Admin/loginPage.js');
 const addNewFacultyRoute = require('./Routes/Admin/addNewFaculty.js');
 const deleteFacultyRoute = require('./Routes/Admin/deleteFaculty.js');
 const adminAllotFacultyRoute = require('./Routes/Admin/allotFaculty.js');
+
 const studentgetCourseAndFacultyDetailsRoute = require('./Routes/Student/getCourseAndFacultiesDetails.js');
+const studentLoginPageRoute = require('./Routes/Student/loginPage.js');
+const studentAddNewStudentRoute = require('./Routes/Student/addNewStudent.js');
+const studentDeleteStudentRoute = require('./Routes/Student/deleteStudent.js');
 
 // This section contains the constructor calls and constant values;
 
@@ -23,6 +27,7 @@ const port = 5000;
 
 app.use(cors({origin:"*"}));
 app.use(express.json());
+
 /*app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', 'http://localhost:5173');
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
@@ -44,6 +49,8 @@ app.use('/admin/allotFaculty',adminAllotFacultyRoute);
 
 app.use('/studentLogin',studentLoginPageRoute);
 app.use('/student/getCourseAndFacultyDetails',studentgetCourseAndFacultyDetailsRoute);
+app.use('/student/addNewStudent',studentAddNewStudentRoute);
+app.use('/student/deleteStudent',studentDeleteStudentRoute);
 
 // starting the server to listen on the port 
 
