@@ -6,9 +6,10 @@ const {getAllotedFacultiesAndCourses,getAllFaculties,setFacultyDetails,getAllCou
 
 router.post('/',async (req,res)=>{
     let frontendData = req.body;
+    let {studentSemester,studentYear,studentBatch,studentDept} = req.body;
     console.log("The data received from frontend is : ", frontendData);
 
-    let allotedFacultiesForCourses = await getAllotedFacultiesAndCourses(3,'ECE',2025);
+    let allotedFacultiesForCourses = await getAllotedFacultiesAndCourses(studentSemester,studentDept,studentBatch);
 
     if(allotedFacultiesForCourses == "Server Busy"){
         let response = {
@@ -28,7 +29,7 @@ router.post('/',async (req,res)=>{
     }
 
 
-    let allFaculties = await getAllFaculties('ECE');
+    let allFaculties = await getAllFaculties(studentDept);
 
     if(allFaculties == 'Server Busy'){
         let response = {
@@ -52,7 +53,7 @@ router.post('/',async (req,res)=>{
         return;
     }
 
-    let allCourses = await getAllCourses(3,"ECE",'R2023');
+    let allCourses = await getAllCourses(studentSemester,studentDept,'R2023');
 
     if(allCourses == 'Server Busy'){
         let response = {

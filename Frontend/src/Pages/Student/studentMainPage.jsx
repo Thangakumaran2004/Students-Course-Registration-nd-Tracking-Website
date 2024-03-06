@@ -5,36 +5,37 @@ import '../../Styles/studentMainPage.css'
 import StudentHeader from '../../Components/studentHeader';
 import axios from 'axios'
 
+let  studentDetailsString=JSON.parse(sessionStorage.getItem('studentData')) ;
+ console.log("ThestudentDetailsString is", studentDetailsString);
 
 
-
-let StudentDetails=sessionStorage.getItem('studentData');
-  // console.log(StudentDetails);
- let  studentDetailsString=JSON.parse(StudentDetails) ;
 // the below function will the have the function components of dashboard course navigation and main courses
 const Studentpage = () => {
 
-  const postStudentDetails={'studentSemester':studentDetailsString.sem ,'studentYear':studentDetailsString.year,'studentBatch':studentDetailsString.batch,'studentDept':studentDetailsString.dept}
-  const[facultyDescription,setFacultyDescription]=useState([]);
-  const[studentTabeData,setStudentTableData]=useState([]);
-const [showTable,setShowTable]=useState(false);
-const [error, setError]=useState(false)
  
-const CourseTableData =async ()=>{
-  try{
-      
-        let response=await axios.post('http://5000/student/getCourseAndFacultyDetails',postStudentDetails);
+
+ const postStudentDetails={'studentSemester':studentDetailsString.sem ,'studentYear':studentDetailsString.year,'studentBatch':studentDetailsString.batch,'studentDept':studentDetailsString.dept};
+ const[facultyDescription,setFacultyDescription]=useState([]);
+ const[studentTabeData,setStudentTableData]=useState([]);
+ const [showTable,setShowTable]=useState(false);
+ const [error, setError]=useState(false)
+ 
+ const CourseTableData =async ()=>{
+  try{    
+    console.log("Submit button clicked");
+        let response=await axios.post('http://localhost:5000/student/getCourseAndFacultyDetails',postStudentDetails);
+
         if(response.data.getAllotedFacultiesAndCoursesStatus=='successfully got'){
          setFacultyDescription(response.data.facultyDescription);
          setStudentTableData(response.data.tableDetails);
          setShowTable(true);
          setError(false);
 
-        }else if(response.data.getAllotedFacultiesAndCoursesStatus=='server busy'){
+        }else if(response.data.getAllotedFacultiesAndCoursesStatus=='Server Busy'){
             setError(true);
         }
       }catch(err){
-        console.log("the error in fetching  tjhe course table data is ",err);
+        console.log("the error in fetching  the course table data is ",err);
       }
 }
 
@@ -45,7 +46,7 @@ const CourseTableData =async ()=>{
     <StudentHeader />
     <Dashboard/>
     {/* <Circlebar /> */}
-    <Button className='alignitems-end' onClick={CourseTableData} type='button'>Click here</Button>
+    <Button className='alignitems-end' onClick = {CourseTableData}  type='button'>Click here</Button>
     {(showTable)?  <Maincourse  totaltablelist={studentTabeData}  facultydescription={facultyDescription}/>:<p>Click on the above button to fill CBCS</p> }
       {error && <p>server busy</p>}
    
@@ -66,16 +67,13 @@ export const  Dashboard= () => {
 
   
 
- if (studentDetailsString !== null) {
-  // Parse the JSON string to convert it into a JavaScript object
-  
-  console.log("Retrieved student details from session storage:", studentDetailsString);
-  // Now you can use studentDetails object as needed
-} else {
-  console.log("No student details found in session storage.");
-}
-
-
+ if(studentDetailsString != null){
+    // Parse the JSON string to convert it into a JavaScript object
+    console.log("Retrieved student details from session storage:", studentDetailsString);
+    // Now you can use studentDetails object as needed
+ }else{
+      console.log("No student details found in session storage.");
+ }
 
   return (
     <div className='dashboard  shadow p-3 mb-5  rounded m-3  border-2 '>
@@ -95,7 +93,6 @@ export const  Dashboard= () => {
                         </Col>
                     </Row>
         </Container>
-     
     
     </div>
   )
@@ -124,7 +121,6 @@ export const  Dashboard= () => {
 export function Faculty(b1id,b1name,b1count,b2id,b2name,b2count,b3id,b3name,b3count){
   return (
     <select>
-      <option value="none">None</option>
       <option value={b1id}>{b1name}{b1count}</option>
       <option value={b2id}>{b2name}{b2count}</option>
       <option value={b3id}>{b3name}{b3count}</option>
@@ -138,7 +134,7 @@ export const Maincourse=(props) =>{
 
   let facultyDesp=props.facultydescription;
   console.log(facultyDesp);
-  let totalTableData=props.totaltablelist;
+  let students=props.totaltablelist;
   const [activeAccordionItem, setActiveAccordionItem] = useState(null);
 
 
@@ -158,16 +154,16 @@ export const Maincourse=(props) =>{
                     <th>S.NO</th>
                     <th>Course code</th>
                     <th>Subject Name</th>
-                    <th>Credits</th>
+                    <th>Course type</th>
                     <th>Faculty</th>
                     </tr>
                 </thead>
                 <tbody>
 
-                {students.map(({ id, course_id, course_name, course_tpye,batch1facultyid,batch1facultyname,batch1countlimit,batch2facultyid,batch2facultyname,batch2countlimit,batch3facultyid,batch3facultyname,batch3countlimit }) => (
+                {students.map(({ id, course_code, course_name, course_tpye,batch1facultyid,batch1facultyname,batch1countlimit,batch2facultyid,batch2facultyname,batch2countlimit,batch3facultyid,batch3facultyname,batch3countlimit }) => (
               <tr key={id}>
                 <td >{id}</td>
-                <td >{course_id}</td>
+                <td >{course_code}</td>
                 <td >{course_name}</td>
                 <td >{course_tpye}</td>
                 <td >{Faculty(batch1facultyid,batch1facultyname,batch1countlimit,batch2facultyid,batch2facultyname,batch2countlimit,batch3facultyid,batch3facultyname,batch3countlimit)}</td>

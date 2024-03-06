@@ -63,7 +63,7 @@ const pushToDBBatch1 = async (dept,sem,batch,batchDetails)=>{
 
     try{
 
-        let allotFacultyQuery = `insert into allotedfaculties(dept,sem,batch,course_id,batch1facultyid,batch1countlimit) values(?,?,?,?,?,?)`
+        let allotFacultyQuery = `insert into facultyallotedbyadmins (dept,sem,batch,course_id,batch1facultyid,batch1countlimit) values(?,?,?,?,?,?)`
 
         return new Promise((resolve,reject)=>{
         
@@ -95,7 +95,7 @@ const pushToDBBatch1 = async (dept,sem,batch,batchDetails)=>{
 
 const pushToDBBatches2 = async (dept,sem,batch,batchDetails)=>{
     try{
-        let allotFacultyQuery = `update allotedfaculties set batch2facultyid = ?, batch2countlimit = ? where course_id = ? and dept = ? and batch = ? and sem = ?`;
+        let allotFacultyQuery = `update facultyallotedbyadmins set batch2facultyid = ?, batch2countlimit = ? where course_id = ? and dept = ? and batch = ? and sem = ?`;
 
         return new Promise((resolve,reject)=>{
             for(let i=0;i<batchDetails.length;i++){
@@ -118,7 +118,7 @@ const pushToDBBatches2 = async (dept,sem,batch,batchDetails)=>{
 
 const pushToDBBatches3 = async (dept,sem,batch,batchDetails)=>{
     try{
-        let allotFacultyQuery = `update allotedfaculties set batch3facultyid = ?, batch3countlimit = ? where course_id = ? and dept = ? and batch = ? and sem = ?`;
+        let allotFacultyQuery = `update facultyallotedbyadmins set batch3facultyid = ?, batch3countlimit = ? where course_id = ? and dept = ? and batch = ? and sem = ?`;
 
         return new Promise((resolve,reject)=>{
             for(let i=0;i<batchDetails.length;i++){

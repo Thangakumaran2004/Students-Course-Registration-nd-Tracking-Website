@@ -2,7 +2,7 @@ const { resolve } = require('path');
 const db = require('../../databaseConnection');
 
 const checkIfAlreadyPresentInAllotedFaculties = async (sem,batch,dept)=>{
-    let alreadyPresentCheckQuery = `select * from allotedfaculties where sem = ? and batch = ? and dept = ?`;
+    let alreadyPresentCheckQuery = `select * from facultyallotedbyadmins where sem = ? and batch = ? and dept = ?`;
     return new Promise((resolve,reject)=>{
         db.query(alreadyPresentCheckQuery,[sem,batch,dept],(err,res)=>{
             if(err){

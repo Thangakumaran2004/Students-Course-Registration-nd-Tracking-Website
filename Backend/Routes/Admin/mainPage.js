@@ -27,7 +27,7 @@ router.post('/',async (req,res)=>{
         return;
     }
 
-    let facultiesResponse = await getFaculties('ECE');
+    let facultiesResponse = await getFaculties(dept);
     console.log("The result of getFaculties is ", facultiesResponse );
     if(facultiesResponse.stat == "Server Busy"){
         let response = {
@@ -45,7 +45,7 @@ router.post('/',async (req,res)=>{
         return;
     }
     
-    let coursesResponse = await getCourses('ECE',semester);
+    let coursesResponse = await getCourses(dept,semester);
     
     if(coursesResponse.stat == "Server Busy"){
         console.log("Either error or no courses found in db");

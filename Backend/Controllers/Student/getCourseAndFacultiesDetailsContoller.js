@@ -3,7 +3,7 @@ const db = require('../../databaseConnection');
 
 
 const getAllotedFacultiesAndCourses = async (sem,dept,batch)=>{
-    let getAllotedFacultiesAndCoursesQuery = `select * from allotedFaculties where sem = ? and dept = ? and batch = ?`;
+    let getAllotedFacultiesAndCoursesQuery = `select * from facultyallotedbyadmins where sem = ? and dept = ? and batch = ?`;
     
     return new Promise((resolve,reject)=>{
         db.query(getAllotedFacultiesAndCoursesQuery,[sem,dept,batch],(err,res)=>{
@@ -58,7 +58,7 @@ const setFacultyDetails = async (allFaculties)=>{
 }
 
 const getAllCourses = async (sem,dept,regulation)=>{
-    let getAllCoursesQuery = `select id, code, name, type from maincourses where sem = ? and dept = ? and regulation = ?`;
+    let getAllCoursesQuery = `select id, code, name, type from maincourses where sem = ? and dept = ? and regulations = ?`;
     
     return new Promise((resolve,reject)=>{
         db.query(getAllCoursesQuery,[sem,dept,regulation],(err,res)=>{
@@ -107,6 +107,7 @@ const formatToRender = async (allotedFacultiesForCourses,facultyDetails,courseDe
                 course_id: obj.course_id,
                 course_name : courseDetails[obj.course_id].name,
                 course_tpye : courseDetails[obj.course_id].type,
+                course_code : courseDetails[obj.course_id].code,
                 batch1facultyid: obj.batch1facultyid,
                 batch1facultyname: facultyDetails[obj.batch1facultyid].name,
                 batch1countlimit: obj.batch1countlimit,
@@ -115,7 +116,7 @@ const formatToRender = async (allotedFacultiesForCourses,facultyDetails,courseDe
                 batch2countlimit: obj.batch2countlimit,
                 batch3facultyid: obj.batch3facultyid,
                 batch3facultyname: facultyDetails[obj.batch3facultyid].name,
-                batch3countlimit: obj.batch3countlimit,
+                batch3countlimit: obj.batch3countlimit
             }
 
             onlyAllotedFacultySet.add(obj.batch1facultyid);
