@@ -22,8 +22,9 @@ const [error, setError]=useState(false)
  
 const CourseTableData =async ()=>{
   try{
+    console.log("The form data is,",postStudentDetails);
       
-        let response = await axios.post('http://5000/student/getCourseAndFacultyDetails',postStudentDetails);
+        let response = await axios.post('http://localhost:5000/student/getCourseAndFacultyDetails',postStudentDetails);
         if(response.data.getAllotedFacultiesAndCoursesStatus=='successfully got'){
          setFacultyDescription(response.data.facultyDescription);
          setStudentTableData(response.data.tableDetails);
