@@ -129,7 +129,7 @@ const pushToDBBatches3 = async (dept,sem,batch,batchDetails)=>{
                     }else{
                         //console.log("Successfully updating batch2 details",res);
                     }
-                })
+                });
             }
             resolve("Successfully inserted batch 3 details in database");
         }).then(res=>res).catch(err=>err);
@@ -138,6 +138,29 @@ const pushToDBBatches3 = async (dept,sem,batch,batchDetails)=>{
         return "Server Busy";
     }
 }
+
+const insertIntoCountTracker = async (dept,sem,batch,allotedBatchDetails)=>{
+    try{
+        let insertIntoCountTrackerQuery = `insert into counttracker (sem,dept,batch,course_id,faculty_id,allotedcount) values (?,?,?,?,?,?)`;
+        return new Promise((resolve,reject)=>{
+            for(let i=0;i<allotedBatchDetails.length;i++){
+                //console.log("The allotedBatchDetails is : ", a)
+                db.query(insertIntoCountTrackerQuery,[sem,dept,batch,allotedBatchDetails[i][0],allotedBatchDetails[i][1],Number(allotedBatchDetails[i][2])],(err,res)=>{
+                    if(err){
+                        console.log("Error occured while inserting into count tracker",err);
+                        reject("Server Busy");
+                    }else{
+                        console.log("Successfully adding to counttracker");
+                    }
+                })
+            }
+            resolve("successfully added to counttracker");
+        }).then(res=>res).catch(err=>err);
+    }catch(e){
+        console.log("Error occured while inserting into count tracker");
+        return "Server Busy";
+    }
+};
 
 const addDataToDB = async (dataObject,dept,sem,batch) =>{
 
@@ -157,11 +180,11 @@ const addDataToDB = async (dataObject,dept,sem,batch) =>{
     //console.log("The batch 3 is",batch3);
 
     const correctBatch1 = await formCorrectFormat(batch1);
-    ////console.log("The correct batch1 is ", correctBatch1);
+    console.log("The correct batch1 is ", correctBatch1);
     const correctBatch2 = await formCorrectFormat(batch2);
-    //console.log("The correct batch2 is",correctBatch2);
+    console.log("The correct batch2 is",correctBatch2);
     const correctBatch3 = await formCorrectFormat(batch3);
-    //console.log("The correct batch3 is",correctBatch3);
+    console.log("The correct batch3 is",correctBatch3);
 
     let batch1InsertionResponse = await pushToDBBatch1(dept,sem,batch,correctBatch1);
     // console.log("batch1 insertion response is",batch1InsertionResponse);
@@ -180,6 +203,25 @@ const addDataToDB = async (dataObject,dept,sem,batch) =>{
     if(batch3InsertionResponse == 'Server Busy'){
         return "Server Busy";
     }
+
+    let batch1CountTrackerResponse = await insertIntoCountTracker(dept,sem,batch,correctBatch1);
+
+    if(batch1CountTrackerResponse == "Server Busy"){
+        return "Server Busy";
+    }
+
+    let batch2CountTrackerResponse = await insertIntoCountTracker(dept,sem,batch,correctBatch2);
+
+    if(batch2CountTrackerResponse == "Server Busy"){
+        return "Server Busy";
+    }
+
+    let batch3CountTrackerResponse = await insertIntoCountTracker(dept,sem,batch,correctBatch3);
+
+    if(batch3CountTrackerResponse == "Server Busy"){
+        return "Server Busy";
+    }
+    
 
     return "Successfully added data to db";
     

@@ -50,11 +50,11 @@ const getFaculties = async (dept)=>{
     }).then(res=>res).catch(err=>err);
 };
 
-const getCourses = async (dept, sem)=>{
+const getCourses = async (dept, sem, batch)=>{
     console.log("getcourse() called");
-    let coursesQuery = 'select id,code,name,type from maincourses where dept = ? and sem = ?';
+    let coursesQuery = 'select id,code,name,type from maincourses where dept = ? and sem = ? and batch = ?';
     return new Promise((resolve,reject)=>{
-        db.query(coursesQuery,[dept,sem],(err,res)=>{
+        db.query(coursesQuery,[dept,sem,batch],(err,res)=>{
             if(err){
                 console.log("Error occured while fetching courses for db",err);
                 let response = {

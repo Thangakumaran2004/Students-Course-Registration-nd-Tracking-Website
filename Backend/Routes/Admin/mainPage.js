@@ -45,7 +45,7 @@ router.post('/',async (req,res)=>{
         return;
     }
     
-    let coursesResponse = await getCourses(dept,semester);
+    let coursesResponse = await getCourses(dept,semester,batch);
     
     if(coursesResponse.stat == "Server Busy"){
         console.log("Either error or no courses found in db");
