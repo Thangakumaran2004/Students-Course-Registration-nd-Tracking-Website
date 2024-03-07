@@ -1,6 +1,6 @@
 .dashboard{ 
-   background-color:rgb(3, 3, 68);
     color: white;
+    align-items: center;
 }
 
 /* .navi{
@@ -30,4 +30,35 @@
     border-style: solid;
     border-radius: 5px;
     border-color: #dee2e6;
+}
+
+.studentbiocol{
+    background-color: blue;
+    width: fit-content;
+    padding: 2rem;
+    border-radius: 2px;
+    margin: 2rem;
+}
+
+.studendetailssubcol{
+    padding:  1rem;
+    text-align: center;
+    border-radius: 5px;
+    margin:  1rem 4rem;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 1px 1px 20px  grey;
+
+}
+
+
+
+h5{
+    color:  grey;
+    
+}
+
+h5 i{
+    font-size: 1rem;
+    margin: 0 5px;
 }

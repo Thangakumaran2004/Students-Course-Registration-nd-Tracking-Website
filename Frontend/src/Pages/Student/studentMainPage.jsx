@@ -14,7 +14,7 @@ let  studentDetailsString = JSON.parse(sessionStorage.getItem('studentData')) ;
 // the below function will the have the function components of dashboard course navigation and main courses
 const Studentpage = () => {
 
-  const postStudentDetails={'studentSemester':studentDetailsString.sem ,'studentYear':studentDetailsString.year,'studentBatch':studentDetailsString.batch,'studentDept':studentDetailsString.dept}
+  const postStudentDetails=1/*{'studentSemester':studentDetailsString.sem ,'studentYear':studentDetailsString.year,'studentBatch':studentDetailsString.batch,'studentDept':studentDetailsString.dept}*/
   const[facultyDescription,setFacultyDescription]=useState([]);
   const[studentTabeData,setStudentTableData]=useState([]);
 const [showTable,setShowTable]=useState(false);
