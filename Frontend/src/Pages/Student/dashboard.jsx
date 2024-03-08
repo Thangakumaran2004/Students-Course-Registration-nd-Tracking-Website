@@ -42,15 +42,15 @@ export const  Dashboard= () => {
                            </Col>
                        </Row>
            </Container> */}
-           <Container style={{width: '100%'}}>
+           <Container style={{width: '100%',backgroundColor: 'red'}}>
                 <Row md={3} className='justify-content-center'>
                     <Col className='studentbiocol'>
                         <Container className='studentbio'>
                             hello
                         </Container>
                     </Col> 
-                    <Col >
-                      <Row md={2}>
+                    <Col md={4}>
+                      <Row >
                         <Col className='studendetailssubcol' >
                                <h5><i class="bi bi-award-fill"></i>Credits</h5>
                                <span>4</span>
@@ -58,7 +58,9 @@ export const  Dashboard= () => {
                         <Col className='studendetailssubcol'>
                         <h5><i class="bi bi-ui-checks-grid"></i>OE Credits</h5>
                           </Col>
-                        <Col className='studendetailssubcol'><h5><i class="bi bi-calendar3"></i>Year</h5></Col>
+                        <Col className='studendetailssubcol'>
+                          
+                          <h5><i class="bi bi-calendar3"></i>Year</h5></Col>
                       </Row>
                       <Row>
                         <Col className='studendetailssubcol'>

@@ -17,7 +17,7 @@ const Studentpage = () => {
   const postStudentDetails=1/*{'studentSemester':studentDetailsString.sem ,'studentYear':studentDetailsString.year,'studentBatch':studentDetailsString.batch,'studentDept':studentDetailsString.dept}*/
   const[facultyDescription,setFacultyDescription]=useState([]);
   const[studentTabeData,setStudentTableData]=useState([]);
-const [showTable,setShowTable]=useState(false);
+const [showTable,setShowTable]=useState(true);
 const [error, setError]=useState(false)
  
 const CourseTableData =async ()=>{
@@ -68,15 +68,7 @@ const CourseTableData =async ()=>{
 
 
 //Dummy function that is used to display the faculty details
-export function Faculty(b1id,b1name,b1count,b2id,b2name,b2count,b3id,b3name,b3count){
-  return (
-    <select>
-      <option value={b1id}>{b1name}{b1count}</option>
-      <option value={b2id}>{b2name}{b2count}</option>
-      <option value={b3id}>{b3name}{b3count}</option>
-    </select>
-  )
-}
+
 //below function will contain the main course details
 
 export const Maincourse=(props) =>{
@@ -86,9 +78,42 @@ export const Maincourse=(props) =>{
   console.log(facultyDesp);
   let students=props.totaltablelist;
   const [activeAccordionItem, setActiveAccordionItem] = useState(null);
+  const[submitData,setSubmitData]=useState({
+    /*{'studentSemester':studentDetailsString.sem ,
+    'studentYear':studentDetailsString.year,
+    'studentBatch':studentDetailsString.batch,
+    'studentDept':studentDetailsString.dept*/
+    
+
+     
+  })
 
 
 
+  function Faculty(b1id,b1name,b1count,b2id,b2name,b2count,b3id,b3name,b3count){
+    return (
+      <select onChange={(e) => updateStaff(e, course_name)}>
+        <option value={b1id}>{b1name}{b1count}</option>
+        <option value={b2id}>{b2name}{b2count}</option>
+        <option value={b3id}>{b3name}{b3count}</option>
+      </select>
+    )
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(submitData); // You can send this data to your backend using Axios
+  };
+
+
+  const updateStaff = (e, subjectName) => {
+    const { value } = e.target;
+    setSubmitData(prevState => ({
+      ...prevState,
+      [subjectName]: value
+    }));
+  };
+  
 
 
 
@@ -96,6 +121,7 @@ export const Maincourse=(props) =>{
 
     return (
         < div className='maincourse'>
+          <form onSubmit={handleSubmit}>
         <Row  className='justify-content-center'>
             <Col md={8}>
                     <Table >
@@ -123,6 +149,7 @@ export const Maincourse=(props) =>{
                   
                 </tbody>
                 </Table>
+                <Button type='submit'>Submit</Button>
                 </Col>
              <Col>
                   <Container className='justify-content-center ' md={4}>
@@ -146,6 +173,7 @@ export const Maincourse=(props) =>{
                 
                 </Col>
       </Row>
+      </form>
       </div>
     )
 }
