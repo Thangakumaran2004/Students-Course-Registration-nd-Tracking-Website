@@ -14,7 +14,7 @@ let  studentDetailsString = JSON.parse(sessionStorage.getItem('studentData')) ;
 // the below function will the have the function components of dashboard course navigation and main courses
 const Studentpage = () => {
 
-  const postStudentDetails=1/*{'studentSemester':studentDetailsString.sem ,'studentYear':studentDetailsString.year,'studentBatch':studentDetailsString.batch,'studentDept':studentDetailsString.dept}*/
+  const postStudentDetails={'studentSemester':studentDetailsString.sem ,'studentYear':studentDetailsString.year,'studentBatch':studentDetailsString.batch,'studentDept':studentDetailsString.dept}
   const[facultyDescription,setFacultyDescription]=useState([]);
   const[studentTabeData,setStudentTableData]=useState([]);
 const [showTable,setShowTable]=useState(true);
@@ -78,15 +78,14 @@ export const Maincourse=(props) =>{
   console.log(facultyDesp);
   let students=props.totaltablelist;
   const [activeAccordionItem, setActiveAccordionItem] = useState(null);
-  const[submitData,setSubmitData]=useState({
-    /*{'studentSemester':studentDetailsString.sem ,
+  const[submitData,setSubmitData]=useState(
+    {'studentSemester':studentDetailsString.sem ,
     'studentYear':studentDetailsString.year,
     'studentBatch':studentDetailsString.batch,
-    'studentDept':studentDetailsString.dept*/
+    'studentDept':studentDetailsString.dept
     
-
-     
-  })
+  });
+  const[success,setSucess]=useState(false)
 
 
 
@@ -100,10 +99,22 @@ export const Maincourse=(props) =>{
     )
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(submitData); // You can send this data to your backend using Axios
-  };
+  const handleSubmit = async (e) => {
+    try{
+      console.log("The form data is,",);
+        
+          let response = await axios.post('http://localhost:5000/student/getCourseAndFacultyDetails',);
+          if(response.data.getAllotedFacultiesAndCoursesStatus=='successfully got'){
+                     
+
+  
+          }else if(response.data.getAllotedFacultiesAndCoursesStatus=='Server Busy'){
+              setError(true);
+          }
+        }catch(err){
+          console.log("the error in submitting the course table data is ",err);
+        }
+  }
 
 
   const updateStaff = (e, subjectName) => {
@@ -121,8 +132,8 @@ export const Maincourse=(props) =>{
 
     return (
         < div className='maincourse'>
-          <form onSubmit={handleSubmit}>
         <Row  className='justify-content-center'>
+        <form onSubmit={handleSubmit}>
             <Col md={8}>
                     <Table >
                     <thead  style={{ backgroundColor: 'blue', color: 'white' }}>
@@ -150,7 +161,10 @@ export const Maincourse=(props) =>{
                 </tbody>
                 </Table>
                 <Button type='submit'>Submit</Button>
+                
+                    {success && <p style={{backgroundColor: 'green'}}>form is submitted sucessfully</p>}
                 </Col>
+                </form>
              <Col>
                   <Container className='justify-content-center ' md={4}>
                   
@@ -173,7 +187,7 @@ export const Maincourse=(props) =>{
                 
                 </Col>
       </Row>
-      </form>
+      
       </div>
     )
 }
