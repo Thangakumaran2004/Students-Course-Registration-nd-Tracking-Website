@@ -14,7 +14,7 @@ let  studentDetailsString = JSON.parse(sessionStorage.getItem('studentData')) ;
 // the below function will the have the function components of dashboard course navigation and main courses
 const Studentpage = () => {
 
-  const postStudentDetails={'studentSemester':studentDetailsString.sem ,'studentYear':studentDetailsString.year,'studentBatch':studentDetailsString.batch,'studentDept':studentDetailsString.dept}
+  const postStudentDetails={'studentSemester':studentDetailsString.sem ,'studentYear':studentDetailsString.year,'studentBatch':studentDetailsString.batch,'studentDept':studentDetailsString.dept};
   const[facultyDescription,setFacultyDescription]=useState([]);
   const[studentTabeData,setStudentTableData]=useState([]);
 const [showTable,setShowTable]=useState(true);
@@ -28,7 +28,7 @@ const CourseTableData =async ()=>{
         if(response.data.getAllotedFacultiesAndCoursesStatus=='successfully got'){
          setFacultyDescription(response.data.facultyDescription);
          setStudentTableData(response.data.tableDetails);
-         setShowTable(true);
+         setShowTable(false);
          setError(false);
 
         }else if(response.data.getAllotedFacultiesAndCoursesStatus=='Server Busy'){
@@ -76,32 +76,35 @@ export const Maincourse=(props) =>{
 
   let facultyDesp=props.facultydescription;
   console.log(facultyDesp);
-  let students=props.totaltablelist;
+  // let students=props.totaltablelist;
   const [activeAccordionItem, setActiveAccordionItem] = useState(null);
   const[submitData,setSubmitData]=useState(
-    {'studentSemester':studentDetailsString.sem ,
+    /*{'studentSemester':studentDetailsString.sem ,
     'studentYear':studentDetailsString.year,
     'studentBatch':studentDetailsString.batch,
     'studentDept':studentDetailsString.dept
     
-  });
+  }*/);
   const[success,setSucess]=useState(false)
 
 
 
-  function Faculty(b1id,b1name,b1count,b2id,b2name,b2count,b3id,b3name,b3count){
+  function Faculty( course_name,b1id, b1name, b1count, b2id, b2name, b2count, b3id, b3name, b3count) {
     return (
       <select onChange={(e) => updateStaff(e, course_name)}>
-        <option value={b1id}>{b1name}{b1count}</option>
-        <option value={b2id}>{b2name}{b2count}</option>
-        <option value={b3id}>{b3name}{b3count}</option>
+        <option value={b1id}>{b1name} ({b1count})</option>
+        <option value={b2id}>{b2name} ({b2count})</option>
+        <option value={b3id}>{b3name} ({b3count})</option>
       </select>
-    )
+    );
   }
+  
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log("The form data is,",submitData);
     try{
-      console.log("The form data is,",);
+      
         
           let response = await axios.post('http://localhost:5000/student/getCourseAndFacultyDetails',);
           if(response.data.getAllotedFacultiesAndCoursesStatus=='successfully got'){
@@ -125,6 +128,10 @@ export const Maincourse=(props) =>{
     }));
   };
   
+//   let students=[{ "course_code":2121, "course_name":'englsih', "course_tpye":"elective","batch1facultyid":"1","batch1facultyname":"a","batch1countlimit":10,"batch2facultyid":"11","batch2facultyname":"d","batch2countlimit":"30","batch3facultyid":1,"batch3facultyname":"z","batch3countlimit":21 },
+//                     { "course_code":2121, "course_name":'tamil', "course_tpye":"elective","batch1facultyid":"2","batch1facultyname":"b","batch1countlimit":10,"batch2facultyid":12,"batch2facultyname":"e","batch2countlimit":"30","batch3facultyid":2,"batch3facultyname":"y","batch3countlimit":32 },
+//                     { "course_code":2121, "course_name":'Maths', "course_tpye":"elective","batch1facultyid":"3","batch1facultyname":"c","batch1countlimit":10,"batch2facultyid":"13","batch2facultyname":"f","batch2countlimit":20,"batch3facultyid":3,"batch3facultyname":"w","batch3countlimit":11}
+// ]
 
 
 
@@ -133,8 +140,8 @@ export const Maincourse=(props) =>{
     return (
         < div className='maincourse'>
         <Row  className='justify-content-center'>
-        <form onSubmit={handleSubmit}>
-            <Col md={8}>
+        <form  onSubmit={handleSubmit}>
+            <Col md={2}>
                     <Table >
                     <thead  style={{ backgroundColor: 'blue', color: 'white' }}>
                     <tr>
@@ -153,20 +160,21 @@ export const Maincourse=(props) =>{
                 <td >{course_code}</td>
                 <td >{course_name}</td>
                 <td >{course_tpye}</td>
-                <td >{Faculty(batch1facultyid,batch1facultyname,batch1countlimit,batch2facultyid,batch2facultyname,batch2countlimit,batch3facultyid,batch3facultyname,batch3countlimit)}</td>
+                <td >{Faculty(course_name,batch1facultyid,batch1facultyname,batch1countlimit,batch2facultyid,batch2facultyname,batch2countlimit,batch3facultyid,batch3facultyname,batch3countlimit)}</td>
+          
               </tr>
             ))}
          
                   
                 </tbody>
                 </Table>
-                <Button type='submit'>Submit</Button>
+                <Button type='submit' >Submit</Button>
                 
                     {success && <p style={{backgroundColor: 'green'}}>form is submitted sucessfully</p>}
                 </Col>
                 </form>
              <Col>
-                  <Container className='justify-content-center ' md={4}>
+                  <Container className='justify-content-center '>
                   
                     <h3>Faculty Details</h3>
                     <Container className='staffdetails'>
