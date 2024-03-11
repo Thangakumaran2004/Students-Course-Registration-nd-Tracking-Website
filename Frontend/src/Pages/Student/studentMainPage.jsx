@@ -17,7 +17,7 @@ const Studentpage = () => {
   const postStudentDetails={'studentSemester':studentDetailsString.sem ,'studentYear':studentDetailsString.year,'studentBatch':studentDetailsString.batch,'studentDept':studentDetailsString.dept};
   const[facultyDescription,setFacultyDescription]=useState([]);
   const[studentTabeData,setStudentTableData]=useState([]);
-const [showTable,setShowTable]=useState(true);
+const [showTable,setShowTable]=useState(false);
 const [error, setError]=useState(false)
  
 const CourseTableData =async ()=>{
@@ -28,7 +28,7 @@ const CourseTableData =async ()=>{
         if(response.data.getAllotedFacultiesAndCoursesStatus=='successfully got'){
          setFacultyDescription(response.data.facultyDescription);
          setStudentTableData(response.data.tableDetails);
-         setShowTable(false);
+         setShowTable(true);
          setError(false);
 
         }else if(response.data.getAllotedFacultiesAndCoursesStatus=='Server Busy'){
@@ -76,15 +76,15 @@ export const Maincourse=(props) =>{
 
   let facultyDesp=props.facultydescription;
   console.log(facultyDesp);
-  // let students=props.totaltablelist;
+  let students=props.totaltablelist;
   const [activeAccordionItem, setActiveAccordionItem] = useState(null);
   const[submitData,setSubmitData]=useState(
-    /*{'studentSemester':studentDetailsString.sem ,
+    {'studentSemester':studentDetailsString.sem ,
     'studentYear':studentDetailsString.year,
     'studentBatch':studentDetailsString.batch,
     'studentDept':studentDetailsString.dept
     
-  }*/);
+  });
   const[success,setSucess]=useState(false)
 
 
@@ -160,7 +160,7 @@ export const Maincourse=(props) =>{
                 <td >{course_code}</td>
                 <td >{course_name}</td>
                 <td >{course_tpye}</td>
-                <td >{Faculty(course_name,batch1facultyid,batch1facultyname,batch1countlimit,batch2facultyid,batch2facultyname,batch2countlimit,batch3facultyid,batch3facultyname,batch3countlimit)}</td>
+                <td >{Faculty(course_code,batch1facultyid,batch1facultyname,batch1countlimit,batch2facultyid,batch2facultyname,batch2countlimit,batch3facultyid,batch3facultyname,batch3countlimit)}</td>
           
               </tr>
             ))}
