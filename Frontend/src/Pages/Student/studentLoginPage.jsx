@@ -98,8 +98,8 @@ var dummyResult = {
           <Row className='justify-content-center'>
             <Col xs={8} md={4}>
               <center><h3>STUDENT LOGIN</h3></center>
-              <FloatingLabel controlId="floatingInput" label="Email address" className="mb-5 mt-5">
-                <Form.Control type="text" name='username' placeholder="name@example.com" value={stddetails.username} onChange={handlingFormdata} />
+              <FloatingLabel controlId="floatingInput" label="Register No" className="mb-5 mt-5">
+                <Form.Control type="text" name='username' placeholder="Register number" value={stddetails.username} onChange={handlingFormdata} />
               </FloatingLabel>
               <FloatingLabel controlId="floatingPassword" label="Password" className="mb-5 mt-5">
                 <Form.Control type="password" name='password' onChange={handlingFormdata} value={stddetails.password} placeholder="Password" />

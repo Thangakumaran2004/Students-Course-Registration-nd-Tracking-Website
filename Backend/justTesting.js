@@ -1,4 +1,10 @@
-let a ={
+const { resolve } = require('path');
+const db = require('./databaseConnection');
+
+/*let 
+
+
+a ={
     'Batch1-ECE301': 'ECE01',
     'Batch3-ECE301': 'ECE03',
     'Batch1-ECE302': 'ECE04',
@@ -140,4 +146,82 @@ console.log("The final result for batch 1 is ",frameOrder(batchOneArray));
 console.log("The final result for batch 2 is ",frameOrder(batchTwoArray));
 console.log("The final result for batch 3 is ",frameOrder(batchThreeArray));
   
-  
+  */
+
+let a= {
+  studentRegno: '2111092',
+  studentSemester: '3',
+  studentYear: '2',
+  studentBatch: '2025',
+  studentDept: 'ECE',
+  '23EC31C': 'ECE05',
+  '23EC32C': 'ECE03',
+  '23EC33C': 'ECE04',
+  '23EC34C': 'ECE03',
+  '23EC35C': 'ECE03',
+  '23EC36C': 'ECE02'
+};
+
+
+
+let {studentBatch,studentDept,studentSemester,studentYear,studentRegno} =  a;
+
+ delete a.studentBatch;
+ delete a.studentDept;
+ delete a.studentSemester;
+ delete a.studentYear;
+ delete a.studentRegno;
+//await
+ //console.log(studentBatch,studentDept,studentSemester,studentYear,studentRegno);
+ //console.log(a);
+
+ let studentFacultyChoices = [];
+
+
+
+
+ 
+    try {
+        let alreadySelectedChoices = [];
+        let executionCount = 0;
+        for (let courseId in a) {
+            let facultyId = a[courseId];
+            let preCheck = await checkIfPresentInFacultySelectedByStudentsTable(studentRegno, studentSemester, studentDept, studentYear, studentBatch, courseId);
+            console.log(preCheck);
+            if (preCheck == 'Server Busy') {
+                return "Server Busy";
+            } /*else if (preCheck == 'alreadyFound') {
+                
+            } else if (preCheck == 'noRecordFound') {
+             
+            }*/else{
+            executionCount++;
+            }
+        }
+        console.log(`executionCount is ${executionCount}`);
+    } catch (e) {
+        console.log("error occured",e);
+    }
+
+
+const checkIfPresentInFacultySelectedByStudentsTable = async (studentRegno, studentSemester, studentDept, studentYear, studentBatch, courseId) => {
+    let checkIfPresentInFacultySelectedByStudentsTableQuery = `SELECT * FROM facultyselectedbystudents WHERE student_regno = ? AND student_sem = ? AND student_dept = ? AND student_year = ? AND student_batch = ? AND course_id = ?`;
+    return new Promise((resolve, reject) => {
+        db.query(checkIfPresentInFacultySelectedByStudentsTableQuery, [studentRegno, studentSemester, studentDept, studentYear, studentBatch, courseId], (err, res) => {
+            if (err) {
+                console.log("Error occurred while checking preCheck", err);
+                reject("Server Busy");
+            } else {
+                if (res.length) {
+                    console.log("Data already found");
+                    resolve("alreadyFound");
+                } else {
+                    console.log("No data found");
+                    resolve("noRecordFound");
+                }
+            }
+        });
+    }).then(res=>res).catch(err=>err);
+};
+
+

@@ -54,7 +54,7 @@ const formsubmit = async (e) =>{
             <Row className='justify-content-center'>
                 <Col  xs={12} md={4}>
             <center><h3 >Admin Login</h3></center>
-            <FloatingLabel controlId="floatingInput"     label="Email address"    className="mb-5 mt-5"   >
+            <FloatingLabel controlId="floatingInput"     label="Name"    className="mb-5 mt-5"   >
             <Form.Control type="text" name='username'  value={logincred.username} placeholder="name@example.com" onChange={handlingChange}  />
             </FloatingLabel>
             <FloatingLabel controlId="floatingPassword"  label="Password" className="mb-5 mt-5">
