@@ -221,7 +221,6 @@ const addDataToDB = async (dataObject,dept,sem,batch) =>{
     if(batch3CountTrackerResponse == "Server Busy"){
         return "Server Busy";
     }
-    
 
     return "Successfully added data to db";
     

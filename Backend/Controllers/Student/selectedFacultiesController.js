@@ -34,7 +34,6 @@ const insertToDb = async (studentRegno, studentSemester, studentDept, studentYea
                         facultyLimitExceeded.push(courseId);
                     }
                 }
-                executionCount++;
             }
         }
         if(facultyLimitExceeded.length == 0){
@@ -122,7 +121,7 @@ const updateCountTracker = (studentSem,studentDept,studentBatch,courseId,faculty
 
 const serverResponse = (response)=>{
     return {
-        "status" : Response       
+        "status" : response       
     }
 }
 

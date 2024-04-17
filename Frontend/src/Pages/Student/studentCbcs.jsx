@@ -6,8 +6,8 @@ import StudentHeader from '../../Components/studentHeader';
 import axios from 'axios'
 import { Dashboard } from './dashboard';
 
-// let  studentDetailsString = JSON.parse(sessionStorage.getItem('studentData')) ;
-// console.log("ThestudentDetailsString is", studentDetailsString);
+let  studentDetailsString = JSON.parse(sessionStorage.getItem('studentData')) ;
+ console.log("ThestudentDetailsString is", studentDetailsString);
 
  
 // the below function will the have the function components of dashboard course navigation and main courses
