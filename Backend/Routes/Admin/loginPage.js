@@ -4,16 +4,17 @@ const router = express.Router();
 const {checkAdmin} = require('../../Controllers/Admin/loginPageController');
 
 router.use(express.json());
+router.use(express.urlencoded({extended:true}));
 
-router.get('/',(req,res)=>{
+/*router.get('/',(req,res)=>{
     res.send("Hi this is adminloginpage api endpoint");
-})
+})*/
 
 router.post('/',async (req,res)=>{
     const {username,password} = req.body;
 
     let response = await checkAdmin(username);
-    console.log("The response for admin login is :",response );
+    //console.log("The response for admin login controller function is :",response );
 
     if(response == "Server busy"){
         let result = {

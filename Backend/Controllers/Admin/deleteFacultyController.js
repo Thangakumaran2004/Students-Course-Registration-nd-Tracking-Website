@@ -8,7 +8,7 @@ const deleteFacultyFromDB = async (facultyId,facultyDept)=>{
                 console.log("Error occured while deleting faculty from table",err);
                 reject("Server Busy");
             }else{
-                console.log("The result for deletion is,", res);
+                //console.log("The result for deletion is,", res);
                 resolve("successfully deleted");
             }
         })
