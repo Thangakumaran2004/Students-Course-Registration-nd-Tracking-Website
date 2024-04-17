@@ -5,6 +5,7 @@ import  Tablee from '../../Components/table'
 import axios from 'axios'
 import Adminsubnav from '../../Components/adminSubNav'
 import '../../Styles/studentMainPage.css'
+import AlertSucess from '../../Components/alertSucess'
 
 const Adminaddcourse = () => {
   let deptName =JSON.parse(sessionStorage.getItem('adminDept'));
@@ -129,6 +130,7 @@ const Adminaddcourse = () => {
         </Container>
         <br />
         <br />
+        <AlertSucess />
         <br />
         <br />
           {visibleTable ? <Tablee courses={tableCourse} faculties={tableFaculty} /> : null }
