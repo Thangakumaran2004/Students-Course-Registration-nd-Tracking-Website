@@ -14,6 +14,7 @@ import Adminaddfaculty from './Pages/Admin/adminAddFaculty';
 import AdminDeleteStudent from './Pages/Admin/adminDeleteStudent';
 import AdminViewStudent from './Pages/Admin/adminViewStudent';
 import AdminAlterStudent from './Pages/Admin/adminAlterStudent';
+import StudentCbcs from './Pages/Student/studentCbcs';
 
 
 
@@ -24,8 +25,9 @@ function App() {
         <Routes>
           <Route path='/' element={<Landingpage />} />
            <Route path='/adminlogin' element={<AdminLoginpage />} />
+           <Route path='/studentlogin' element={<StudentLoginpage />} />
           <Route path='/studentpage' element={<Studentpage />} />
-          <Route path='/studentlogin' element={<StudentLoginpage />} />
+          <Route path='/studentpage/cbcs' element={<StudentCbcs />} />
           <Route path='/adminpage' element={<Adminmainpage />}/>
             <Route path='/adminpage/student' element={<Adminstudent />} />
             <Route path='adminpage/faculty' element={<Adminfaculty/>}/>

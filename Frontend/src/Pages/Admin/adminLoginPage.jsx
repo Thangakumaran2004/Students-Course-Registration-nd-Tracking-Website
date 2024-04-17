@@ -47,12 +47,12 @@ const formsubmit = async (e) =>{
   }
 }
   return (
-    <div>
+    <div className='adminlogincon'>
       <Header />
-        <Container  className='logincontainer  mt-5 '>
+        <Container  className=' mt-5 '>
           <Form onSubmit={formsubmit}>
             <Row className='justify-content-center'>
-                <Col  xs={12} md={4}>
+                <Col  xs={12} md={4} className='logincontainer p-4'>
             <center><h3 >Admin Login</h3></center>
             <FloatingLabel controlId="floatingInput"     label="Name"    className="mb-5 mt-5"   >
             <Form.Control type="text" name='username'  value={logincred.username} placeholder="name@example.com" onChange={handlingChange}  />

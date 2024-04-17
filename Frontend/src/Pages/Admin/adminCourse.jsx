@@ -18,7 +18,7 @@ const Adminaddcourse = () => {
   const [tableFaculty,setTableFaculty] = useState([]);
   const [allocateerror, setAllocateError]=useState(false);
   const [alreadyexists, setAlexError]=useState(false);
-  const [visibleTable,setvisibleTable]=useState(false);
+  const [visibleTable,setvisibleTable]=useState(1);
   const [dataNotFound,setDataNotFound]=useState(false);
   
  
@@ -78,7 +78,7 @@ const Adminaddcourse = () => {
     <div>
       <Adminheader />
       
-        <Container className='mt-5'>
+        <Container className='mt-5 p-3' style={{border:'2px solid black',borderRadius:'10px'}}>
           <center><h4>Enter the semester Batch and year to allocate Faculty</h4></center><br/><br/>
           <Form onSubmit={handlesubmit}>
             <Row>

@@ -67,15 +67,17 @@ var dummyResult = {
     }
     //console.log("The frontend form data is",stddetails);
    
-
+    // sessionStorage.setItem('studentData',JSON.stringify(dummyResult)) 
+    // console.log(dummyResult);
     try{
       let response = await axios.post('http://localhost:5000/studentLogin', stddetails) ;
         
           console.log("the backend data is",response.data);
+           sessionStorage.setItem('studentData',JSON.stringify(response.data)) 
           //console.log("the student status is ",response.data.studentStatus);
           if(response.data.studentStatus == 'valid user correct password'){
             console.log("Navigated properly");
-            sessionStorage.setItem('studentData',JSON.stringify(response.data))
+          //  sessionStorage.setItem('studentData',JSON.stringify(dummyResult)) 
            navigate('/studentpage');
           }else if(response.data.studentStatus=='valid user incorrect password' || 'Student not found invalid user'){
             console.log('Error occured');
@@ -89,14 +91,14 @@ var dummyResult = {
     };
 
   return (
-    <div>
+    <div className='logincon'>
       <Header />
       <br />
       <br/>
-      <Container className='logincontainer mt-5' >
-        <Form onSubmit={stuformsubmit}>
-          <Row className='justify-content-center'>
-            <Col xs={8} md={4}>
+      
+        <Form onSubmit={stuformsubmit} className='  mt-5' >
+          <Row className='justify-content-center '>
+            <Col xs={8} md={4} className='logincontainer p-4'>
               <center><h3>STUDENT LOGIN</h3></center>
               <FloatingLabel controlId="floatingInput" label="Register No" className="mb-5 mt-5">
                 <Form.Control type="text" name='username' placeholder="Register number" value={stddetails.username} onChange={handlingFormdata} />
@@ -110,7 +112,7 @@ var dummyResult = {
             </Col>
           </Row>
         </Form>
-      </Container>
+
     </div>
   );
 };

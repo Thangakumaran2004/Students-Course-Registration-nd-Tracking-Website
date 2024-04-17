@@ -11,7 +11,7 @@ export const Adminheader = () => {
     <div>
           
         <Navbar  style={{backgroundColor: '#0a1128',color: 'white'}}>
-          <Navbar.Brand style={{color: 'white',fontWeight: 'bolder'}}>Site name</Navbar.Brand>
+          <Navbar.Brand style={{color: 'white',fontWeight: 'bolder'}}>CRS</Navbar.Brand>
           <Adminsubnav />
             <Container className='justify-content-end'>
         <Nav >

@@ -1,6 +1,14 @@
 .dashboard{ 
     color: white;
-    
+    position: relative;
+    width: 100%;
+    background-color: #00112b;
+    background-image: url('./../assets/cccoil.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: -1;
+    opacity: 0.9;
+    height: 400px;
 }
 
 /* .navi{
@@ -60,4 +68,103 @@ h5{
 h5 i{
     font-size: 1rem;
     margin: 0 5px;
+}
+
+.card{
+   max-width: 12%;
+   min-width: 10%;
+    font-size: 1rem;
+    margin: -5rem 5rem;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    box-shadow: 5px 5px   20px black;
+    border: 2px solid rgb(0, 0, 0);
+   z-index: -1;
+}
+
+.card i{
+    color: white;
+    font-size: 1.5rem;
+   align-items: center;
+   display: flex;
+   justify-content: center;
+  
+}
+
+.symbolbackground{
+    background-image: linear-gradient(to right top, #051937, #002b4a, #003e5b, #00516b, #026578);
+    border-radius: 50% ;
+    width: fit-content;
+    padding: 2rem;
+}
+
+.sitename{
+    margin-left: 3rem;
+}
+
+
+
+.studentpageheader{
+    box-shadow: 10px 10px 20px black;
+    border: 2px solid black;
+    
+}
+
+.studentpageheader Button{
+    color: #002b4a;
+    float: right;
+
+    
+}
+
+
+.sitename{
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bolder;
+    font-style: oblique;
+    font-variant: inherit;
+}
+
+.dashcontainer{
+    background: rgba(255, 255, 255, 0.15); /* Semi-transparent white */
+   backdrop-filter: blur(10px);
+    position: relative;
+   border-radius: 2rem;
+    border: 2px solid black;
+     box-shadow: 10px 10px 20px black;
+}
+
+.studentmainpagesidebar{
+    color: #030657;
+    background-color: white
+}
+
+.studentmainpagesidebar i{
+        
+        font-size: 1.5rem;
+        padding: 2rem 0.7rem;
+}
+.studentmainpagesidebar p{
+    color: rgb(12, 11, 11);
+    padding: 0.5rem  0.2rem;
+    font-size: 1rem;
+
+}
+.navigate{
+    border: none;
+    color: white;
+    text-decoration: none;
+    margin: 0 3rem;
+}
+
+@media screen and (max-width: 800px) {
+    .card{
+        
+         font-size: 15px;
+        
+        
+     }
+
+   
 }
