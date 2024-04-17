@@ -3,9 +3,10 @@ const router = express.Router();
 const {deleteFacultyFromDB} = require('../../Controllers/Admin/deleteFacultyController');
 
 router.use(express.json());
+router.use(express.urlencoded({extended:true}));
 
 router.post('/',async(req,res)=>{
-    console.log("The frontend data is: ",req.body);
+    //console.log("The frontend data for details of faculty to delete from database is: ",req.body);
     const {facultyId,facultyDept} = req.body;
     //console.group("The facultyid and facultydept is",facultyId,facultyDept)
     const deleteStatus = await deleteFacultyFromDB(facultyId,facultyDept);

@@ -69,10 +69,10 @@ const pushToDBBatch1 = async (dept,sem,batch,batchDetails)=>{
         
 
             for(let i =0;i<batchDetails.length;i++){
-                //console.log("The value of i is,",i);
+        
              db.query(allotFacultyQuery,[dept,sem,batch,batchDetails[i][0],batchDetails[i][1],batchDetails[i][2]],(err,res)=>{
                     if(err){
-                        //console.log("Error occured while inserting batch1 details inside database",err);
+                        console.log("Error occured while inserting batch1 details inside database",err);
                         reject("Server Busy");
                     }else{
                         
@@ -87,7 +87,7 @@ const pushToDBBatch1 = async (dept,sem,batch,batchDetails)=>{
         }).then(res=>res).catch(err=>err);
 
     }catch(e){
-        //console.log("Error occured  in pushToDBBatch1 : ",e);
+        console.log("Error occured  in pushToDBBatch1 : ",e);
         return "Server busy";
     }   
 
@@ -101,7 +101,7 @@ const pushToDBBatches2 = async (dept,sem,batch,batchDetails)=>{
             for(let i=0;i<batchDetails.length;i++){
                 db.query(allotFacultyQuery,[batchDetails[i][1],batchDetails[i][2],batchDetails[i][0],dept,batch,sem],(err,res)=>{
                     if(err){
-                        //console.log("Error occured while updating batch 2 details,",err);
+                        console.log("Error occured while updating batch 2 details,",err);
                         reject("Server Busy");
                     }else{
                         //console.log("Successfully updating batch2 details",res);
@@ -111,7 +111,7 @@ const pushToDBBatches2 = async (dept,sem,batch,batchDetails)=>{
             resolve("Successfully inserted batch 2 details in database");
         }).then(res=>res).catch(err=>err);
     }catch(e){
-        //console.log("Error occured while updating batch 2 details ",e);
+        console.log("Error occured while updating batch 2 details ",e);
         return "Server Busy";
     }
 };
@@ -124,7 +124,7 @@ const pushToDBBatches3 = async (dept,sem,batch,batchDetails)=>{
             for(let i=0;i<batchDetails.length;i++){
                 db.query(allotFacultyQuery,[batchDetails[i][1],batchDetails[i][2],batchDetails[i][0],dept,batch,sem],(err,res)=>{
                     if(err){
-                        //console.log("Error occured while updating batch 3 details,",err);
+                        console.log("Error occured while updating batch 3 details,",err);
                         reject("Server Busy");
                     }else{
                         //console.log("Successfully updating batch2 details",res);
@@ -134,7 +134,7 @@ const pushToDBBatches3 = async (dept,sem,batch,batchDetails)=>{
             resolve("Successfully inserted batch 3 details in database");
         }).then(res=>res).catch(err=>err);
     }catch(e){
-        //console.log("Error occured while updating batch 3 details ",e);
+        console.log("Error occured while updating batch 3 details ",e);
         return "Server Busy";
     }
 }
@@ -150,7 +150,7 @@ const insertIntoCountTracker = async (dept,sem,batch,allotedBatchDetails)=>{
                         console.log("Error occured while inserting into count tracker",err);
                         reject("Server Busy");
                     }else{
-                        console.log("Successfully adding to counttracker");
+                        //console.log("Successfully adding to counttracker");
                     }
                 })
             }
@@ -180,11 +180,11 @@ const addDataToDB = async (dataObject,dept,sem,batch) =>{
     //console.log("The batch 3 is",batch3);
 
     const correctBatch1 = await formCorrectFormat(batch1);
-    console.log("The correct batch1 is ", correctBatch1);
+    //console.log("The correct batch1 is ", correctBatch1);
     const correctBatch2 = await formCorrectFormat(batch2);
-    console.log("The correct batch2 is",correctBatch2);
+    //console.log("The correct batch2 is",correctBatch2);
     const correctBatch3 = await formCorrectFormat(batch3);
-    console.log("The correct batch3 is",correctBatch3);
+    //console.log("The correct batch3 is",correctBatch3);
 
     let batch1InsertionResponse = await pushToDBBatch1(dept,sem,batch,correctBatch1);
     // console.log("batch1 insertion response is",batch1InsertionResponse);
@@ -221,7 +221,6 @@ const addDataToDB = async (dataObject,dept,sem,batch) =>{
     if(batch3CountTrackerResponse == "Server Busy"){
         return "Server Busy";
     }
-    
 
     return "Successfully added data to db";
     

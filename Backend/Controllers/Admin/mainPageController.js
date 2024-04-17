@@ -6,10 +6,10 @@ const checkIfAlreadyPresentInAllotedFaculties = async (sem,batch,dept)=>{
     return new Promise((resolve,reject)=>{
         db.query(alreadyPresentCheckQuery,[sem,batch,dept],(err,res)=>{
             if(err){
-                console.log("Error occured while checking if data already present in database");
+                console.log("Error occured while checking if admin already alloted faculties for provided details");
                 reject("Server Busy");
             }else{
-                console.log("The result for check already alloted query is,", res);
+                //console.log("The result for checking if admin already alloted faculties for provided details is,", res);
                 if(res.length){
                     resolve("You have already alloted faculties for the provided details");
                 }else{
@@ -25,22 +25,22 @@ const getFaculties = async (dept)=>{
     return new Promise((resolve,reject)=>{
         db.query(facultiesQuery,dept,(err,res)=>{
             if(err){
-                console.log("Error occured while querying for faculties for adminmain page in db", err);
+                console.log("Error occured while querying for getting faculties for admin to allot faculties with respective dept ", err);
                 let response = {
                     stat:"Server Busy"
                 }
                 reject(response);
             }else{
-                console.log("The faculties are ", res);
+                //console.log(`The faculties of the respective dept(${dept}) is are `, res);
                 if(res.length){
                     let response = {
-                        stat: "faculty found successfully",
+                        stat: `faculty of ${dept} found successfully`,
                         faculties: res
                     }
                     resolve(response);
                 }else{
                     let response = {
-                        stat: "faculty not found for the provided dept"
+                        stat: `faculty not found for the ${dept} dept`
                     }
                     resolve(response);
                 }

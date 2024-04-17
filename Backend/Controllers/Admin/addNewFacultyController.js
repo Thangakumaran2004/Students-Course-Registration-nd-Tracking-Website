@@ -9,7 +9,7 @@ const addFacultyToDB = async  (facultyDescription = null,facultyId,facultyDept,f
                 console.log("Error occured while adding faculty to db", err);
                 reject('Server Busy');
             }else{
-                console.log("The result is :",res);
+                //console.log("The result is :",res);
                 resolve("Successfully added faculty to db");
             }
         })

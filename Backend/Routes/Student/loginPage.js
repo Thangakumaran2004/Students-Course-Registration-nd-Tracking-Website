@@ -5,17 +5,22 @@ const {checkStudent} = require('../../Controllers/Student/loginPageController');
 
 
 router.use(express.json());
+router.use(express.urlencoded({extended:true}));
 
-router.get('/',(req,res)=>{
+/*router.get('/',(req,res)=>{
     res.send("Hi this is studentloginpage api endpoint");
-})
+})*/
 
 
 router.post('/',async (req,res)=>{
+
+    // Getting student's username and password from frontend..
     const {username,password} = req.body;
-    console.log(username,password);
+    //console.log("The Student name and password received from frontend of student login page is : ",username,password);
+
+    // This function checks if student username is valid, passwords matching are not and all kinda stuffs..
     let response = await checkStudent(username,password);
-    console.log("The response for checkStudent function is : ", response);
+    //console.log("The response for checkStudent function of student login page is : ", response);
     let result;
 
     if(response == "Server Busy"){

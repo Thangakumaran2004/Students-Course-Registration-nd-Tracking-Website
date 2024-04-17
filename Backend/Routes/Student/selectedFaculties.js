@@ -21,6 +21,7 @@ router.post('/',async (req,res)=>{
     delete frontendData.studentYear;
 
     let precheck = await insertToDb(studentRegno, studentSemester, studentDept, studentYear, studentBatch, frontendData);
+    console.log("Precheck is ", precheck);
     if(precheck.status == 'Server Busy'){
         res.json({status:"Server Busy"});
     }else if(precheck.status == 'Successfully added All entries'){

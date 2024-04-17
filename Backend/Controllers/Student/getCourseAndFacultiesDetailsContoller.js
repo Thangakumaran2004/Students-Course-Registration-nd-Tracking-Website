@@ -23,6 +23,7 @@ const getAllotedFacultiesAndCourses = async (sem,dept,batch)=>{
 };
 
 const getAllFaculties = async (dept) =>{
+
     let getAllFacultiesQuery = `select id, name , description from faculties where dept = ?`;
 
     return new Promise((resolve,reject)=>{
@@ -101,6 +102,8 @@ const formatToRender = async (allotedFacultiesForCourses,facultyDetails,courseDe
         let onlyAllotedFacultySet = new Set(); 
         let correctFormattedArray = [];
         let facultyDescription = [];
+
+
          allotedFacultiesForCourses.forEach(obj=>{
 
             let correctObj = {
@@ -144,5 +147,75 @@ const formatToRender = async (allotedFacultiesForCourses,facultyDetails,courseDe
     }
 }
 
+const getCountTrackerDetails = async (sem,batch,dept)=>{
+    let getCountTrackerDetailsQuery = `select course_id, faculty_id, allotedcount from counttracker where sem = ? and batch = ? and dept = ?`;
 
-module.exports = {getAllotedFacultiesAndCourses,getAllFaculties,setFacultyDetails,getAllCourses,setCourseDetails,formatToRender};
+    return new Promise((resolve,reject)=>{
+        db.query(getCountTrackerDetailsQuery,[sem,batch,dept],(err,res)=>{
+            if(err){
+                console.log("Error occured while quering to get counttracker details ",err);
+                reject("Server Busy");
+            }else{
+                resolve(res);
+            }
+        })
+    }).then(res=>res).catch(err=>err);
+};
+
+const formatTrackerDetails = async (trackerDetails, courseDetails, facultiesDetails)=>{
+
+    let facultiesIdNameMap = {};
+
+    //console.log("The trackerdetails inside function is", trackerDetails);
+
+    let formattedTrackerDetails = [];
+
+    for(let i =0;i<trackerDetails.length;i++){
+        let present = false;
+        for(let j= 0; j< formattedTrackerDetails.length;j++){
+            if(formattedTrackerDetails[j].course_id == trackerDetails[i].course_id){
+                present = true;
+                break;
+            }
+        }
+        if(!present){
+            formattedTrackerDetails.push({course_id : trackerDetails[i].course_id, faculty : [] });
+        }
+    }
+
+    for(let i = 0; i<formattedTrackerDetails.length;i++){
+        for(let j in courseDetails){
+            if(formattedTrackerDetails[i].course_id == j){
+                formattedTrackerDetails[i].course_name = courseDetails[j].name;
+                formattedTrackerDetails[i].course_code = courseDetails[j].code;
+                break;
+            }
+        }
+    }
+
+    for(let i =0; i<formattedTrackerDetails.length;i++){
+        for(let j =0;j<trackerDetails.length;j++){
+            if(formattedTrackerDetails[i].course_id == trackerDetails[j].course_id){
+                formattedTrackerDetails[i].faculty.push({faculty_id : trackerDetails[j].faculty_id, alloted_count : trackerDetails[j].allotedcount});
+            }
+        }
+    }
+
+    for(let i in facultiesDetails){
+        facultiesIdNameMap[i] = facultiesDetails[i].name; 
+    }
+
+    for(let i = 0;i < formattedTrackerDetails.length;i++){
+        for(let j =0; j< formattedTrackerDetails[i].faculty.length;j++){
+            formattedTrackerDetails[i].faculty[j].faculty_name = facultiesIdNameMap[formattedTrackerDetails[i].faculty[j].faculty_id];
+        }
+    }
+
+
+
+    return formattedTrackerDetails;
+
+}
+
+
+module.exports = {getAllotedFacultiesAndCourses,getAllFaculties,setFacultyDetails,getAllCourses,setCourseDetails,formatToRender,getCountTrackerDetails, formatTrackerDetails};

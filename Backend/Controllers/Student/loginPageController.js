@@ -7,10 +7,10 @@ const checkStudent = async (username, password)=>{
     return new Promise((resolve,reject)=>{
         db.query(checkStudentQuery,username,(err,res)=>{
             if(err){
-                console.log("Error occured while checking for student regno and dob in students table", err);
+                console.log("Error occured while checking for student regno and dob in students table in student login page", err);
                 reject("Server Busy");
             }else{
-                console.log("The result of checkStudent Query is: ",res);
+                //console.log("The result of checkStudent Query in student login page is: ",res);
                 if(res.length == 1){
                     let response = {
                                         status: "Student found in database",
@@ -28,7 +28,7 @@ const checkStudent = async (username, password)=>{
                     resolve(response);
 
                 }else{
-                    console.log("Student not found in database");
+                    console.log("Student not found in databaseat student login page ");
                     resolve("student not found");
                 }
             }

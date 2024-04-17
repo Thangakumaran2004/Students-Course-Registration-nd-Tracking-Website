@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
 router.use(express.json());
-const {getAllotedFacultiesAndCourses,getAllFaculties,setFacultyDetails,getAllCourses,setCourseDetails,formatToRender} = require('../../Controllers/Student/getCourseAndFacultiesDetailsContoller');
+const {getAllotedFacultiesAndCourses,getAllFaculties,setFacultyDetails,getAllCourses,setCourseDetails,formatToRender,getCountTrackerDetails, formatTrackerDetails} = require('../../Controllers/Student/getCourseAndFacultiesDetailsContoller');
 
 
 router.post('/',async (req,res)=>{
     let frontendData = req.body;
     let {studentSemester,studentYear,studentBatch,studentDept} = req.body;
-    console.log("The data received from frontend is : ", frontendData);
+    //console.log("The data received from frontend about the student is : ", frontendData);
 
     let allotedFacultiesForCourses = await getAllotedFacultiesAndCourses(studentSemester,studentDept,studentBatch);
 
@@ -25,7 +25,7 @@ router.post('/',async (req,res)=>{
         res.send(response);
         return;
     }else{
-        console.log("Alloted faculties for courses are, ",allotedFacultiesForCourses);
+        //console.log("Alloted faculties for courses are, ",allotedFacultiesForCourses);
     }
 
 
@@ -40,7 +40,7 @@ router.post('/',async (req,res)=>{
         return;
     }
 
-    console.log("The all faculties are, ",allFaculties);
+    //console.log("The all faculties are, ",allFaculties);
 
     let facultyDetails = await setFacultyDetails(allFaculties);
 
@@ -53,6 +53,8 @@ router.post('/',async (req,res)=>{
         return;
     }
 
+    //console.log("The formatted facutlties details are ", facultyDetails);
+
     let allCourses = await getAllCourses(studentSemester,studentDept,'R2023');
 
     if(allCourses == 'Server Busy'){
@@ -64,7 +66,7 @@ router.post('/',async (req,res)=>{
         return;
     }
 
-    console.log("The all courses are, ",allCourses);
+    //console.log("The all courses are, ",allCourses);
 
     let courseDetails = await setCourseDetails(allCourses);
 
@@ -77,6 +79,8 @@ router.post('/',async (req,res)=>{
         return;
     }
 
+    //console.log("The formated Course details are, ",courseDetails);
+
     let formattedCourseAndFaculties = await formatToRender(allotedFacultiesForCourses,facultyDetails,courseDetails);
 
     if(formattedCourseAndFaculties == 'Server Busy'){
@@ -87,14 +91,39 @@ router.post('/',async (req,res)=>{
         res.json(response);
         return;
     }else{
-        console.log("formattedCourseAndFaculties is",formattedCourseAndFaculties);
+        //console.log("formattedCourseAndFaculties is",formattedCourseAndFaculties);
     }
+
+    let countTrackerDetails = await getCountTrackerDetails(studentSemester,studentBatch,studentDept);
+    //console.log("The details of count tracker table is ",countTrackerDetails);
+
+    if(countTrackerDetails == 'Server Busy'){
+        let response = {
+            getAllotedFacultiesAndCoursesStatus : "Server Busy"
+        };
+
+        res.json(response);
+        return;
+    }
+
+    let formattedTrackerTableDetails = await formatTrackerDetails(countTrackerDetails , courseDetails, facultyDetails);
+
+    //console.log("The tracker table details are ,", formattedTrackerTableDetails);
+
+    console.log("Details of faculties more zoomly seen , ");
+    for(let i = 0;i<formattedTrackerTableDetails.length;i++){
+        console.log(formattedTrackerTableDetails[i].faculty);
+    }
+
 
     let response = {
         getAllotedFacultiesAndCoursesStatus : "successfully got",
         tableDetails : formattedCourseAndFaculties.tabledetails,
-        facultyDescription : formattedCourseAndFaculties.facultyDesc
+        facultyDescription : formattedCourseAndFaculties.facultyDesc,
+        trackerTableDetails : formattedTrackerTableDetails
     };
+
+    
 
     res.json(response);
 
