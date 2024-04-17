@@ -46,7 +46,7 @@ const StudentCbcs = () => {
       {/* <Circlebar /> */}
      <Counttable  totaltablelist={studentTabeData}/>
       
-      {(showTable)?  <Maincourse  totaltablelist={studentTabeData}  facultydescription={facultyDescription}/>:<p>Click on the above button to fill CBCS</p> }
+      {(showTable)?  <Maincourse  totaltablelist={studentTabeData}  facultydescription={facultyDescription}/>:<p>not alloted</p> }
         {error && <p>server busy</p>}
     </>
   )
@@ -155,35 +155,36 @@ export const Maincourse=(props) =>{
 }
 
 export const Counttable = (props) => {
+  let countabledata = props.totaltablelist;
 
-  let countabledata=props.totaltablelist;
   return (
     <div>
-         <Table className='mt-5' style={{width:'70%',margin:' auto'}}>
-              <thead  style={{ backgroundColor: 'blue', color: 'white' }}>
-                <tr>
-                  <th>S.NO</th>
-                  <th>Subject Name</th>
-                  <th>Batch 1</th>
-                  <th>Batch 2</th>
-                  <th>Batch 3</th>
-                </tr>
-              </thead>
-              <tbody>
-                    {countabledata.map(({id,course_name,batch1facultyname,batch1countlimit,batch2facultyname,batch2countlimit,batch3facultyname,batch3countlimit})=>{
-                       <tr key={id}>
-                       <td >{id}</td>
-                       <td>{course_name}</td>
-                       <td >{batch1facultyname}{(batch1countlimit)}</td>
-                       <td >{batch2facultyname}{(batch2countlimit)}</td>
-                       <td >{batch3facultyname}{(batch3countlimit)}</td>
-                      </tr>
-                    })}
-              </tbody>
-              </Table>
+      <Table className='mt-5' style={{width:'70%',margin:' auto'}}>
+        <thead style={{ backgroundColor: 'blue', color: 'white' }}>
+          <tr>
+            <th>S.NO</th>
+            <th>Subject Name</th>
+            <th>Batch 1</th>
+            <th>Batch 2</th>
+            <th>Batch 3</th>
+          </tr>
+        </thead>
+        <tbody>
+          {countabledata.map(({ id, course_name, batch1facultyname, batch1countlimit, batch2facultyname, batch2countlimit, batch3facultyname, batch3countlimit }) => (
+            <tr key={id}>
+              <td>{id}</td>
+              <td>{course_name}</td>
+              <td>{batch1facultyname} ({batch1countlimit})</td>
+              <td>{batch2facultyname} ({batch2countlimit})</td>
+              <td>{batch3facultyname} ({batch3countlimit})</td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
     </div>
-  )
-}
+  );
+};
+
 
 
 
