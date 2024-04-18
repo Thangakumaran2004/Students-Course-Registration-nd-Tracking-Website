@@ -15,6 +15,8 @@ import AdminDeleteStudent from './Pages/Admin/adminDeleteStudent';
 import AdminViewStudent from './Pages/Admin/adminViewStudent';
 import AdminAlterStudent from './Pages/Admin/adminAlterStudent';
 import StudentCbcs from './Pages/Student/studentCbcs';
+import DownloadCbcsData from './Pages/Admin/downloadCbcsData';
+import ViewCbcs from './Pages/Admin/viewCbcs';
 
 
 
@@ -37,6 +39,8 @@ function App() {
             <Route path='/adminpage/viewstudent' element={<AdminViewStudent />} />
             <Route path='/adminpage/alterstudent' element={<AdminAlterStudent />} />
             <Route path='/adminpage/allotcourse' element={<Adminaddcourse />} />
+            <Route path='/adminpage/downloadcbcs' element={<DownloadCbcsData />} />
+            <Route path='/adminpage/viewcbcs' element={<ViewCbcs />} />
             <Route path='/adminpage/addfaculty'  element={<Adminaddfaculty />} />
             <Route path='/adminpage/deletefaculty' element={<AdminDeleteFaculty />} />
         </Routes>

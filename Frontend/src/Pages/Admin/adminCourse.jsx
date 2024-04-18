@@ -8,6 +8,7 @@ import '../../Styles/studentMainPage.css'
 import '../../Styles/adminPagestyle.css'
 import AlertSucess from '../../Components/alertSucess'
 import AlertFailure from '../../Components/alertFailure'
+import Cbcssubnav from '../../Components/allotcbcssubnav'
 
 const Adminaddcourse = () => {
   let deptName =JSON.parse(sessionStorage.getItem('adminDept'));
@@ -78,10 +79,12 @@ const Adminaddcourse = () => {
     
   
   return (
-    <div  className='cbcscontainer'>
+    <div  >
+      <Container className='cbcscontainer'></Container>
       <Adminheader />
-      
-        <Container className=' batchyearselection mt-5 p-3' style={{border:'2px solid black',borderRadius:'10px'}}>
+      <Cbcssubnav />
+         <Container className=' batchyearselection ' style={{border:'2px solid black',borderRadius:'10px'}}>
+          
           <center><h4>Enter the semester Batch and year to allocate Faculty</h4></center><br/><br/>
           <Form onSubmit={handlesubmit}>
             <Row>
@@ -130,14 +133,14 @@ const Adminaddcourse = () => {
           {allocateerror && <p style={{color: 'red', fontStyle: 'italic'}}>Unable to submit due to invalid input </p>}
           {alreadyexists && <p style={{color: 'red' ,fontStyle: 'italic'}}>the data is already exists </p>}
           {dataNotFound && <p style={{color: 'red' ,fontStyle: 'italic'}}>the data not Found </p>}
-        </Container>
+        </Container> 
         <br />
         <br />
         <AlertSucess />
         <br />
         <br />
           {visibleTable ? <Tablee courses={tableCourse} faculties={tableFaculty} /> : null }
-        
+         
     </div>
   )
 }

@@ -14,7 +14,7 @@ let  studentDetailsString = JSON.parse(sessionStorage.getItem('studentData')) ;
 const StudentCbcs = () => {
   let  studentDetailsString = JSON.parse(sessionStorage.getItem('studentData')) ;
   console.log("ThestudentDetailsString is", studentDetailsString);
-  const postStudentDetails={'studentSemester':studentDetailsString.sem ,'studentYear':studentDetailsString.year,'studentBatch':studentDetailsString.batch,'studentDept':studentDetailsString.dept};
+  const postStudentDetails={'studentRegisterno':studentDetailsString.regno,'studentSemester':studentDetailsString.sem ,'studentYear':studentDetailsString.year,'studentBatch':studentDetailsString.batch,'studentDept':studentDetailsString.dept};
   const[facultyDescription,setFacultyDescription]=useState([]);
   const[studentTabeData,setStudentTableData]=useState([]);
   const[trackerTableData,setTrackerTableData]=useState([]);
@@ -64,7 +64,6 @@ export const Maincourse=(props) =>{
   
   const [activeAccordionItem, setActiveAccordionItem] = useState(null);
   const[submitData,setSubmitData]=useState(
-
     {studentRegisterno:studentDetailsString.regno ,
       studentSemester:studentDetailsString.sem ,
     studentYear:studentDetailsString.year,

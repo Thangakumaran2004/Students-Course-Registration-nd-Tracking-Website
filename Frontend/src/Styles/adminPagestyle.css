@@ -11,7 +11,30 @@
 
 
 .cbcscontainer{
+    position: absolute;
     height: 100vh;
-    background: url('../assets/mmmotif.svg');
+    background: url('../assets/ggglitch.svg');
+    opacity: 0.2;
     background-size: cover;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+
+
+.cbcstable{
+    border: 2px inset black;
+    background: rgba(133, 18, 18, 0.13); 
+    backdrop-filter: blur(10px);
+}
+
+.table select{
+    border: none;
+    width: 100%;
+}
+
+.table th{
+    background-color: rgb(6,13,50);
+    color: white;
+    border-collapse: collapse;
+    align-content: center;
 }

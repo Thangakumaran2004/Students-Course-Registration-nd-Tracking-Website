@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, Table, Button } from 'react-bootstrap';
 import axios from 'axios';
 import '../Styles/loginPageStyle.css';
+import '../Styles/adminPagestyle.css'
 
 // const subject = ['Engineering maths', 'Technical English', 'Physics', 'Chemistry'];
 // const numcount = [10, 20, 30, 40];
@@ -75,9 +76,9 @@ const Tablee = (props) => {
   };
 
   return (
-    <Container>
-      <form onSubmit={formtablesubmit}>
-        <Table striped bordered hover size="sm" responsive="sm" className="table">
+    <Container >
+      <form onSubmit={formtablesubmit} >
+        <Table striped bordered hover >
           <thead>
             <tr>
              
