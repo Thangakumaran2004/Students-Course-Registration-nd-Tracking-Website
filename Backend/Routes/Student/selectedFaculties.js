@@ -13,7 +13,7 @@ router.post('/',async (req,res)=>{
     
     let {studentBatch,studentDept,studentSemester,studentYear,studentRegno} =  frontendData;
 
-    studentRegno = 2111087;
+    studentRegno = 2111092;
 
     delete frontendData.studentBatch;
     delete frontendData.studentDept;

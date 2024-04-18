@@ -65,7 +65,7 @@ export const Maincourse=(props) =>{
   const [activeAccordionItem, setActiveAccordionItem] = useState(null);
   const[submitData,setSubmitData]=useState(
 
-    {studentRegisterno:studentDetailsString.regno ,
+    {//studentRegisterno:studentDetailsString.regno ,
       studentSemester:studentDetailsString.sem ,
     studentYear:studentDetailsString.year,
     studentBatch:studentDetailsString.batch,

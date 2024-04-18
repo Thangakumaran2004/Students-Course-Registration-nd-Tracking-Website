@@ -51,7 +51,7 @@ const getFaculties = async (dept)=>{
 };
 
 const getCourses = async (dept, sem, batch)=>{
-    console.log("getcourse() called");
+    //console.log("getcourse() called");
     let coursesQuery = 'select id,code,name,type from maincourses where dept = ? and sem = ? and batch = ?';
     return new Promise((resolve,reject)=>{
         db.query(coursesQuery,[dept,sem,batch],(err,res)=>{
@@ -62,13 +62,13 @@ const getCourses = async (dept, sem, batch)=>{
                 }
                 reject(response);
             }else{
-                console.log("The courses are",res);
+                //console.log("The courses are",res);
                 if(res.length){
                     let response ={
                         stat:"Courses found successfully",
                         courses : res
                     }
-                    console.log("The courses are , ", res);
+                    //console.log("The courses are , ", res);
                     resolve(response);
                 }else{
                     console.log("No courses found for the provided details");
