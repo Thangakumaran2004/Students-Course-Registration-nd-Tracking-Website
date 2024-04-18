@@ -1,12 +1,12 @@
 import React from 'react'
 import { Alert } from 'react-bootstrap'
 import './../Styles/componentStyles.css'
-const AlertSucess = () => {
+const AlertSucess = (props) => {
   return (
     <div >
         <Alert variant='success' dismissible className='alertsucess' >
             
-            <p>Success </p>
+            <p>Success {props.message}</p>
         </Alert>
     </div>
   )

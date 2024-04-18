@@ -3,5 +3,15 @@
     text-decoration: none;
     
 }
+.batchyearselection{
+    background: rgba(255, 255, 255, 0.13); 
+   backdrop-filter: blur(10px);
+}
 
 
+
+.cbcscontainer{
+    height: 100vh;
+    background: url('../assets/mmmotif.svg');
+    background-size: cover;
+}

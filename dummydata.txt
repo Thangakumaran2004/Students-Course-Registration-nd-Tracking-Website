@@ -1,0 +1,44 @@
+ let countabledata =[
+    {
+      course_id: '23ECE301',
+      faculty: [
+        {
+          faculty_id: 'ECE01',
+          alloted_count: 5,
+          faculty_name: 'Dr.S.Tamil Selvi'
+        },
+        {
+          faculty_id: 'ECE02',
+          alloted_count: 4,
+          faculty_name: 'Dr.A.Shenbagavalli'
+        },
+        {
+          faculty_id: 'ECE03',
+          alloted_count: 3,
+          faculty_name: 'Dr.T.S.Arun Samuel'
+        }
+      ],
+      course_name: 'Probablity Random Process And Queueing Theory',
+      course_code: '23EC31C'
+    },
+    {
+      course_id: '23ECE302',
+      faculty: [  {
+        faculty_id: 'ECE04',
+        alloted_count: 5,
+        faculty_name: 'Dr.N.Arumugam'
+      },
+      {
+        faculty_id: 'ECE09',
+        alloted_count: 4,
+        faculty_name: 'Dr.R.Manjula Devi'
+      },
+      {
+        faculty_id: 'ECE03',
+        alloted_count: 3,
+        faculty_name: 'Dr.T.S.Arun Samuel'
+      } ],
+      course_name: 'Signals And System',
+      course_code: '23EC32C'
+    }
+  ]

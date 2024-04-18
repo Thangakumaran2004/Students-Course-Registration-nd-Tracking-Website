@@ -100,8 +100,8 @@ const  submitfacultydata = async(e) =>{
             </Col>
             <Button type='submit' variant='success'>Add Faculty</Button>
           </Form>
-          {success && <p style={{color: 'green',fontStyle:'italic'}}>student Data aded sucessfully.  .  .  .  .  .</p>}
-          {alreadyexists && <p style={{color: 'red',fontStyle:'italic'}}>student Data already exists.  .  .  .  .  .</p>}
+          {success && <p style={{color: 'green',fontStyle:'italic'}}>Faculty Data aded sucessfully.  .  .  .  .  .</p>}
+          {alreadyexists && <p style={{color: 'red',fontStyle:'italic'}}>Faculty Data already exists.  .  .  .  .  .</p>}
       </Container>
     </div>
   )

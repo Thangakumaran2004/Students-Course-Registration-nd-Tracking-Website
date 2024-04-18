@@ -17,6 +17,7 @@ const StudentCbcs = () => {
   const postStudentDetails={'studentSemester':studentDetailsString.sem ,'studentYear':studentDetailsString.year,'studentBatch':studentDetailsString.batch,'studentDept':studentDetailsString.dept};
   const[facultyDescription,setFacultyDescription]=useState([]);
   const[studentTabeData,setStudentTableData]=useState([]);
+  const[trackerTableData,setTrackerTableData]=useState([]);
   const [showTable,setShowTable]=useState(true);
   const [error, setError]=useState(false)
  useEffect(()=>{
@@ -26,6 +27,7 @@ const StudentCbcs = () => {
       let response = await axios.post('http://localhost:5000/student/getCourseAndFacultyDetails',postStudentDetails);
       if(response.data.getAllotedFacultiesAndCoursesStatus=='successfully got'){
       setFacultyDescription(response.data.facultyDescription);
+      setTrackerTableData(response.data.trackerTableDetails);
       setStudentTableData(response.data.tableDetails);
       setShowTable(true);
       setError(false);
@@ -44,7 +46,7 @@ const StudentCbcs = () => {
       <StudentHeader  />
       
       {/* <Circlebar /> */}
-     <Counttable  totaltablelist={studentTabeData}/>
+     <Trackertable  trackertablelist={trackerTableData}/>
       
       {(showTable)?  <Maincourse  totaltablelist={studentTabeData}  facultydescription={facultyDescription}/>:<p>not alloted</p> }
         {error && <p>server busy</p>}
@@ -63,7 +65,8 @@ export const Maincourse=(props) =>{
   const [activeAccordionItem, setActiveAccordionItem] = useState(null);
   const[submitData,setSubmitData]=useState(
 
-    {studentSemester:studentDetailsString.sem ,
+    {studentRegisterno:studentDetailsString.regno ,
+      studentSemester:studentDetailsString.sem ,
     studentYear:studentDetailsString.year,
     studentBatch:studentDetailsString.batch,
     studentDept:studentDetailsString.dept}
@@ -154,8 +157,9 @@ export const Maincourse=(props) =>{
     )
 }
 
-export const Counttable = (props) => {
-  let countabledata = props.totaltablelist;
+export const Trackertable = (props) => {
+  let  tracktabledata = props.trackertablelist;
+ 
 
   return (
     <div>
@@ -170,13 +174,15 @@ export const Counttable = (props) => {
           </tr>
         </thead>
         <tbody>
-          {countabledata.map(({ id, course_name, batch1facultyname, batch1countlimit, batch2facultyname, batch2countlimit, batch3facultyname, batch3countlimit }) => (
+          {tracktabledata.map(({id,course_id,faculty,course_name}) => (
             <tr key={id}>
-              <td>{id}</td>
+              <td>{course_id}</td>
               <td>{course_name}</td>
-              <td>{batch1facultyname} ({batch1countlimit})</td>
-              <td>{batch2facultyname} ({batch2countlimit})</td>
-              <td>{batch3facultyname} ({batch3countlimit})</td>
+              {faculty.map(({ faculty_id, alloted_count, faculty_name }) => (
+                <td key={faculty_id}>
+                  {faculty_name} ({alloted_count})
+                </td>
+              ))}
             </tr>
           ))}
         </tbody>

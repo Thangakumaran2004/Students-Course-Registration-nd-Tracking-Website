@@ -30,7 +30,6 @@ const navigate=useNavigate();
 
 
 
-
 var dummyResult = {
   studentStatus: "dummy student",
   regno: "dummy regno",
@@ -38,12 +37,13 @@ var dummyResult = {
   name: "dummy name",
   year: "dummy year",
   sem: "dummy sem",
-  batch: "dummy batch",
+batch: "dummy batch",
   totalCredits: "dummy total credits",
   mainCourseCredits: "dummy main course credits",
   programElectiveCredits: "dummy program elective credits",
   openElectiveCredits: "dummy open elective credits"
-};
+}
+
 
 
 
@@ -67,22 +67,22 @@ var dummyResult = {
     }
     //console.log("The frontend form data is",stddetails);
    
-    // sessionStorage.setItem('studentData',JSON.stringify(dummyResult)) 
-    // console.log(dummyResult);
+    sessionStorage.setItem('studentData',JSON.stringify(dummyResult)) 
+    console.log(dummyResult);
     try{
       let response = await axios.post('http://localhost:5000/studentLogin', stddetails) ;
         
-          console.log("the backend data is",response.data);
-           sessionStorage.setItem('studentData',JSON.stringify(response.data)) 
-          //console.log("the student status is ",response.data.studentStatus);
-          if(response.data.studentStatus == 'valid user correct password'){
-            console.log("Navigated properly");
-          //  sessionStorage.setItem('studentData',JSON.stringify(dummyResult)) 
-           navigate('/studentpage');
-          }else if(response.data.studentStatus=='valid user incorrect password' || 'Student not found invalid user'){
-            console.log('Error occured');
-                setError(true);
-          }
+          // console.log("the backend data is",response.data);
+          //  sessionStorage.setItem('studentData',JSON.stringify(response.data)) 
+          // //console.log("the student status is ",response.data.studentStatus);
+          // if(response.data.studentStatus == 'valid user correct password'){
+          //   console.log("Navigated properly");
+          // //  sessionStorage.setItem('studentData',JSON.stringify(dummyResult)) 
+          //  navigate('/studentpage');
+          // }else if(response.data.studentStatus=='valid user incorrect password' || 'Student not found invalid user'){
+          //   console.log('Error occured');
+          //       setError(true);
+          // }
      
 
     }catch(e){

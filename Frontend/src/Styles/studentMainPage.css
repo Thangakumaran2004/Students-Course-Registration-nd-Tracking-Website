@@ -140,14 +140,15 @@ h5 i{
     background-color: white
 }
 
-.studentmainpagesidebar i{
-        
+.studentmainpagesidebar  i{
+        text-decoration: none;
         font-size: 1.5rem;
-        padding: 2rem 0.7rem;
+        padding: 3rem 0.7rem 0rem 0.7rem;
 }
-.studentmainpagesidebar p{
+.studentmainpagesidebar  p{
+    text-decoration: none;
     color: rgb(12, 11, 11);
-    padding: 0.5rem  0.2rem;
+    padding: 1px  0.2rem;
     font-size: 1rem;
 
 }
