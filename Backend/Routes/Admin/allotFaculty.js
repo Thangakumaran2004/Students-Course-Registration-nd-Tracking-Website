@@ -13,10 +13,10 @@ router.post('/',async (req,res)=>{
 
     const deptSemBatchDetails = JSON.parse(frontendData.deptSemBatch)
     const {dept,year,semester,batch} = deptSemBatchDetails;
-    console.log("the destructured deptSemBatch details is,",dept,year,semester,batch);
+    //console.log("the destructured deptSemBatch details is,",dept,year,semester,batch);
 
     const precheckIfAlreadySameDataPresent = await checkIfAlreadyPresentInAllotedFaculties(semester,batch,dept);
-    console.log("The result of prechecking if data already present in allotedbyadnmins table is, ",precheckIfAlreadySameDataPresent);
+    //console.log("The result of prechecking if data already present in allotedbyadnmins table is, ",precheckIfAlreadySameDataPresent);
 
     if(precheckIfAlreadySameDataPresent == 'Server Busy'){
         let result = {

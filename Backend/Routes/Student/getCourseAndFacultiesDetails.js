@@ -7,7 +7,7 @@ const {getAllotedFacultiesAndCourses,getAllFaculties,setFacultyDetails,getAllCou
 router.post('/',async (req,res)=>{
     let frontendData = req.body;
     let {studentSemester,studentYear,studentBatch,studentDept} = req.body;
-    //console.log("The data received from frontend about the student is : ", frontendData);
+    console.log("The data received from frontend about the student is : ", frontendData);
 
     let allotedFacultiesForCourses = await getAllotedFacultiesAndCourses(studentSemester,studentDept,studentBatch);
 
