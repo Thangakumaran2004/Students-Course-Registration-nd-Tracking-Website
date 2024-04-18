@@ -53,8 +53,8 @@ const  submitstudentdata = async(e) =>{
                             <Form.Control  type='text' name='' value={deleteStudent.batch} onChange={Deletestudentdata}/>
                         </Form.Group>
                         <Button type='submit'>Delete</Button>
-                        {success && <p style={{color: 'green',fontStyle:'italic'}}>student Data aded sucessfully.  .  .  .  .  .</p>}
-                        {alreadyexists && <p style={{color: 'red',fontStyle:'italic'}}>student Data already exists.  .  .  .  .  .</p>}
+                        {success && <p style={{color: 'green',fontStyle:'italic'}}>student Data deleted sucessfully.  .  .  .  .  .</p>}
+                        {alreadyexists && <p style={{color: 'red',fontStyle:'italic'}}>student Data not exists.  .  .  .  .  .</p>}
                     </Form>
             </Container>
     </div>

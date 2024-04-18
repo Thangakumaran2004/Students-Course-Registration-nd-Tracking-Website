@@ -5,6 +5,9 @@ import  Tablee from '../../Components/table'
 import axios from 'axios'
 import Adminsubnav from '../../Components/adminSubNav'
 import '../../Styles/studentMainPage.css'
+import '../../Styles/adminPagestyle.css'
+import AlertSucess from '../../Components/alertSucess'
+import AlertFailure from '../../Components/alertFailure'
 
 const Adminaddcourse = () => {
   let deptName =JSON.parse(sessionStorage.getItem('adminDept'));
@@ -75,10 +78,10 @@ const Adminaddcourse = () => {
     
   
   return (
-    <div>
+    <div  className='cbcscontainer'>
       <Adminheader />
       
-        <Container className='mt-5 p-3' style={{border:'2px solid black',borderRadius:'10px'}}>
+        <Container className=' batchyearselection mt-5 p-3' style={{border:'2px solid black',borderRadius:'10px'}}>
           <center><h4>Enter the semester Batch and year to allocate Faculty</h4></center><br/><br/>
           <Form onSubmit={handlesubmit}>
             <Row>
@@ -123,12 +126,14 @@ const Adminaddcourse = () => {
             </Col>
             </Row>
           </Form>
+          {(allocateerror)? <AlertSucess message={'Unable to submit due to invalid input'}/>: <AlertFailure />}
           {allocateerror && <p style={{color: 'red', fontStyle: 'italic'}}>Unable to submit due to invalid input </p>}
           {alreadyexists && <p style={{color: 'red' ,fontStyle: 'italic'}}>the data is already exists </p>}
           {dataNotFound && <p style={{color: 'red' ,fontStyle: 'italic'}}>the data not Found </p>}
         </Container>
         <br />
         <br />
+        <AlertSucess />
         <br />
         <br />
           {visibleTable ? <Tablee courses={tableCourse} faculties={tableFaculty} /> : null }

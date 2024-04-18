@@ -67,8 +67,8 @@ const  submitfacultydata = async(e) =>{
                     <Form.Control type='text' name='facultyDept' value={deleteFaculty.facultyDept} onChange={deletefacultydata}  />
                 </Form.Group>
                 <Button type='submit'>Delete Faculty</Button>
-                {success && <p style={{color: 'green',fontStyle:'italic'}}>student Data aded sucessfully.  .  .  .  .  .</p>}
-          {alreadyexists && <p style={{color: 'red',fontStyle:'italic'}}>student Data already exists.  .  .  .  .  .</p>}
+                {success && <p style={{color: 'green',fontStyle:'italic'}}>Faculty Data Deleted sucessfully.  .  .  .  .  .</p>}
+          {alreadyexists && <p style={{color: 'red',fontStyle:'italic'}}>Faculty Data not exists.  .  .  .  .  .</p>}
             </Form>
         </Container>
     </div>

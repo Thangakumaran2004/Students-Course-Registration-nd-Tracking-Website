@@ -30,7 +30,6 @@ const navigate=useNavigate();
 
 
 
-
 var dummyResult = {
   studentStatus: "dummy student",
   regno: "dummy regno",
@@ -38,12 +37,13 @@ var dummyResult = {
   name: "dummy name",
   year: "dummy year",
   sem: "dummy sem",
-  batch: "dummy batch",
+batch: "dummy batch",
   totalCredits: "dummy total credits",
   mainCourseCredits: "dummy main course credits",
   programElectiveCredits: "dummy program elective credits",
   openElectiveCredits: "dummy open elective credits"
-};
+}
+
 
 
 
