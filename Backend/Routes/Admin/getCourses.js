@@ -7,6 +7,7 @@ router.use(express.json());
 router.use(express.urlencoded({extended:true}));
 
 router.post('/', async (req,res)=>{
+    
     console.log("The frontend data for getting courses is ", req.body);
     const {batch, semester, year, Dep} = req.body;
 
@@ -28,7 +29,7 @@ router.post('/', async (req,res)=>{
         courses : response.courses
     }
 
-    console.log("The getCourses courses is ", response.courses);
+    //console.log("The getCourses courses is ", response.courses);
 
     res.json(getCourseRes);
 

@@ -9,17 +9,17 @@ const {getFaculties, getCourses} = require('../../Controllers/Admin/mainPageCont
 router.use(express.json());
 router.use(express.urlencoded({extended:true}));
 
-router.get('/', async (req,res)=>{
+router.post('/', async (req,res)=>{
 
     try{
 
-        //console.log("The frontend response for viewing student choices is , ", req.body);
+        console.log("The frontend response for viewing student choices is , ", req.body);
         //const {studentDept, studentSem, studentBatch, course_id} = req.body;
         
             const studentDept = "ECE";
             const studentSem = 3;
             const studentBatch = 2025;
-            const course_id = "23ECE301"; 
+            const course_id = "23ECE303"; 
         
         const allStudentChoices = await getAllStudentChoices(studentDept,studentBatch,studentSem,course_id);
 
@@ -276,7 +276,18 @@ router.get('/', async (req,res)=>{
         )
 
 
-        studentChoicesExcelBook.xlsx.write(res);
+        studentChoicesExcelBook.xlsx.write(res).then(()=>{
+            console.log("Going to end");
+            res.end();
+        }).catch(err=>{
+                console.log("Error occured in sending excel ",err)
+                let response = {
+                    viewStudentChoicesStatus : "Server Busy"
+                }
+        
+                res.json(response);
+            
+        });
 
         //res.json("Good Work");
 
