@@ -6,6 +6,7 @@ import axios from 'axios';
 
 const DownloadCbcsData = () => {
 
+let departmentName=JSON.parse(sessionStorage.getItem('adminDept'))
 
  const[bssSuccess,setBssSuccess]=useState(false);
  const[bssFailure,setBssFailure]=useState(false); 
@@ -14,7 +15,8 @@ const DownloadCbcsData = () => {
 const[downloadCourse,setDownloadCourse]=useState({
     'batch':'',
     'semester':'',
-     'year':''
+     'year':'',
+     'Dep':departmentName
 });
 
 const handlingDownloadCourseData =(e)=>{
@@ -45,7 +47,7 @@ console.log("The backend response is ",response.data);
 if( response.data.stat =='Succesfully fetched Courses'){
 
     
-    setCourseId(response.data.course_id);
+    setCourseId(response.data.course);
     setBssSuccess(true);
 
 }else if(response.data.stat =='Server Busy'){
@@ -140,7 +142,6 @@ if( response.data.stat =='Succesfully fetched Courses'){
 
 const Downloadform =(props)=>{
 
-
 let fetchedcourseid=props.fcid
 console.log(fetchedcourseid)
   const[courseIdDownload,setCourseIdDownload]=useState({
@@ -161,23 +162,20 @@ console.log(fetchedcourseid)
 
   const FinalDownload = async (e)=>{
     e.preventDefault();
-    console.log("The form data is ",downloadCourse);
+    console.log("The form data is ",courseIdDownload);
   
-    if(downloadCourse.year=='none'){
-      setBssFailure(true);
-  }else{
-  
+
   try {        
 
   
-  let response = await axios.post('http://localhost:5000/helloworld',downloadCourse );
-  
+  let response = await axios.post('http://localhost:5000/helloworld',courseIdDownload);
+  console.log(courseIdDownload)
   
   }catch(e){
   console.log( "Error in axios while downloading",e);
   }
 }
-  }
+  
 
 
 
@@ -192,15 +190,15 @@ console.log(fetchedcourseid)
         <center><h3>Select the course id to download the data </h3></center>
         <Col>
                 <Form.Group>
-                    <select className='yeardropdown' md={2} type='text'  name="coursecode" value={courseIdDownload.batch} onChange={handlingDownload}>
+                    <select className='yeardropdown' md={2} type='text'  name="coursecode" value={courseIdDownload.coursecode} onChange={handlingDownload}>
                    
-                    {fetchedcourseid.map((crseid) => (
-            <option key={crseid}>{crseid}</option>
+                    {fetchedcourseid.map(({id,code,name}) => (
+            <option value={id}>{code}-{name}</option>
           ))}
                     </select>
                 </Form.Group>
         </Col>
-        <Col><Button>Download</Button></Col>
+        <Col><Button type='submit'>Download</Button></Col>
       </Row>
     </Form>
   )

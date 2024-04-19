@@ -4,7 +4,7 @@ import Adminsubnav from './adminSubNav';
 
 
 export const Adminheader = () => {
-  let deptName =JSON.parse(sessionStorage.getItem('adminDept'))
+  let deptName =/*JSON.parse(sessionStorage.getItem('adminDept'))*/"ECE";
   //console.log("data stored in the session storage is ",deptName);
 
   return (
