@@ -125,14 +125,16 @@ const DownloadCbcsData = () => {
 
     const Downloadform =(props)=>{
 
+      let finaldownloaddata=JSON.parse(sessionStorage.getItem('Downloadcoursebssdata'))
+      
       let fetchedcourseid=props.fcid;
 
       console.log("The fetched course id is ", fetchedcourseid);
 
       const [courseIdDownload,setCourseIdDownload] = useState({
+        finaldownloaddata,
         "coursecode":''
       })
-
 
 
         const handlingDownload =(e)=>{
