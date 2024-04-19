@@ -10,7 +10,9 @@ let departmentName=JSON.parse(sessionStorage.getItem('adminDept'))
 
  const[bssSuccess,setBssSuccess]=useState(false);
  const[bssFailure,setBssFailure]=useState(false); 
- const[getCourseId,setCourseId]=useState([])
+ const[getCourseId,setCourseId]=useState([
+  
+ ])
  const[emptyinput,setemptyinput]=useState(false);
 const[downloadCourse,setDownloadCourse]=useState({
     'batch':'',
