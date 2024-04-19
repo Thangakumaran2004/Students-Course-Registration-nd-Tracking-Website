@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Button, Col, FloatingLabel, Form, Row } from 'react-bootstrap'
 import { Adminheader } from '../../Components/header';
 import Cbcssubnav from '../../Components/allotcbcssubnav';
+import axios from 'axios';
 
 const DownloadCbcsData = () => {
 
@@ -35,22 +36,26 @@ const DetailsSubmit = async (e)=>{
 
 try {        
 sessionStorage.setItem('Downloadcoursebssdata',JSON.stringify(downloadCourse));
+console.log("The download course is,",downloadCourse)
 
-let response = await axios.post('http://localhost:5000/helloworld',downloadCourse );
-if( response.data ==''){
+let response = await axios.post('http://localhost:5000/admin/getCourses',downloadCourse );
+
 console.log("The backend response is ",response.data);
+
+if( response.data.stat =='Succesfully fetched Courses'){
+
     
     setCourseId(response.data.course_id);
     setBssSuccess(true);
 
-}else if(response.data=='failure'){
+}else if(response.data.stat =='Server Busy'){
 
-    console.log("The backend response is ",response.data);
+    console.log("The backend response is ",response.data.stat);
     setBssFailure(true);
 }
 
 }catch(e){
-console.log( "Error in axios while fetching  courseid",e);
+    console.log( "Error in axios while fetching  courseid",e);
 }
 
 }
