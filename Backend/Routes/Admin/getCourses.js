@@ -7,10 +7,10 @@ router.use(express.json());
 router.use(express.urlencoded({extended:true}));
 
 router.post('/', async (req,res)=>{
-    //console.log("The frontend data for getting courses is ", req.body);
-    const {batch, semester, year} = req.body;
+    console.log("The frontend data for getting courses is ", req.body);
+    const {batch, semester, year, Dep} = req.body;
 
-    const dept = "ECE";
+    const dept = Dep;
 
     const response = await getCourses(dept , semester, batch);
 

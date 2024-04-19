@@ -47,7 +47,7 @@ console.log("The backend response is ",response.data);
 if( response.data.stat =='Succesfully fetched Courses'){
 
     
-    setCourseId(response.data.course);
+    setCourseId(response.data.courses);
     setBssSuccess(true);
 
 }else if(response.data.stat =='Server Busy'){
