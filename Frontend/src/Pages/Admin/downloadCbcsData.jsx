@@ -62,27 +62,7 @@ if( response.data.stat =='Succesfully fetched Courses'){
 
 }
 
-
-
-
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
   return (
     <div>
