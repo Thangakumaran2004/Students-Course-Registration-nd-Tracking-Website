@@ -92,6 +92,25 @@ export const Maincourse=(props) =>{
       console.log("The course and faculty selected by student form  data is,",submitData);
       let response = await axios.post('http://localhost:5000/student/selectedFaculties',submitData);
       console.log("The backend response after selecting students is",response.data) 
+      if(response.data.status=="Successfully added all choices to db"){
+        Swal.fire({
+          icon: 'success',
+          title: 'Success',
+          text:  "all chioces are added successfully ",
+        });
+      }else if(response.data.status=="server busy"){
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text:  "please enter valid user incorrect password",
+        });
+      }else if(response.data.status=="partially filled"){
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text:  `choices are partially filled the course need to be selected is${response.data.remainingCouse}`,
+        });
+      }
     }catch(err){
       console.log("the error in submitting the course table data is ",err);
     }
@@ -175,9 +194,9 @@ export const Trackertable = (props) => {
           </tr>
         </thead>
         <tbody>
-          {tracktabledata.map(({id,course_id,faculty,course_name}) => (
+          {tracktabledata.map(({id,course_code,faculty,course_name}) => (
             <tr key={id}>
-              <td>{course_id}</td>
+              <td>{course_code}</td>
               <td>{course_name}</td>
               {faculty.map(({ faculty_id, alloted_count, faculty_name }) => (
                 <td key={faculty_id}>

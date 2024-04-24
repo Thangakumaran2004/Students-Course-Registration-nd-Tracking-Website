@@ -78,7 +78,7 @@ const Tablee = (props) => {
   return (
     <Container >
       <form onSubmit={formtablesubmit} >
-        <Table striped bordered hover >
+        <Table striped bordered hover  className='admincbcstable'>
           <thead>
             <tr>
              

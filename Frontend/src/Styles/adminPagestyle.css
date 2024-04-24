@@ -6,6 +6,9 @@
 .batchyearselection{
     background: rgba(255, 255, 255, 0.13); 
    backdrop-filter: blur(10px);
+   width: 600px;
+   margin: 20px 30%;
+   padding: 20px;
 }
 
 
@@ -19,12 +22,19 @@
     background-repeat: no-repeat;
     z-index: -1;
 }
-
+.admincbcstable{
+    border: 2px inset black;
+    background: rgba(133, 18, 18, 0.13); 
+    backdrop-filter: blur(10px);
+    width:  80%;
+    margin: 20px 20%;
+}
 
 .cbcstable{
     border: 2px inset black;
     background: rgba(133, 18, 18, 0.13); 
     backdrop-filter: blur(10px);
+    width:  70%;
 }
 
 .table select{
