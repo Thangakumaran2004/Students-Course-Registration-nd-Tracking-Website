@@ -26,6 +26,8 @@ const handlingChange =(e) =>{
 const formsubmit = async (e) =>{
   e.preventDefault(); 
   console.log("Frontend data ",logincred);
+
+  if(logincred.username && logincred.password)
   try{
     let response = await axios.post('http://localhost:5000/adminLogin', logincred);
     console.log("The data from backend is ", response.data);

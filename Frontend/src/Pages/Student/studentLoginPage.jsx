@@ -91,6 +91,20 @@ batch: "dummy batch",
               title: 'Oops...',
               text:  "please enter valid user incorrect password",
             });
+
+            if(response.data.studentStatus=='valid user incorrect password'){
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text:  "valid user incorrect password",
+              });
+            }else if(response.data.studentStatus=='Student not found invalid user'){
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text:  "Student not found invalid user",
+              });
+            }
             console.log('Error occured');
                 setError(true);
           }
