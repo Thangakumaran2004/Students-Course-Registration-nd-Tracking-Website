@@ -4,6 +4,7 @@ import { CircularProgressbar } from 'react-circular-progressbar';
 import '../../Styles/studentMainPage.css'
 import StudentHeader from '../../Components/studentHeader';
 import axios from 'axios'
+import Swal from 'sweetalert2';
 import { Dashboard } from './dashboard';
 
 let  studentDetailsString = JSON.parse(sessionStorage.getItem('studentData')) ;
