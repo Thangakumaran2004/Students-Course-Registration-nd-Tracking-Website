@@ -3,6 +3,7 @@ import {Container,Form,Button,FloatingLabel,Row,Col} from 'react-bootstrap'
 import '../../Styles/loginPageStyle.css'
 import { Header } from '../Student/studentLoginPage'
 import axios from 'axios'
+import Swal from 'sweetalert2'
 import {useNavigate } from 'react-router-dom'
 
 // admin login page component
@@ -27,26 +28,46 @@ const formsubmit = async (e) =>{
   e.preventDefault(); 
   console.log("Frontend data ",logincred);
 
-  if(logincred.username && logincred.password)
+  if(!logincred.username || !logincred.password){
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text:  "Please enter valid id and password",
+    });
+    e.stopPropagation();
+    return;
+  }
   try{
     let response = await axios.post('http://localhost:5000/adminLogin', logincred);
     console.log("The data from backend is ", response.data);
-    if(response.data.adminStatus=='valid user correct password'){
+  }catch(e){
+    console.log("Error hapened while fetching response from AdminLogin API",e);
+  }
+   if(response.data.adminStatus=='valid user correct password'){
       //console.log("Navigated successfully");
       sessionStorage.setItem('adminDept',JSON.stringify(response.data.adminDept));
        navigate("/adminpage") ;
               
       }else if(response.data.adminStatus=='username not found invalid user' || response.data.adminStatus=='valid user incorrect password'){
             console.log("username not found invalid user");
+            if(response.data.adminStatus=='username not found invalid user'){
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text:  "username not found invalid user",
+              });
+            }else if(response.data.adminStatus=='valid user incorrect password'){
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text:  "valid user incorrect password",
+              });
+            }
             setError(true);
       }else{
         console.log("Server busy error");
         setUaccess(true)
       }
-    
-  }catch(e){
-    console.log("Error hapened while fetching response from AdminLogin API",e);
-  }
 }
   return (
     <div className='adminlogincon'>
@@ -62,8 +83,8 @@ const formsubmit = async (e) =>{
             <FloatingLabel controlId="floatingPassword"  label="Password" className="mb-5 mt-5">
             <Form.Control type="password" value={logincred.password}  onChange={handlingChange} name='password' placeholder="Password" />
             </FloatingLabel>
-            {error && <p style={{color: 'red'}}>Invalid username or password</p>}
-              {unacess && <p style={{color: 'red'}}>Unable to  login</p>}
+            {/* {error && <p style={{color: 'red'}}>Invalid username or password</p>}
+              {unacess && <p style={{color: 'red'}}>Unable to  login</p>} */}
             <Button variant="primary" type="submit" className='p-2 mb-4 fs-5'>LOG IN</Button>
             </Col>
             </Row>
