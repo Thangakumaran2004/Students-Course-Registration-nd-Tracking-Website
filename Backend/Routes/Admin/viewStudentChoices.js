@@ -19,9 +19,10 @@ router.post('/', async (req,res)=>{
             const studentDept = "ECE";
             const studentSem = 3;
             const studentBatch = 2025;
-            const course_id = "23ECE303"; 
+            const course_id = "23ECE304"; 
         
         const allStudentChoices = await getAllStudentChoices(studentDept,studentBatch,studentSem,course_id);
+        console.log("The response for allStudentChoices is : ", allStudentChoices);
 
         if(allStudentChoices == 'Server Busy'){
 

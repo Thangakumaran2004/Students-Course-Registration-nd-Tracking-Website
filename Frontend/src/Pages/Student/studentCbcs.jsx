@@ -67,6 +67,7 @@ export const Maincourse=(props) =>{
 
     { 
       studentSemester:studentDetailsString.sem ,
+      studentRegno:studentDetailsString.regno,
     studentYear:studentDetailsString.year,
     studentBatch:studentDetailsString.batch,
     studentDept:studentDetailsString.dept}

@@ -160,26 +160,49 @@ const DownloadCbcsData = () => {
             responseType: 'blob' // Set the response type to blob to handle binary data
           });
 
-          if(response.data.viewStudentChoicesStatus == 'Server Busy'){
-            
-          }
+          console.log("The response from the backend is : ", response);
 
           // Create a blob object from the response data
           const blob = new Blob([response.data], { type: response.headers['content-type'] });
+          console.log("The blob is : ", blob);
 
-          // Create a link element to download the blob
-          const url = window.URL.createObjectURL(blob);
-          const link = document.createElement('a');
-          link.href = url;
-          link.setAttribute('download', 'studentChoicesExcelBook.xlsx');
+          if(blob.type == 'application/json; charset=utf-8'){
 
-          // Append the link to the body and click it to trigger the download
-          document.body.appendChild(link);
-          link.click();
+                var reader = new FileReader();
+                reader.onload = function(event) {
+                    var blobText = event.target.result;  
+                    var jsonResponse = JSON.parse(blobText);
+                    console.log("The decoded blob is : ",jsonResponse);
 
-          // Clean up
-          document.body.removeChild(link);
-          window.URL.revokeObjectURL(url);
+                    if(jsonResponse.viewStudentChoicesStatus == 'Server busy'){
+                      console.log("The backend response status is : Server Busy" );
+                      return ;
+
+                    }else if(jsonResponse.viewStudentChoicesStatus == 'No Choices found till now'){
+                      console.log("The backend response status is : No choices found till Now");
+                      return ;
+                    }
+                };
+
+                reader.readAsText(blob);
+
+
+              }else{
+                // Create a link element to download the blob
+                const url = window.URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.setAttribute('download', 'studentChoicesExcelBook.xlsx');
+
+                // Append the link to the body and click it to trigger the download
+                document.body.appendChild(link);
+                link.click();
+
+                // Clean up
+                document.body.removeChild(link);
+                window.URL.revokeObjectURL(url);
+              }
+
         }catch(e){
               console.log( "Error in axios while downloading",e);
         }

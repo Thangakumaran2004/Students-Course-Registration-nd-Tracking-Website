@@ -13,8 +13,9 @@ const getAllStudentChoices = async (studentDept,studentBatch,studentSem,course_i
                     console.log("Error ocurred while querying for viewing all student choices ", err);
                     reject("Server Busy");
                 }
-                //console.log("The result of the query is : ",res);
+                //console.log("The result of getallStudentChoices query is : ", res);
                 if(res.length){
+                    
                     resolve(res);
                 }else{
                     resolve("No choices found till now");

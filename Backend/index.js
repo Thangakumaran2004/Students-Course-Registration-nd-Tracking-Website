@@ -14,6 +14,7 @@ const deleteFacultyRoute = require('./Routes/Admin/deleteFaculty.js');
 const adminAllotFacultyRoute = require('./Routes/Admin/allotFaculty.js');
 const adminViewStudentChoices = require('./Routes/Admin/viewStudentChoices.js');
 const adminGetCoursesRoute = require('./Routes/Admin/getCourses.js');
+const adminGetNotSelectedStudentsRoute = require('./Routes/Admin/getNotSelectedStudents.js');
 
 const studentgetCourseAndFacultyDetailsRoute = require('./Routes/Student/getCourseAndFacultiesDetails.js');
 const studentLoginPageRoute = require('./Routes/Student/loginPage.js');
@@ -52,6 +53,7 @@ app.use('/admin/deleteFaculty',deleteFacultyRoute);
 app.use('/admin/allotFaculty',adminAllotFacultyRoute);
 app.use('/admin/viewStudentChoices',adminViewStudentChoices);
 app.use('/admin/getCourses',adminGetCoursesRoute);
+app.use('/admin/getNotSelectedStudents',adminGetNotSelectedStudentsRoute);
 
 
 app.use('/studentLogin',studentLoginPageRoute);
