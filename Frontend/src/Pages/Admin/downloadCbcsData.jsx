@@ -13,6 +13,7 @@ const DownloadCbcsData = () => {
     const[getCourseId,setCourseId]=useState([])
 
     const[emptyinput,setemptyinput]=useState(false);
+    const[propsData,setpropsData]=useState({});
     const[downloadCourse,setDownloadCourse]=useState({
         'batch':'',
         'semester':'',
@@ -32,14 +33,51 @@ const DownloadCbcsData = () => {
     const DetailsSubmit = async (e)=>{
       e.preventDefault();
       console.log("The form data is ",downloadCourse);
+      setCourseId([
+        {
+          id: '23ECE301',
+          code: '23EC31C',
+          name: 'Probablity Random Process And Queueing Theory',
+          type: 'Theory Course'
+        },
+        {
+          id: '23ECE302',
+          code: '23EC32C',
+          name: 'Signals And System',
+          type: 'Theory Course'
+        },
+        {
+          id: '23ECE303',
+          code: '23EC33C',
+          name: 'Electronic Devices',
+          type: 'Integrated Course'
+        },
+        {
+          id: '23ECE304',
+          code: '23EC34C',
+          name: 'Digital Electronics',
+          type: 'Integrated Course'
+        },
+        {
+          id: '23ECE305',
+          code: '23EC35C',
+          name: 'Computer Networks',
+          type: 'Integrated Course'
+        },
+        {
+          id: '23ECE306',
+          code: '23EC36C',
+          name: 'Intellectual Property Rights Study',
+          type: 'Practical Course'
+        }
+      ])
 
       if(downloadCourse.year=='none' || downloadCourse.semester=='none' || downloadCourse.batch==''){
         setemptyinput(true);
     }else{
 
     try {        
-        sessionStorage.setItem('Downloadcoursebssdata',JSON.stringify(downloadCourse));
-        console.log("The download course is,",downloadCourse)
+       
 
         let response = await axios.post('http://localhost:5000/admin/getCourses',downloadCourse );
 
@@ -48,6 +86,9 @@ const DownloadCbcsData = () => {
         if( response.data.getCourseStatus =='Successfully fetched Courses'){
           console.log("Working")
 
+        //    sessionStorage.setItem('Downloadcoursebssdata',JSON.stringify(downloadCourse));
+        // console.log("The download course is,",downloadCourse)
+          setpropsData(downloadCourse);
             
             setCourseId(response.data.courses);
             console.log("The getCourses is", getCourseId);
@@ -116,7 +157,7 @@ const DownloadCbcsData = () => {
             {bssFailure && <p style={{color:'red',fontStyle:'italic'}}>Error Ocurred . . . . . . . </p>}
             </Form>
             
-            <Downloadform  fcid={getCourseId}/>
+            <Downloadform  fcid={getCourseId}  downloadrequiredData={propsData}/>
         </div>
       )
     }
@@ -124,15 +165,13 @@ const DownloadCbcsData = () => {
 
 
     const Downloadform =(props)=>{
-
-      let finaldownloaddata=JSON.parse(sessionStorage.getItem('Downloadcoursebssdata'))
       
       let fetchedcourseid=props.fcid;
 
       console.log("The fetched course id is ", fetchedcourseid);
 
       const [courseIdDownload,setCourseIdDownload] = useState({
-        finaldownloaddata,
+       "final data": props.downloadrequiredData,
         "coursecode":''
       })
 

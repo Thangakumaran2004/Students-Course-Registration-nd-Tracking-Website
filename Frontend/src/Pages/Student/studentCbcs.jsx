@@ -14,7 +14,7 @@ let  studentDetailsString = JSON.parse(sessionStorage.getItem('studentData')) ;
 const StudentCbcs = () => {
   let  studentDetailsString = JSON.parse(sessionStorage.getItem('studentData')) ;
   console.log("ThestudentDetailsString is", studentDetailsString);
-  const postStudentDetails={'studentRegisterno':studentDetailsString.regno,'studentSemester':studentDetailsString.sem ,'studentYear':studentDetailsString.year,'studentBatch':studentDetailsString.batch,'studentDept':studentDetailsString.dept};
+  const postStudentDetails=0/*{'studentRegisterno':studentDetailsString.regno,'studentSemester':studentDetailsString.sem ,'studentYear':studentDetailsString.year,'studentBatch':studentDetailsString.batch,'studentDept':studentDetailsString.dept};*/
   const[facultyDescription,setFacultyDescription]=useState([]);
   const[studentTabeData,setStudentTableData]=useState([]);
   const[trackerTableData,setTrackerTableData]=useState([]);
@@ -65,11 +65,11 @@ export const Maincourse=(props) =>{
   const [activeAccordionItem, setActiveAccordionItem] = useState(null);
   const[submitData,setSubmitData]=useState(
 
-    { 
-      studentSemester:studentDetailsString.sem ,
-    studentYear:studentDetailsString.year,
-    studentBatch:studentDetailsString.batch,
-    studentDept:studentDetailsString.dept}
+    // { 
+    //   studentSemester:studentDetailsString.sem ,
+    // studentYear:studentDetailsString.year,
+    // studentBatch:studentDetailsString.batch,
+    // studentDept:studentDetailsString.dept}
 
   );
   const[success,setSucess]=useState(false)
@@ -85,8 +85,8 @@ export const Maincourse=(props) =>{
     );
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
+    
     try{
       console.log("The course and faculty selected by student form  data is,",submitData);
       let response = await axios.post('http://localhost:5000/student/selectedFaculties',submitData);

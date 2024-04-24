@@ -4,6 +4,7 @@ import { Container, Form, Button, FloatingLabel, Row, Col } from 'react-bootstra
 import '../../Styles/loginPageStyle.css';
 import axios from 'axios'
 import {Nav} from 'react-bootstrap'
+import Swal from 'sweetalert2';
 
 
 export function Header(){
@@ -62,6 +63,11 @@ batch: "dummy batch",
     
     if(!stddetails.username || !stddetails.password){
       setError(true);
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text:  "Please enter valid id and password",
+      });
       e.stopPropagation();
       return;
     }
@@ -80,6 +86,11 @@ batch: "dummy batch",
           //  sessionStorage.setItem('studentData',JSON.stringify(dummyResult)) 
            navigate('/studentpage');
           }else if(response.data.studentStatus=='valid user incorrect password' || 'Student not found invalid user'){
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text:  "please enter valid user incorrect password",
+            });
             console.log('Error occured');
                 setError(true);
           }
@@ -106,8 +117,8 @@ batch: "dummy batch",
               <FloatingLabel controlId="floatingPassword" label="Password" className="mb-5 mt-5">
                 <Form.Control type="password" name='password' onChange={handlingFormdata} value={stddetails.password} placeholder="Password" />
               </FloatingLabel>
-              {error && <p style={{color: 'red'}}>Invalid username or password</p>}
-              {unacess && <p style={{color: 'red'}}>Unable to  login</p>}
+             {/*{ (error) ?<SweeetAlert  alertmessage={"username or password is incorrect"}/>:null}
+               {unacess && <p style={{color: 'red'}}>Unable to  login</p>} */}
               <Button variant="success" type="submit" className='p-2 mb-4 fs-5'>LOG IN</Button>
             </Col>
           </Row>
