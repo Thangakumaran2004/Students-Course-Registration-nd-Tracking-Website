@@ -65,11 +65,12 @@ export const Maincourse=(props) =>{
   const [activeAccordionItem, setActiveAccordionItem] = useState(null);
   const[submitData,setSubmitData]=useState(
 
-    // { 
-    //   studentSemester:studentDetailsString.sem ,
-    // studentYear:studentDetailsString.year,
-    // studentBatch:studentDetailsString.batch,
-    // studentDept:studentDetailsString.dept}
+    { 
+      studentSemester:studentDetailsString.sem ,
+      studentRegno:studentDetailsString.regno,
+    studentYear:studentDetailsString.year,
+    studentBatch:studentDetailsString.batch,
+    studentDept:studentDetailsString.dept}
 
   );
   const[success,setSucess]=useState(false)
