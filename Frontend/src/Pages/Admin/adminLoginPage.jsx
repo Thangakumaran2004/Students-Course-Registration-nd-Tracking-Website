@@ -40,10 +40,7 @@ const formsubmit = async (e) =>{
   try{
     let response = await axios.post('http://localhost:5000/adminLogin', logincred);
     console.log("The data from backend is ", response.data);
-  }catch(e){
-    console.log("Error hapened while fetching response from AdminLogin API",e);
-  }
-   if(response.data.adminStatus=='valid user correct password'){
+    if(response.data.adminStatus=='valid user correct password'){
       //console.log("Navigated successfully");
       sessionStorage.setItem('adminDept',JSON.stringify(response.data.adminDept));
        navigate("/adminpage") ;
@@ -68,6 +65,10 @@ const formsubmit = async (e) =>{
         console.log("Server busy error");
         setUaccess(true)
       }
+  }catch(e){
+    console.log("Error hapened while fetching response from AdminLogin API",e);
+  }
+  
 }
   return (
     <div className='adminlogincon'>
