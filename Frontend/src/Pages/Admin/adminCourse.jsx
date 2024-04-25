@@ -8,7 +8,8 @@ import '../../Styles/studentMainPage.css'
 import '../../Styles/adminPagestyle.css'
 import AlertSucess from '../../Components/alertSucess'
 import AlertFailure from '../../Components/alertFailure'
-import Cbcssubnav from '../../Components/allotcbcssubnav'
+import Cbcssubnav from '../../Components/allotcbcssubnav';
+import Swal from 'sweetalert2'
 
 const Adminaddcourse = () => {
   let deptName =JSON.parse(sessionStorage.getItem('adminDept'));

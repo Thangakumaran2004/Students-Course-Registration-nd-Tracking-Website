@@ -15,7 +15,7 @@ let  studentDetailsString = JSON.parse(sessionStorage.getItem('studentData')) ;
 const StudentCbcs = () => {
   let  studentDetailsString = JSON.parse(sessionStorage.getItem('studentData')) ;
   console.log("ThestudentDetailsString is", studentDetailsString);
-  const postStudentDetails=0/*{'studentRegisterno':studentDetailsString.regno,'studentSemester':studentDetailsString.sem ,'studentYear':studentDetailsString.year,'studentBatch':studentDetailsString.batch,'studentDept':studentDetailsString.dept};*/
+  const postStudentDetails={'studentRegisterno':studentDetailsString.regno,'studentSemester':studentDetailsString.sem ,'studentYear':studentDetailsString.year,'studentBatch':studentDetailsString.batch,'studentDept':studentDetailsString.dept};
   const[facultyDescription,setFacultyDescription]=useState([]);
   const[studentTabeData,setStudentTableData]=useState([]);
   const[trackerTableData,setTrackerTableData]=useState([]);
@@ -87,9 +87,10 @@ export const Maincourse=(props) =>{
     );
   }
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
     
     try{
+      e.preventDefault();
       console.log("The course and faculty selected by student form  data is,",submitData);
       let response = await axios.post('http://localhost:5000/student/selectedFaculties',submitData);
       console.log("The backend response after selecting students is",response.data) 
@@ -99,17 +100,22 @@ export const Maincourse=(props) =>{
           title: 'Success',
           text:  "all chioces are added successfully ",
         });
-      }else if(response.data.status=="server busy"){
+      }else if(response.data.status=="Server busy"){
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
           text:  "please enter valid user incorrect password",
         });
       }else if(response.data.status=="partially filled"){
+        let remainingCourseNames = ``;
+        for(let i =0;i<response.data.remainingCourse.length;i++){
+          remainingCourseNames += `${response.data.remainingCourse[i]}, `;
+        }
+        console.log("The partially filled and remaining courses are ",remainingCourseNames);
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text:  `choices are partially filled the course need to be selected is${response.data.remainingCouse}`,
+          text:  ` Your Choices are partially filled. \n The courses you need to select again are ${remainingCourseNames}`,
         });
       }
     }catch(err){

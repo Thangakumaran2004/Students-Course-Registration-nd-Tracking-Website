@@ -9,7 +9,7 @@ router.use(express.json());
 
 router.post('/',async (req,res)=>{
     let frontendData = req.body;
-    //console.log("The frontend data of selected faculties is,",frontendData);
+    console.log("The frontend data of selected faculties is,",frontendData);
     
     let {studentBatch,studentDept,studentSemester,studentYear,studentRegno} =  frontendData;
 
