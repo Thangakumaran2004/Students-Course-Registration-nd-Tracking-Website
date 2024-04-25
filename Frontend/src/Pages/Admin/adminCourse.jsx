@@ -39,7 +39,7 @@ const Adminaddcourse = () => {
     e.preventDefault();
     console.log("The frontend form data is ",formData);
    
-    if(formData.year==='none' || formData.semester==='none' || formData.batch===''){
+    if(formData.year=='none' || formData.semester=='none' || formData.batch==''){
                   setAllocateError(true);
     }else{
   
@@ -48,7 +48,14 @@ const Adminaddcourse = () => {
 
         let response = await axios.post('http://localhost:5000/adminMain',formData);
           if( response.data.getCourseAndFacultyStatus =='successfully fetched courses and faculty'){
+            
               console.log("The backend response is ",response.data);
+              Swal.fire({
+                icon: 'success',
+               showConfirmButton: false,
+                text:  "successfully fetched courses and faculty",
+                timer: 3000
+              });
                   //setAlexError(true)
                   //return;
                   setTableCourses(response.data.courses);
@@ -56,10 +63,19 @@ const Adminaddcourse = () => {
                   setvisibleTable(true)
 
           }else if(response.data.getCourseAndFacultyStatus =='No courses found for the provided details'){
-
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text:  "No courses found for the provided details",
+            });
                   console.log("The backend response is ",response.data);
                   setDataNotFound(true);
           }else if(response.data.getCourseAndFacultyStatus == 'You have already alloted faculties for the provided details'){
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text:  "You have already alloted faculties for the provided details",
+            });
                   console.log("The backend response is ",response.data);
                   setAlexError(true);
           }else{
@@ -83,7 +99,7 @@ const Adminaddcourse = () => {
       <Container className='cbcscontainer'></Container>
       <Adminheader />
       <Cbcssubnav />
-         <Container className=' batchyearselection ' style={{border:'2px solid black',borderRadius:'10px'}}>
+         <div className=' batchyearselection ' style={{border:'2px solid black',borderRadius:'10px'}}>
           
           <center><h4>Enter the semester Batch and year to allocate Faculty</h4></center><br/><br/>
           <Form onSubmit={handlesubmit}>
@@ -105,7 +121,7 @@ const Adminaddcourse = () => {
             <Col>
             <Form.Group>
                 <Form.Label>Select semester</Form.Label>
-              <select  className='yeardropdown' placeholder='select year' name='semester' value={formData.semester} onChange={handleChange}>
+              <select  className='yeardropdown' placeholder='select semester' name='semester' value={formData.semester} onChange={handleChange}>
                 <option value='none'>None</option>
               <option value='1'>sem-1</option>
               <option value='2'>sem-2</option>
@@ -129,14 +145,14 @@ const Adminaddcourse = () => {
             </Col>
             </Row>
           </Form>
-          {(allocateerror)? <AlertSucess message={'Unable to submit due to invalid input'}/>: <AlertFailure />}
+       
           {allocateerror && <p style={{color: 'red', fontStyle: 'italic'}}>Unable to submit due to invalid input </p>}
           {alreadyexists && <p style={{color: 'red' ,fontStyle: 'italic'}}>the data is already exists </p>}
           {dataNotFound && <p style={{color: 'red' ,fontStyle: 'italic'}}>the data not Found </p>}
-        </Container> 
+        </div> 
         <br />
         <br />
-        <AlertSucess />
+       
         <br />
         <br />
           {visibleTable ? <Tablee courses={tableCourse} faculties={tableFaculty} /> : null }
